@@ -1,0 +1,17 @@
+{
+  "name": "Grow-With-Friends",
+  "version": "1.0.1",
+  "main": "server.js",
+  "repository": "git@github.com:alejandroharb/Grow-With-Friends.git",
+  "author": "alejandro, raul, jorge",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.6",
+    "mysql": "^2.13.0",
+    "path": "^0.12.7",
+    "sequelize": "^3.30.2"
+  }
+}
