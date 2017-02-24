@@ -16,6 +16,14 @@ module.exports = function(sequelize, DataTypes) {
                 isAlpha: true
             }
         },
+        user_name: {
+            type: DataTypes.STRING(100),
+            allowNull: false,
+            validate: {
+                len: [1,100],
+                isAlphanumeric: true
+            }
+        },
         password: {
             type: DataTypes.STRING(100),
             allowNull:false,
@@ -36,7 +44,12 @@ module.exports = function(sequelize, DataTypes) {
     {
         classMethods: {
             associate: function(models) {
-                User.hasMany(models.Skills, {
+                User.hasMany(models.Golf, {
+                    onDelete: 'cascade'
+                });
+            },
+            associate: function(models) {
+                User.hasMany(models.Spanish, {
                     onDelete: 'cascade'
                 });
             }
