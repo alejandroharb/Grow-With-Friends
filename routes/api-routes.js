@@ -14,7 +14,8 @@ module.exports = function(app) {
             address: data.address
         }).then(function(dbUser) {
             //check to see if it exists already
-            res.render("user-home", {});
+            //redirect user to main page
+            res.render("user-home");
         })
     })
 }
