@@ -1,0 +1,38 @@
+<main>
+    <div class="container">
+        <div class="row">
+            <h1 class="center-align"> Log-in </h1>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                    </div>
+                </div>
+                <a type="submit" id="logInBtn" class="waves-effect waves-light btn">Submit</a>
+            </form>
+        </div>
+        <div class="row">
+            <hr>
+            <h1 class="center-align"> Create Account </h1>
+            <div class="col s12">
+                <a href="/create-user" class="waves-effect waves-light btn center-btn">Sign-up!</a>
+            </div>
+        </div>
+    </div>
+</main>
+    <div id="failLogInModal" class="modal">
+        <div class="modal-content">
+        <h4>Uh Oh!</h4>
+        <p>The email or the password didn't exist!</p>
+        </div>
+        <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>

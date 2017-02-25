@@ -1,4 +1,32 @@
 $(document).ready(function() {
+    //initialize modal
+    $('.modal').modal();
+    //================Loggin in==================
+    $('#logInBtn').on('click', function(e) {
+        e.preventDefault();
+        //collect variables
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        //assemble data into object
+        var data = {
+            email: email,
+            password: password
+        }
+        //-----Send login data to server-----
+        $.post('/log-in', data, function(response) {
+            //if data doesn't exist
+            if(response === false) {
+                //alert user of login failure
+                $('#failLogInModal').modal('open');
+            } else {
+                //reroute page to user's unique home page;
+                var key = response.user_name;
+                window.location.hre = '/api/home:' + key;
+            }
+        })
+    })
+
+    //============Creating new User==============
     $('#newUserSubmit').on('click', function(e) {
         //prevent page reload upon form submit
         e.preventDefault();
@@ -19,10 +47,15 @@ $(document).ready(function() {
             address: address
         };
         //ajax POST for sending data to server
-        $.post('/sign-up', data, function() {
-            //sends browser to specified URL 
-            //need to add condition if data was added successfully
-            window.location.href = '/home-redirect'
+        $.post('/sign-up', data, function(response) {
+            //if response == true, username was added, redirect user to home
+            if(response) {
+                window.location.href = '/home-redirect';
+            } else {
+                //username already existed, so was not added to database
+                console.log("username already exists, try again.");
+                $('#usernameModal').modal('open');
+            }
         })
     });
 })
