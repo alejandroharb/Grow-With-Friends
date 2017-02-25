@@ -1,14 +1,15 @@
 $(document).ready(function() {
     $('#newUserSubmit').on('click', function(e) {
+        //prevent page reload upon form submit
         e.preventDefault();
-
+        //collect form variables
         var firstName = $('#first_name').val().trim();
         var lastName = $('#last_name').val().trim();
         var userName = $('#userName').val().trim();
         var password = $('#password').val().trim();
         var email = $('#email').val().trim();
         var address = $('#address').val().trim();
-
+        //organize data into object
         var data = {
             first: firstName,
             last: lastName,
@@ -17,9 +18,11 @@ $(document).ready(function() {
             email: email,
             address: address
         };
-
-        $.post('/sign-up', data, function(res) {
-            console.log(res);
+        //ajax POST for sending data to server
+        $.post('/sign-up', data, function() {
+            //sends browser to specified URL 
+            //need to add condition if data was added successfully
+            window.location.href = '/home-redirect'
         })
-    })
+    });
 })
