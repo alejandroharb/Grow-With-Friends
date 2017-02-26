@@ -4,6 +4,14 @@ var path = require('path');
 var bodyParser = require("body-parser");
 var app = express();
 
+// //====FIREBASE admin initialization=====
+// var admin = require('firebase-admin');
+// var serviceAccount = require("./firebaseServiceAccoutKey.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://Grow-with-Friends.firebaseio.com"
+// });
+
 //======database connection, models=========
 var db = require('./models');
 

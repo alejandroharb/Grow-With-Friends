@@ -32,6 +32,7 @@ $(document).ready(function() {
     $('#newUserSubmit').on('click', function(e) {
         //prevent page reload upon form submit
         e.preventDefault();
+
         //collect form variables
         var firstName = $('#first_name').val().trim();
         var lastName = $('#last_name').val().trim();
@@ -39,6 +40,7 @@ $(document).ready(function() {
         var password = $('#password').val().trim();
         var email = $('#email').val().trim();
         var address = $('#address').val().trim();
+
         //organize data into object
         var data = {
             first: firstName,
@@ -46,15 +48,17 @@ $(document).ready(function() {
             username: userName,
             password: password,
             email: email,
-            address: address
+            address: address,
+            image: image
         };
         //ajax POST for sending data to server
         $.post('/sign-up', data, function(response) {
             //if response == true, username was added, redirect user to home
             console.log(response)
             if(response) {
+                //===========ROUTE USER TO CREATE PROFILE PAGE===============
                 var key = userName;
-                window.location.href = 'api/home/' + key;
+                window.location.href = 'api/create-profile/' + key;
             } else {
                 //username already existed, so was not added to database
                 console.log("username already exists, try again.");
@@ -62,4 +66,5 @@ $(document).ready(function() {
             }
         })
     });
+    
 })
