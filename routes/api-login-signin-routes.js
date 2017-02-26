@@ -1,6 +1,7 @@
 var db = require('../models');
 var pictures = require('./pictures.js')
 
+
 module.exports = function(app) {
     //==========creating new user account==========
     app.post("/sign-up", function(req, res) {
@@ -69,11 +70,10 @@ module.exports = function(app) {
     //=================Unique User HOME PAGE================
     app.get('/api/home/:key', function(req, res) {
         var key = req.params.key
-        //----query data for this specific profile-----
-        //----display data via handlebars----
+        //---adding image source for displaying----
         var userData = {};
         userData.image = "assets/img/" + key+".jpg";
-        
+        //----query data for this specific profile-----
         db.User.findOne({where: {user_name: key}})
             .then(function(response) {
                 userData.basicInfo = response.dataValues;
@@ -81,6 +81,6 @@ module.exports = function(app) {
             })
         
     });
-    app.post('pictures/upload', pictures)
-    
+    // app.post('/pictures/upload', pictures);
+
 }

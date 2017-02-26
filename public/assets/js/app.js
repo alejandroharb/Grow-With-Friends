@@ -74,5 +74,26 @@ $(document).ready(function() {
             }
         })
     });
+    //=====SCORE MODAL======
+    $('#golfScoreBtn').on('click', function(e) {
+        e.preventDefault();
+        $('#golfModal').modal('open');
+    })
+    //==========Submit Golf Score===============
+    $('#submitGolfScore').on('click', function(e) {
+        e.preventDefault();
+        //collect variables with data
+        var score = $('#golfScore').val();
+        var userName = $('#userName').val().trim();
+        var data = {
+            score: score,
+            username: userName
+        }
+        console.log(data)
+        $.post('/golf/score', data, function(response) {
+            console.log(response);
+        })
+
+    })
     
 })

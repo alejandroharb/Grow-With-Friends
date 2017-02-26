@@ -45,7 +45,7 @@ require('./routes/api-login-signin-routes.js')(app);
 require('./routes/html-routes.js')(app);
 require('./routes/api-firebaseAuth-routes.js')(app);
 require('./routes/api-home-routes.js')(app);
-// var router = require('./routes/pictures.js');
+
 
 
 db.sequelize.sync().then(function() {
