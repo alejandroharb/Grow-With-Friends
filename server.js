@@ -38,7 +38,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
-app.use(express.static("./public"));
+app.use(express.static(__dirname + "/public"));
 
 //==========importing routes=============
 require('./routes/api-login-signin-routes.js')(app);

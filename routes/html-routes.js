@@ -10,5 +10,8 @@ module.exports = function(app) {
     })
     app.get('/home-redirect', function(req, res) {
         res.render('user-home')
+    });
+    app.get('/test',function(req, res) {
+        res.render('test');
     })
 }

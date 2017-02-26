@@ -1,4 +1,25 @@
-.center-btn{
+body{
+    background-color:#e8eaf6;
+}
+
+.user-wrapper {
+    border-radius: 6px;
+    margin: 80px auto 30px auto;
     display: block;
-    margin: 10px auto;
+    padding: 15px;
+    background-color: #FAFAFA;
+}
+
+img.userImg{
+    display: block;
+    max-width: 71%;
+    margin: -75px auto 20px auto;
+}
+
+h2{
+    font-size: 18px;
+}
+
+.matchBtn{
+    display: block;
 }

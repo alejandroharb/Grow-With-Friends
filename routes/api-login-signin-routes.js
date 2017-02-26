@@ -72,13 +72,15 @@ module.exports = function(app) {
         //----query data for this specific profile-----
         //----display data via handlebars----
         var userData = {};
-        userData.image = "assets/img/" + key;
+        userData.image = "assets/img/" + key+".jpg";
+        
         db.User.findOne({where: {user_name: key}})
             .then(function(response) {
                 userData.basicInfo = response.dataValues;
                 res.render('user-home', {info: userData})
             })
+        
     });
-    app.post('/upload', pictures)
+    app.post('pictures/upload', pictures)
     
 }
