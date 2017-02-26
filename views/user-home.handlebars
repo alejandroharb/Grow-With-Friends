@@ -1,2 +1,5 @@
 <h1>Welcome to the User Console!</h1>
-{{obj}}
+<ul>
+{{#each info}}
+    <li>{{@key}}: {{this}}</li>
+{{/each}}

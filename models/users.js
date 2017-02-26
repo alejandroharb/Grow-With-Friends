@@ -56,7 +56,7 @@ module.exports = function(sequelize, DataTypes) {
                 });
             },
             associate: function(models) {
-                User.hasMany(models.Spanish, {
+                User.hasMany(models.Guitar, {
                     onDelete: 'cascade'
                 });
             }

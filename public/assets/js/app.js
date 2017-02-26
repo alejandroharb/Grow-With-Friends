@@ -14,6 +14,7 @@ $(document).ready(function() {
         }
         //-----Send login data to server-----
         $.post('/log-in', data, function(response) {
+            console.log(response)
             //if data doesn't exist
             if(response === false) {
                 //alert user of login failure
@@ -21,7 +22,8 @@ $(document).ready(function() {
             } else {
                 //reroute page to user's unique home page;
                 var key = response.user_name;
-                window.location.hre = '/api/home:' + key;
+                console.log("key is here: " + key)
+                window.location.href = 'api/home/' + key;
             }
         })
     })
@@ -49,8 +51,10 @@ $(document).ready(function() {
         //ajax POST for sending data to server
         $.post('/sign-up', data, function(response) {
             //if response == true, username was added, redirect user to home
+            console.log(response)
             if(response) {
-                window.location.href = '/home-redirect';
+                var key = userName;
+                window.location.href = 'api/home/' + key;
             } else {
                 //username already existed, so was not added to database
                 console.log("username already exists, try again.");

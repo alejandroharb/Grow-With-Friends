@@ -41,10 +41,23 @@ module.exports = function(app) {
                 }
             })
     });
-    //====================Unique User===================
+    //=================Unique User HOME PAGE================
     app.get('/api/home/:key', function(req, res) {
         var key = req.params.key
         //----query data for this specific profile-----
         //----display data via handlebars----
-    })
+        db.User.findOne({where: {user_name: key}})
+            .then(function(response) {
+                console.log(response.dataValues)
+                res.render('user-home', {info: response.dataValues})
+            })
+    });
+    //================User Selects SKILLS====================
+    app.get('/api/create-profile/:key', function(req, res) {
+        //key variable stores username of user
+        var key = req.params.key;
+        //========RAUL WORK HERE==========
+        //---create sequelize function that sends data into mysql database into ****CORRECT TABLE****-----
+
+    });
 }

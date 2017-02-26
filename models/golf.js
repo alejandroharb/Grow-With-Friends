@@ -8,18 +8,28 @@ module.exports = function(sequelize, DataTypes) {
                 isAlpha: true
             }
         },
-        rating_holes_quantity: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
+        year_experience: {
+            type: DataTypes.STRING,
+            allowNull: false,
             validate: {
-                isAlpha:true
+                isNumeric: true,
+                val: [0,100]
             }
         },
-        rating_score: {
+        experience_rating: {
             type: DataTypes.INTEGER,
-            allowNull:true,
+            allowNull:false,
             validate: {
-                isAlpha:true
+                isNumeric:true,
+                val: [1,3]
+            }
+        },
+        distance_preference: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                isNumeric: true,
+                val: [1,300]
             }
         }
     },
