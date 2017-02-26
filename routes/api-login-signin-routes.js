@@ -14,6 +14,7 @@ module.exports = function(app) {
     //==========creating new user account==========
     app.post("/sign-up", function(req, res) {
         var data = req.body;
+
         db.User.findOrCreate({where: {
             $or: [
                 { user_name: data.username},
@@ -37,7 +38,7 @@ module.exports = function(app) {
                 res.send(created);
             }
         })
-        //=======for FIREBASE Authingtication adding user=========
+        // =======for FIREBASE Authingtication adding user=========
         // admin.auth().createUser({
         //     uid:data.username,
         //     email: data.email,
@@ -72,7 +73,7 @@ module.exports = function(app) {
         var key = req.params.key;
         //========RAUL WORK HERE==========
         //---create sequelize function that sends data into mysql database into ****CORRECT TABLE****-----
-
+        res.render('user-home')
     });
     //=================Unique User HOME PAGE================
     app.get('/api/home/:key', function(req, res) {

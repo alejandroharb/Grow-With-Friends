@@ -33,6 +33,15 @@ $(document).ready(function() {
         //prevent page reload upon form submit
         e.preventDefault();
 
+        //collecting image file:
+        // var form = $('form')[0];
+
+        // var formData = new FormData(form);
+        // var imageFile = $('input[type=file]')[0].files[0];
+        // formData.append('image',);
+        // console.log(imageFile)
+        // console.log(formData)
+
         //collect form variables
         var firstName = $('#first_name').val().trim();
         var lastName = $('#last_name').val().trim();
@@ -41,15 +50,14 @@ $(document).ready(function() {
         var email = $('#email').val().trim();
         var address = $('#address').val().trim();
 
-        //organize data into object
+        // organize data into object
         var data = {
             first: firstName,
             last: lastName,
             username: userName,
             password: password,
             email: email,
-            address: address,
-            image: image
+            address: address
         };
         //ajax POST for sending data to server
         $.post('/sign-up', data, function(response) {
