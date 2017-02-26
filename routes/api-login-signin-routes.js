@@ -1,14 +1,5 @@
 var db = require('../models');
-//====FIREBASE admin initialization=====
-var admin = require('firebase-admin');
-var firebase = require('firebase');
-// var firebaseui = require('firebaseui');
-
-var serviceAccount = require("../firebaseServiceAccoutKey.json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://Grow-with-Friends.firebaseio.com"
-});
+var pictures = require('./pictures.js')
 
 module.exports = function(app) {
     //==========creating new user account==========
@@ -73,41 +64,21 @@ module.exports = function(app) {
         var key = req.params.key;
         //========RAUL WORK HERE==========
         //---create sequelize function that sends data into mysql database into ****CORRECT TABLE****-----
-        res.render('user-home')
+        
     });
     //=================Unique User HOME PAGE================
     app.get('/api/home/:key', function(req, res) {
         var key = req.params.key
         //----query data for this specific profile-----
         //----display data via handlebars----
+        var userData = {};
+        userData.image = "assets/img/" + key;
         db.User.findOne({where: {user_name: key}})
             .then(function(response) {
-                console.log(response.dataValues)
-                res.render('user-home', {info: response.dataValues})
+                userData.basicInfo = response.dataValues;
+                res.render('user-home', {info: userData})
             })
     });
-    //================FIREBASE Authentication=================
-    app.post('/firebaseAuth', function(req, res) {
-        var id_token = req.body;
-        // Build Firebase credential with the Google ID token.
-        var credential = firebase.auth.GoogleAuthProvider.credential(id_token);
-        // Sign in with credential from the Google user.
-        firebase.auth().signInWithCredential(credential).done(function(response) {
-            console.log(firebase.User)
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            if (errorCode === 'auth/account-exists-with-different-credential') {
-            console.log('Email already associated with another account.');
-            // Handle account linking here, if using.
-            } else {
-                console.error(error);
-            }
-        });
-    })
+    app.post('/upload', pictures)
+    
 }

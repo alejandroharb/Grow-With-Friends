@@ -66,7 +66,7 @@ $(document).ready(function() {
             if(response) {
                 //===========ROUTE USER TO CREATE PROFILE PAGE===============
                 var key = userName;
-                window.location.href = 'api/create-profile/' + key;
+                window.location.href = 'api/home/' + key;
             } else {
                 //username already existed, so was not added to database
                 console.log("username already exists, try again.");

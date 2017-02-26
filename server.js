@@ -3,7 +3,15 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require("body-parser");
 var app = express();
+var router = express.Router();
+var multer = require('multer')
 
+router.use(multer)
+// router.use(multer)
+
+
+// var pictures = require('./routes/pictures.js')
+// app.use(pictures);
 // //====FIREBASE admin initialization=====
 // var admin = require('firebase-admin');
 // var serviceAccount = require("./firebaseServiceAccoutKey.json");
@@ -37,9 +45,10 @@ require('./routes/api-login-signin-routes.js')(app);
 require('./routes/html-routes.js')(app);
 require('./routes/api-firebaseAuth-routes.js')(app);
 require('./routes/api-home-routes.js')(app);
+// var router = require('./routes/pictures.js');
 
 
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync().then(function() {
     app.listen(PORT, function() {
         console.log("listening on Port: " + PORT);
     })
