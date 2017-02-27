@@ -20,7 +20,7 @@ module.exports = function(app) {
         var data = req.body;
 
         //get current date stamp
-        var date = moment().format();
+        var date = moment().format('YYYY-MM-DD');
         //creating score object
         var score = {score: data.score}
         //ref variable holds FIREBASE node structure
@@ -34,7 +34,7 @@ module.exports = function(app) {
         console.log("userName: " + username);
         var ref = database.ref("Users/" + username + "/golf")
         ref.once('value').then(function(snapshot){
-            var dataArray = snapshot;
+            var dataArray = snapshot.val();
             console.log("======data======")
             console.log(dataArray)
             res.send(dataArray);
