@@ -94,20 +94,6 @@ module.exports = function(app) {
             })
         }
     })
-    //=================Unique User HOME PAGE================
-    app.get('/api/home/:key', function(req, res) {
-        var key = req.params.key
-        //---adding image source for displaying----
-        var userData = {};
-        userData.image = "assets/img/" + key + ".jpg";
-        //----query data for this specific profile-----
-        db.User.findOne({where: {user_name: key}})
-            .then(function(response) {
-                userData.basicInfo = response.dataValues;
-                res.render('user-home', {info: userData})
-            })
-        
-    });
     // app.post('/pictures/upload', pictures);
 
 }

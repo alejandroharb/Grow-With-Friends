@@ -6,12 +6,13 @@ var app = express();
 var router = express.Router();
 var multer = require('multer')
 
-router.use(multer)
-// router.use(multer)
+var multer = require('multer')
+var mv = require('mv');
 
 
-// var pictures = require('./routes/pictures.js')
-// app.use(pictures);
+//allows us to easily create temporary files and directories.
+var tmp = require('tmp');
+
 // //====FIREBASE admin initialization=====
 // var admin = require('firebase-admin');
 // var serviceAccount = require("./firebaseServiceAccoutKey.json");
@@ -25,7 +26,7 @@ var db = require('./models');
 
 //=========Handlebars Setup============
 var exphbr = require('express-handlebars');
-app.engine("handlebars", exphbr({defaultLayout: "main"}));
+app.engine("handlebars", exphbr({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 //server port
@@ -45,11 +46,12 @@ require('./routes/api-auth-routes.js')(app);
 require('./routes/html-routes.js')(app);
 require('./routes/api-firebaseAuth-routes.js')(app);
 require('./routes/api-home-routes.js')(app);
+require('./routes/pictures.js')(app);
 
 
 
-db.sequelize.sync().then(function() {
-    app.listen(PORT, function() {
+db.sequelize.sync().then(function () {
+    app.listen(PORT, function () {
         console.log("listening on Port: " + PORT);
     })
 })
