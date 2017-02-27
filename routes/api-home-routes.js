@@ -14,15 +14,30 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 module.exports = function(app) {
-    app.post('/golf/score', function(req, res) {
+    //==============Writing data to FIREBASE==============
+    app.post('/score/:skill', function(req, res) {
+        var skill = req.params.skill;
         var data = req.body;
+
         //get current date stamp
         var date = moment().format();
         //creating score object
         var score = {score: data.score}
         //ref variable holds FIREBASE node structure
-        var ref = database.ref(data.username + "/golf/" + date);
+        var ref = database.ref("Users/" + data.username + "/" + skill + "/" + date);
         //writing into database at specific reference
         ref.set(score);
     });
+    //=================Querying Data FROM Firebase to Chart====================
+    app.get('/get-golf-data/:user', function(req, res) {
+        var username = req.params.user;
+        console.log("userName: " + username);
+        var ref = database.ref("Users/" + username + "/golf")
+        ref.once('value').then(function(snapshot){
+            var dataArray = snapshot;
+            console.log("======data======")
+            console.log(dataArray)
+            res.send(dataArray);
+        })
+    })
 }

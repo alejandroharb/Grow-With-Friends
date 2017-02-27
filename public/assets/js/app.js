@@ -90,10 +90,20 @@ $(document).ready(function() {
             username: userName
         }
         console.log(data)
-        $.post('/golf/score', data, function(response) {
+        var url = '/score/golf'
+        $.post(url, data, function(response) {
             console.log(response);
         })
-
+    })
+    $('#getGolfChartData').on('click', function(e) {
+        e.preventDefault();
+        var username = $('#user-name').attr('value');
+        var url = '/get-golf-data/'+username;
+        console.log("this is the URL: " + url)
+        $.get(url, function(response) {
+            var data = response;
+            console.log(data);
+        })
     })
     
 })

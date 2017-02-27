@@ -1,13 +1,22 @@
 <div class="container">
 	<div class="row">
 		<div class="col s4">
-			<div class="user-wrapper">
-				<img src="/{{info.image}}" class="responsive-img circle userImg">
-				<h2 class="center-align"> {{info.basicInfo.first_name}}</h2>
-				<a class="btn waves-effect waves-light matchBtn">Get Matched</a>
-			</div>
+				<div class="user-wrapper">
+					<img src="/{{info.image}}" class="responsive-img circle userImg">
+					<h2 class="center-align"> {{info.basicInfo.first_name}}</h2>
+					<a class="btn waves-effect waves-light matchBtn">Get Matched</a>
+				</div>
+			{{!--Chart Wrapper--}}
 		</div>
+		<div class="col s8">
+				<div class="chart-wrapper">
+					<div class="chart-canvas"></div>
+						<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
+						<button id="getGolfChartData" class="btn waves-effect waves-light waves-green" value="golf">Chart Golf!</button>
+				</div>
+		</
 	</div>
+	{{!--======New ROW--}}
 	<div class="row">
 		<div class="col s4">
 			<h3 class="submitScoreTitle"> Submit Your Scores!</h3>
@@ -15,7 +24,7 @@
 		</div>
 	</div>
 </div>
-{{!--Modal!--}}
+{{!--================Modals================!--}}
   <div id="golfModal" class="modal bottom-sheet">
     <div class="modal-content">
 		<h4>Modal Header</h4>
