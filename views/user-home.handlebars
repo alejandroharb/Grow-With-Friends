@@ -1,39 +1,42 @@
 <div class="container">
 	<div class="row">
-		<div class="col s4">
+		<div class="col s12 m4">
 				<div class="user-wrapper">
 					<img src="/{{info.image}}" class="responsive-img circle userImg">
 					<h2 class="center-align"> {{info.basicInfo.first_name}}</h2>
-					<a class="btn waves-effect waves-light matchBtn">Get Matched</a>
+					<a class="btn waves-effect waves-light matchBtn cyan darken-3">Get Matched</a>
+					<div  class="fixed-action-btn horizontal click-to-toggle">
+					    <a class="btn-floating btn-large cyan darken-3">
+					      <i class="material-icons">library_add</i>
+					    </a>
+					    <ul>
+					      <li><a id="golfScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/golf.svg"></a></li>
+					      <li><a class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/guitar.svg"></a></li>
+					      <li><a class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a></li>
+					    </ul>
+					 </div>
 				</div>
 			{{!--Chart Wrapper--}}
 		</div>
-		<div class="col s8">
+		<div class="col s12 m8">
 				<div class="chart-wrapper">
 					<div class="chart-canvas"></div>
 						<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
-						<button id="getGolfChartData" class="btn waves-effect waves-light waves-green" value="golf">Chart Golf!</button>
+						<button id="getGolfChartData" class="btn waves-effect waves-light waves-green cyan darken-3" value="golf">Chart Golf!</button>
 				</div>
-		</
-	</div>
-	{{!--======New ROW--}}
-	<div class="row">
-		<div class="col s4">
-			<h3 class="submitScoreTitle"> Submit Your Scores!</h3>
-			<a id="golfScoreBtn" href="#golfModal" class="btn waves-effect waves-light matchBtn">Golf</a>
 		</div>
 	</div>
 </div>
 {{!--================Modals================!--}}
   <div id="golfModal" class="modal bottom-sheet">
     <div class="modal-content">
-		<h4>Modal Header</h4>
+		<h4>Enter Score</h4>
 		<form >
 				<input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
 				<p class="range-field">
-				<span><i class="material-icons">thumb_up</i></span>
-				<input type="range" id="golfScore" min="-80" max="80" />
-				<span><i class="material-icons">thumb_down</i></span>
+					<span><i class="material-icons">thumb_up</i></span>
+					<input type="range" id="golfScore" min="-80" max="80" />
+					<span><i class="material-icons">thumb_down</i></span>
 				</p>
 		</form>
     </div>

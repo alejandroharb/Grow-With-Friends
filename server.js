@@ -41,7 +41,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static(__dirname + "/public"));
 
 //==========importing routes=============
-require('./routes/api-login-signin-routes.js')(app);
+require('./routes/api-auth-routes.js')(app);
 require('./routes/html-routes.js')(app);
 require('./routes/api-firebaseAuth-routes.js')(app);
 require('./routes/api-home-routes.js')(app);
