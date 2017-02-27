@@ -24,11 +24,11 @@ module.exports = function(sequelize, DataTypes) {
                 val: [1,3]
             }
         },
-        distance_preference: {
-            type: DataTypes.INTEGER,
+        City: {
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isNumeric: true,
+                isAlpha: true,
                 val: [1,300]
             }
         }
