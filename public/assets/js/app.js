@@ -1,4 +1,4 @@
-$(document).ready(function() {
+ $(document).ready(function() {
     //initialize modal
     $('.modal').modal();
     //================Loggin in==================
@@ -27,6 +27,40 @@ $(document).ready(function() {
             }
         })
     })
+
+// ////////////////////////////// Addition by Raul - START ////////////////////////
+
+
+   //============Selection of Interests and Input of Years of Experience and Level of Experience ==============
+    $('#newInterestSubmit').on('click', function(e) {
+        //prevent page reload upon form submit
+        e.preventDefault();
+
+        //data selected by user is collected
+        var yearsExperience = $('#yearsExperience').val().trim();
+        var skillLevel = $('#skillLevel').val().trim();
+
+        // organize data into object
+        var dataes = {
+            experience: yearsExperience,
+            skill: skillLevel
+        };
+
+        //ajax POST for sending data to server
+        $.post('/user-home', dataes, function(response) {
+            //if response == true, username was added, redirect user to home
+            console.log(response)
+            if(response) {
+                //===========ROUTE USER TO HIS HOME PAGE (user-home)===============
+                var keyHome = userName;
+                window.location.href = 'user/home/' + keyHome;
+            } 
+        })
+    });
+
+
+
+// ////////////////////////////// Addition by Raul - END ////////////////////////
 
     //============Creating new User==============
     $('#newUserSubmit').on('click', function(e) {
@@ -98,7 +132,7 @@ $(document).ready(function() {
     $('#getGolfChartData').on('click', function(e) {
         e.preventDefault();
         var username = $('#user-name').attr('value');
-        var url = '/get-golf-data/'+username;
+        var url = '/get-golf-data/'+ username;
         console.log("this is the URL: " + url)
         $.get(url, function(response) {
             var data = response;

@@ -10,12 +10,83 @@
 					      <i class="material-icons">library_add</i>
 					    </a>
 					    <ul>
-					      <li><a id="golfScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/golf.svg"></a></li>
+					      <li>
+					      <a id="golfScoreBtn" class="btn-floating  cyan darken-4">
+					      <img class="responsive-img" src="/assets/img/golf.svg">
+					      </a>
+					      </li>
+
 					      <li><a class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/guitar.svg"></a></li>
 					      <li><a class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a></li>
 					    </ul>
 					 </div>
 				</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- ////////////////////////////// Addition by Raul - START ////////////////////////  -->
+<h5>Choose Your Interest/Hobby</h5>
+<div class="panel-body">
+             
+<div class="text-center">
+                        
+                  
+<!-- Modal Trigger
+  <a class="waves-effect waves-light btn" href="#modal1">Modal</a>-->
+
+ 	<button data-target="modal1" class="btn" id="golfButton" class="responsive-img" value="golf"><img src="/assets/img/golfrv.png" width="30" height="30"></button>
+  
+ 	<button data-target="modal1" class="btn" id="guitarButton" class="responsive-img" value="guitar"><img src="/assets/img/guitarrv.svg" width="30" height="30"></button>
+
+	<button data-target="modal1" class="btn" id="languageButton" class="responsive-img" value="language"><img src="/assets/img/langrv.png" width="30" height="30"></button>
+
+	<button data-target="modal1" class="btn" id="chessButton" class="responsive-img" value="chess"><img src="/assets/img/chessrv.svg" width="30" height="30"></button>
+
+
+
+  <!-- Modal Structure -->
+ 
+	<div id="modal1" class="modal">
+    <div class="modal-content">
+
+ 		<h5>How Many Years of Experience Do You Have?</h5>
+ 		<p>(0 to 100 Years)</p>
+      	<!-- <p>range</p> -->
+
+			<form action="#">
+    			<p class="range-field">
+      			<input type="range" id="yearsExperience" min="0" max="100" />
+    			</p>
+  			</form>
+ 
+<br>
+<br>
+
+		<h5>What is Your Level of Experience?</h5>
+      	<!-- <p>What is Your Level of Experience?</p> -->
+			<form action="#">
+    			<p><input name="group1" type="radio" id="skillLevel" /><label for="test1">1 - Beginner</label></p>
+    			<p><input name="group1" type="radio" id="skillLevel" /><label for="test2">2 - Intermmediate</label></p>
+    			<p><input name="group1" type="radio" id="skillLevel"  /><label for="test3">3 - Expert</label></p>
+  			</form>
+
+    </div>
+
+    	<div class="modal-footer">
+      		<a href="#!" id="newInterestSubmit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    	</div>
+ 	</div>
+</div>           
+</div>
+
+
+<!-- ////////////////////////////// Addition by Raul - END ////////////////////////  -->
+
+
+
 			{{!--Chart Wrapper--}}
 		</div>
 		<div class="col s12 m8">
@@ -27,6 +98,8 @@
 		</div>
 	</div>
 </div>
+
+
 {{!--================Modals================!--}}
   <div id="golfModal" class="modal bottom-sheet">
     <div class="modal-content">
@@ -35,7 +108,7 @@
 				<input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
 				<p class="range-field">
 					<span><i class="material-icons">thumb_up</i></span>
-					<input type="range" id="golfScore" min="-80" max="80" />
+					<input type="range" id="golfScore" min="50" max="130" />
 					<span><i class="material-icons">thumb_down</i></span>
 				</p>
 		</form>
@@ -44,3 +117,7 @@
 	<a type="submit" id="submitGolfScore" class="modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
     </div>
   </div>
+
+
+
+{{obj}}
