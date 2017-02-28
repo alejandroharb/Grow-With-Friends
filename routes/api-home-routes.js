@@ -54,8 +54,8 @@ module.exports = function (app) {
             var dataArray = snapshot.val();
             console.log("======data======")
             console.log(dataArray)
-            res.send(datliaArray);
-        })
+            res.send(dataArray);
+        });
     });
     app.get('/test', function (req, res) {
         res.render('test');

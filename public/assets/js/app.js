@@ -79,6 +79,14 @@ $(document).ready(function() {
         e.preventDefault();
         $('#golfModal').modal('open');
     })
+    $('#guitarScoreBtn').on('click', function(e) {
+        e.preventDefault();
+        $('#golfModal').modal('open');
+    })
+    $('#langScoreBtn').on('click', function(e) {
+        e.preventDefault();
+        $('#golfModal').modal('open');
+    })
     //==========Submit Golf Score===============
     $('#submitGolfScore').on('click', function(e) {
         e.preventDefault();
@@ -95,6 +103,9 @@ $(document).ready(function() {
             console.log(response);
         })
     })
+
+
+
     $('#getGolfChartData').on('click', function(e) {
         e.preventDefault();
         var username = $('#user-name').attr('value');
@@ -102,8 +113,12 @@ $(document).ready(function() {
         console.log("this is the URL: " + url)
         $.get(url, function(response) {
             var data = response;
-            console.log(data);
+            console.log("data: " + data);
+            console.log(data[0])
+
+
+            //-----
         })
     })
-    
+
 })

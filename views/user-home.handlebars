@@ -11,8 +11,8 @@
 					    </a>
 					    <ul>
 					      <li><a id="golfScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/golf.svg"></a></li>
-					      <li><a class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/guitar.svg"></a></li>
-					      <li><a class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a></li>
+					      <li><a id="guitarScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/guitar.svg"></a></li>
+					      <li><a id="langScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a></li>
 					    </ul>
 					 </div>
 				</div>
@@ -20,9 +20,16 @@
 		</div>
 		<div class="col s12 m8">
 				<div class="chart-wrapper">
-					<div class="chart-canvas"></div>
 						<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
 						<button id="getGolfChartData" class="btn waves-effect waves-light waves-green cyan darken-3" value="golf">Chart Golf!</button>
+
+						{{!--My Chart--}}
+						<div class="chart-canvas">
+							<div id="chartDiv" >
+									<canvas id="chartArea" height="300" width="580"></canvas>
+							</div>
+						</div>
+
 				</div>
 		</div>
 	</div>
