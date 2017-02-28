@@ -9,6 +9,7 @@ var config = {
     databaseURL: "https://grow-with-friends.firebaseio.com",
     storageBucket: "<grow-with-friends.appspot.com",
 };
+
 firebase.initializeApp(config);
 //reference to database
 var database = firebase.database();
@@ -43,7 +44,7 @@ module.exports = function (app) {
         //writing into database at specific reference
         ref.set(score);
     });
-    //=================Querying Data FROM Firebase to Chart====================
+    //============Querying Data FROM Firebase to Chart====================
     app.get('/get-golf-data/:user', function (req, res) {
         var username = req.params.user;
         console.log("userName: " + username);
@@ -52,8 +53,11 @@ module.exports = function (app) {
             var dataArray = snapshot.val();
             console.log("======data======")
             console.log(dataArray)
-            res.send(dataArray);
+            res.send(datliaArray);
         })
     });
+    app.get('/test', function (req, res) {
+        res.render('test');
+    })
 
 }

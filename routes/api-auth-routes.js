@@ -2,10 +2,14 @@ var db = require('../models');
 var pictures = require('./pictures.js');
 var geocoder = require('geocoder');
 //=====geocoder test=========
-var myLocation = '3918 atascocita rd, Atascocita, Texas 77396';
+var myLocation = '9990 Richmond Avenue, Houston, TX 77042, USA';
 geocoder.geocode(myLocation, function (err, data) {
-    console.log("=====geocode data========");
-    console.log(data.results[0].address_components);
+    console.log("=====geocode city========");
+    // console.log(data.results[0].address_components);
+    var locData = data.results[0].address_components;
+    var city = findCity(locData);;
+    console.log(city);
+
 })
 module.exports = function(app) {
     //==========creating new user account==========
@@ -83,7 +87,9 @@ module.exports = function(app) {
         //first get location data from user
         db.User.findOne({ where: { user_name: username } })
             .then(function (response) {
-            
+                console.log("userData response");
+                console.log(response.datavalues.address)
+                city = response.datavalues.address;
         })
         if (skill === "golf") {
             db.Golf.create({
@@ -96,4 +102,12 @@ module.exports = function(app) {
     })
     // app.post('/pictures/upload', pictures);
 
+}
+
+function findCity(data) {
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].types[0] === "locality") {
+            return data[i].long_name;
+        }
+    }
 }

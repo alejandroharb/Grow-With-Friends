@@ -9,9 +9,10 @@ var multer = require('multer')
 var multer = require('multer')
 var mv = require('mv');
 
-
+//===============Image File Uploading Middleware===============
 //allows us to easily create temporary files and directories.
-var tmp = require('tmp');
+
+//file upload middleware
 
 // //====FIREBASE admin initialization=====
 // var admin = require('firebase-admin');
