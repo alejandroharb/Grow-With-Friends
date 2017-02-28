@@ -50,12 +50,34 @@ module.exports = function (app) {
         var username = req.params.user;
         console.log("userName: " + username);
         var ref = database.ref("Users/" + username + "/golf")
+        var scoreArray = [];
+        var dateArray = [];
         ref.once('value').then(function (snapshot) {
             var dataArray = snapshot.val();
             console.log("======data======")
-            console.log(dataArray)
-            res.send(dataArray);
-        })
+            // console.log(dataArray)
+            // console.log(Object.keys(dataArray));
+            // selecting MM/DD from each; pushing dates/moments(x-axis) for chart
+            for (i in dataArray) {
+              console.log(i);
+              dateArray.push(i.slice(5,10));
+            }
+            console.log(dateArray);
+// *********************
+            // pushing scores(y-axis) for chart
+            snapshot.forEach(function(childSnapshot) {
+              scoreArray.push(parseInt(childSnapshot.val().score));
+            });
+            console.log(scoreArray);
+// *********************
+            // displays activity
+            var activity = snapshot.key;
+            console.log(activity);
+            // user activity for graph
+            var dataActivity = [dateArray, activity, scoreArray]
+
+            res.send(dataActivity);
+        });
     });
     app.get('/test', function (req, res) {
         res.render('test');
@@ -104,7 +126,6 @@ function findCity(loc) {
         var locData = data.results[0].address_components;
         var city = getCityName(locData);;
         console.log(city);
-
     })
 }
 function getCityName(data) {
@@ -114,3 +135,5 @@ function getCityName(data) {
         }
     }
 }
+
+
