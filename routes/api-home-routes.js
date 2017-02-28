@@ -34,9 +34,10 @@ module.exports = function (app) {
     app.post('/score/:skill', function (req, res) {
         var skill = req.params.skill;
         var data = req.body;
-
+        console.log("===firebase golf data being sent====")
+        console.log(data)
         //get current date stamp
-        var date = moment().format('YYYY-MM-DD');
+        var date = moment().format('YYYY-MM-DD, h:mm:ss a');
         //creating score object
         var score = { score: data.score }
         //ref variable holds FIREBASE node structure

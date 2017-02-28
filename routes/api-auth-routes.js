@@ -11,27 +11,30 @@ geocoder.geocode(myLocation, function (err, data) {
     console.log(city);
 
 })
-module.exports = function(app) {
+module.exports = function (app) {
     //==========creating new user account==========
-    app.post("/sign-up", function(req, res) {
+    app.post("/sign-up", function (req, res) {
         var data = req.body;
 
-        db.User.findOrCreate({where: {
-            $or: [
-                { user_name: data.username},
-                {email: data.email}
-            ]}, defaults: {
-            first_name: data.first,
-            last_name: data.last,
-            user_name: data.username,
-            password: data.password,
-            email: data.email,
-            address: data.address
-        }}).spread(function(user, created) {
+        db.User.findOrCreate({
+            where: {
+                $or: [
+                    { user_name: data.username },
+                    { email: data.email }
+                ]
+            }, defaults: {
+                first_name: data.first,
+                last_name: data.last,
+                user_name: data.username,
+                password: data.password,
+                email: data.email,
+                address: data.address
+            }
+        }).spread(function (user, created) {
             //check to see if it exists already
             //redirect user to main page
             console.log("created: " + created);
-            if(created) {
+            if (created) {
                 console.log("routing to home page");
                 res.send(created)
             } else {
@@ -57,11 +60,11 @@ module.exports = function(app) {
         // });
     });
     //====================login===================
-    app.post("/log-in", function(req, res) {
+    app.post("/log-in", function (req, res) {
         var data = req.body;
-        db.User.findOne({ where: { email: data.email, password: data.password}})
-            .then(function(response) {
-                if(response === null) {
+        db.User.findOne({ where: { email: data.email, password: data.password } })
+            .then(function (response) {
+                if (response === null) {
                     res.send(false);
                 } else {
                     res.send(response);
@@ -69,14 +72,23 @@ module.exports = function(app) {
             })
     });
     //================User Selects SKILLS====================
-    app.get('/api/create-profile/:key', function(req, res) {
+    app.get('/api/create-profile/:key', function (req, res) {
         //key variable stores username of user
         var key = req.params.key;
         //========RAUL WORK HERE==========
         //---create sequelize function that sends data into mysql database into ****CORRECT TABLE****-----
-        res.render('create-profile', {username: key})
-        
+        var data = req.body;
+
+        db.Golf.create({
+            user_name: data.user_name,
+            year_experience: data.year_experience,
+            experience_rating: data.experience_rating
+        })
+            .then(function (response) {
+                res.json(response);
+            });
     });
+
     //----routing for all skills chosen---
     app.post('/api/choices/:skill/:user', function (req, res) {
         //collect skill variable and user_name
@@ -90,7 +102,7 @@ module.exports = function(app) {
                 console.log("userData response");
                 console.log(response.datavalues.address)
                 city = response.datavalues.address;
-        })
+            })
         if (skill === "golf") {
             db.Golf.create({
                 user_name: username,
