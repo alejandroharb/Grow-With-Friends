@@ -95,6 +95,7 @@ $(document).ready(function() {
             console.log(response);
         })
     })
+    //==========Get Golf Data===============
     $('#getGolfChartData').on('click', function(e) {
         e.preventDefault();
         var username = $('#user-name').attr('value');
@@ -104,6 +105,11 @@ $(document).ready(function() {
             var data = response;
             console.log(data);
         })
+    })
+    $('#updateProfileModal').on('click', function (e) {
+        e.preventDefault();
+        $('#updateProfile').modal('open');
+        
     })
     
 })

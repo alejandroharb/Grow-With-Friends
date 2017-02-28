@@ -1,5 +1,5 @@
 var express = require('express');
-
+var db = require('../models')
 var multer = require('multer')
 var mv = require('mv');
 var path = require('path');
@@ -15,15 +15,23 @@ var upload = multer({
 
 module.exports = function (app) {
     app.post('/image-upload', upload.single('image'), function (req, res) {
-        console.log(req.file);
-
-        var newFile = path.join(__dirname, '/../public/uploads/images', req.file.originalname);
+        var username = req.body.username;
+        var extension = path.parse(req.file.originalname).ext;
+        var newFile = path.join(__dirname, '/../public/uploads/images', username + extension);
         mv(req.file.path, newFile, function (err) {
             if (err) {
                 throw err;
             }
-            console.log('Moved' + req.file.filename + ' to ' + newFile);
-            res.send(true);//do something with front end here
+            db.Users.update({///=====NEED CORRECT SEQUELIZE METHOD====
+                where: { user_name: username }
+            },{
+                image: username + extension
+                })
+                .then(function (response) {
+                    console.log("updated image for user " + username + "image name: " + username+extension )
+                })
+            console.log('Moved' + req.file.filename + ' to ' + username+extension);
+            res.end();
         })
     });
 };
