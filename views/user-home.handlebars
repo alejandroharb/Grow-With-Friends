@@ -4,7 +4,7 @@
             <div class="user-wrapper">
                 <img src="/uploads/images/{{info.basicInfo.image}}" class="responsive-img circle userImg">
                 <h2 class="center-align"> {{info.basicInfo.first_name}}</h2>
-                <a class="btn waves-effect waves-light matchBtn cyan darken-3">Get Matched</a>
+                <a id="getMatchedBtn" class="btn waves-effect waves-light matchBtn cyan darken-3">Get Matched</a>
                 <a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn orange">Set Skills!</a>
                 <div class="fixed-action-btn horizontal click-to-toggle">
                     <a class="btn-floating btn-large cyan darken-3">
@@ -95,6 +95,7 @@
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
     </div>
 </div>
+{{!--===============ADDING GOLF SKILL MODAL=================--}}
 <div id="addGolfSkillsDataModal" class="modal bottom-sheet">
     <div class="modal-content">
         <div class="container">
@@ -112,13 +113,35 @@
                         <p class="range-field">
                             <input type="range" id="golfRating" min="0" max="3" />
                         </p>
-                         <button type="submit" id="submitGolfSkillData" class="modal-action modal-close btn btn-large waves-effect waves-light orange">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-       
+       <button type="submit" id="submitGolfSkillData" class="modal-action modal-close btn btn-large waves-effect waves-light orange">Submit</button>
+    </div>
+</div>
+{{!--===============MODAL GETTING MATCHED: DISPLAYING OPTIONS=========================--}}
+<div id="getMatchedModal" class="modal">
+    <div class="modal-content">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h4>Get Matched!</h4>
+                    <hr>
+                    <form>
+                        <input type="hidden" id="matchUserName" value="{{info.basicInfo.user_name}}">
+                    </form>
+                    <button class="btn waves-effect" id="matchGolf">Golf</button>
+                    <button class="btn waves-effect disabled" id="">Guitar</button>
+                    <button class="btn waves-effect disabled" id="">Spanish</button>
+                    <button class="btn waves-effect disabled" id="">Portuguese</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
     </div>
 </div>

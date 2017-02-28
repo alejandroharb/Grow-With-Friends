@@ -161,7 +161,20 @@ $(document).ready(function() {
         $.post(url, data, function (response) {
             console.log(response);
         })
-        return false;
+    });
+    //=================GETTING MATCHED===================
+    //---MODAL---
+    $('#getMatchedBtn').on('click', function () {
+        $('#getMatchedModal').modal('open');
+    })
+    //---sending data for matching---
+    $('#matchGolf').on('click', function () {
+        var username = $('#matchUserName').val();
+        var url = "/match/golf/" + username;
+        $.get(url, function (response) {
+            console.log("======match data======")
+            console.log(response);
+        })
     })
 })
 

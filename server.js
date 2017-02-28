@@ -48,6 +48,7 @@ require('./routes/html-routes.js')(app);
 require('./routes/api-firebaseAuth-routes.js')(app);
 require('./routes/api-home-routes.js')(app);
 require('./routes/pictures.js')(app);
+require('./routes/api-matching-routes.js')(app);
 
 
 
