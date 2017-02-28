@@ -21,7 +21,12 @@
 		<div class="col s12 m8">
 				<div class="chart-wrapper">
 						<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
-						<button id="getGolfChartData" class="btn waves-effect waves-light waves-green cyan darken-3" value="golf">Chart Golf!</button>
+						<div chartButtons>
+								{{!--filtering thorugh class getChartData--}}
+								<button id="getGolfChartData" data-activity="golf" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData" value="golf">Chart Golf!</button>
+								<button id="getGuitarChartData" data-activity="guitar" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData" value="guitar">Chart Guitar!</button>
+								<button id="getLangChartData" data-activity="lang" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData" value="lang">Chart Language!</button>
+						</div>
 
 						{{!--My Chart--}}
 						<div class="chart-canvas">
@@ -72,4 +77,3 @@
         </div>
     </div>
 </div>
-

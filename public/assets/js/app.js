@@ -75,21 +75,32 @@ $(document).ready(function() {
         })
     });
     //=====SCORE MODAL======
+    var activityModal = "";
+
+    // they are all opening same modal on-click, did not change original id="golfModal" yet
     $('#golfScoreBtn').on('click', function(e) {
         e.preventDefault();
+        activityModal = "";
+        activityModal = "golf";
         $('#golfModal').modal('open');
-    })
+    });
     $('#guitarScoreBtn').on('click', function(e) {
         e.preventDefault();
+        activityModal = "";
+        activityModal = "guitar";
         $('#golfModal').modal('open');
-    })
+    });
     $('#langScoreBtn').on('click', function(e) {
         e.preventDefault();
+        activityModal = "";
+        activityModal = "lang";
         $('#golfModal').modal('open');
-    })
+    });
+
     //==========Submit Golf Score===============
     $('#submitGolfScore').on('click', function(e) {
         e.preventDefault();
+
         //collect variables with data
         var score = $('#golfScore').val();
         var userName = $('#userName').val().trim();
@@ -98,17 +109,32 @@ $(document).ready(function() {
             username: userName
         }
         console.log(data)
-        var url = '/score/golf'
+        console.log("activityModal: " + activityModal);
+
+        // filter data by activity type
+        if (activityModal == "golf") {
+            var url = '/score/golf';
+        } else if (activityModal == "guitar") {
+            var url = '/score/guitar';
+        } else {
+            var url = '/score/lang';
+        }
+
         $.post(url, data, function(response) {
             console.log(response);
         })
     })
 
     //==========Get Golf Score and Graph===============
-    $('#getGolfChartData').on('click', function(e) {
+    // filtering thorugh class getChartData
+    $('.getChartData').on('click', function(e) {
         e.preventDefault();
         var username = $('#user-name').attr('value');
-        var url = '/get-golf-data/'+username;
+        activityModal = "";
+        activityModal = $(this).data("activity");
+        // console.log("graph activityModal: " + activityModal);
+
+        var url = '/get-data/' + activityModal + '/' + username;
         console.log("this is the URL: " + url)
         $.get(url, function(response) {
             var data = response;
@@ -129,13 +155,10 @@ $(document).ready(function() {
         } // end bars config
 
         var myChart = new Chart(ctx, bars_config);
-
-            //-----
-        })
-    })
+        });
+    });
     //================UPDATE PROFILE==================
     $('#updateProfileModal').on('click', function () {
         $('#updateProfile').modal('open');
     })
 })
-

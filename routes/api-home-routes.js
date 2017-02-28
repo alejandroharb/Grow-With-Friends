@@ -46,10 +46,12 @@ module.exports = function (app) {
         ref.set(score);
     });
     //============Querying Data FROM Firebase to Chart====================
-    app.get('/get-golf-data/:user', function (req, res) {
+    app.get('/get-data/:activityModal/:user', function (req, res) {
         var username = req.params.user;
-        console.log("userName: " + username);
-        var ref = database.ref("Users/" + username + "/golf")
+        var activityModal = req.params.activityModal;
+        // console.log("activityModal: " + activityModal);
+        // console.log("userName: " + username);
+        var ref = database.ref("Users/" + username + "/" + activityModal);
         var scoreArray = [];
         var dateArray = [];
         ref.once('value').then(function (snapshot) {
@@ -63,13 +65,13 @@ module.exports = function (app) {
               dateArray.push(i.slice(5,10));
             }
             console.log(dateArray);
-// *********************
+            // *********************
             // pushing scores(y-axis) for chart
             snapshot.forEach(function(childSnapshot) {
               scoreArray.push(parseInt(childSnapshot.val().score));
             });
             console.log(scoreArray);
-// *********************
+            // *********************
             // displays activity
             var activity = snapshot.key;
             console.log(activity);
@@ -81,7 +83,7 @@ module.exports = function (app) {
     });
     app.get('/test', function (req, res) {
         res.render('test');
-    })
+    });
     //============USER SELECTS THEIR SKILLS==============
     app.post('/api/choices/:skill/:user', function (req, res) {
         //collect skill variable and user_name
@@ -105,7 +107,7 @@ module.exports = function (app) {
                     case "guitar":
                         addSkillData(Guitar);
                         break;
-                }   
+                }
             })
 
     });
@@ -135,5 +137,3 @@ function getCityName(data) {
         }
     }
 }
-
-
