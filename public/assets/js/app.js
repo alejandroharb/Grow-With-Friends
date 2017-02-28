@@ -133,9 +133,35 @@ $(document).ready(function() {
             //-----
         })
     })
-    //================UPDATE PROFILE==================
+    //================UPDATE PROFILE SETTINGS==================
     $('#updateProfileModal').on('click', function () {
         $('#updateProfile').modal('open');
+    })
+    // =============== USER Setting Skills===================
+    $('#setSkillsBtn').on('click', function() {
+        $('#setSkillsModal').modal('open');
+    })
+    $('#addGolfSkillBtn').on('click', function () {
+        $('#addGolfSkillsDataModal').modal('open');
+    })
+    //==============SENDING GOLF SKILL DATA=====================
+    $("#submitGolfSkillData").on('click', function (e) {
+        e.preventDefault();
+        //collect data
+        var username = $('#user').val()
+        var years = $('#golfYearsExperience').val();
+        var rating = $('#golfRating').val();
+        var data = {
+            year_experience: years,
+            experience_rating: rating
+        }
+        var url = '/api/choices/golf/' + username;
+        console.log(url)
+        //AJAX POST
+        $.post(url, data, function (response) {
+            console.log(response);
+        })
+        return false;
     })
 })
 

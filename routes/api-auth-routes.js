@@ -1,13 +1,25 @@
 var db = require('../models');
 var pictures = require('./pictures.js');
-
+var geocoder = require('geocoder');
 
 
 module.exports = function (app) {
     //==========creating new user account==========
     app.post("/sign-up", function (req, res) {
         var data = req.body;
+        var address = data.address;
+        var city = geocoder.geocode(address, function (err, data) {
+            console.log("=====geocode city========");
+            var locData = data.results[0].address_components;
+            for (var i = 0; i < locData.length; i++) {
+                if (locData[i].types[0] === "locality") {
+                    return locData[i].long_name;
+                }
+            }
+            
 
+        })
+        console.log(city);
         db.User.findOrCreate({
             where: {
                 $or: [
@@ -21,6 +33,7 @@ module.exports = function (app) {
                 password: data.password,
                 email: data.email,
                 address: data.address,
+                city: city,
                 image: "blank-person.png"
             }
         }).spread(function (user, created) {
@@ -81,7 +94,7 @@ module.exports = function (app) {
         });
     });
 
-    
+
     // app.post('/pictures/upload', pictures);
 
 }
