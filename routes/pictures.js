@@ -22,11 +22,9 @@ module.exports = function (app) {
             if (err) {
                 throw err;
             }
-            db.Users.update({///=====NEED CORRECT SEQUELIZE METHOD====
+            db.User.update({image: username + extension},{
                 where: { user_name: username }
-            },{
-                image: username + extension
-                })
+            })
                 .then(function (response) {
                     console.log("updated image for user " + username + "image name: " + username+extension )
                 })

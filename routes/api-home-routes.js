@@ -21,7 +21,6 @@ module.exports = function (app) {
 
         //---adding image source for displaying----
         var userData = {};
-        userData.image = "assets/img/" + key + ".jpg";
         //----query data for this specific profile-----
         db.User.findOne({ where: { user_name: key } })
             .then(function (response) {

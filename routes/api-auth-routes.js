@@ -20,7 +20,8 @@ module.exports = function (app) {
                 user_name: data.username,
                 password: data.password,
                 email: data.email,
-                address: data.address
+                address: data.address,
+                image: "blank-person.png"
             }
         }).spread(function (user, created) {
             //check to see if it exists already

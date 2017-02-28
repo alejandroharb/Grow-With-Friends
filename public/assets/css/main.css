@@ -12,9 +12,11 @@ body{
 }
 
 img.userImg{
+    background-color:#FAFAFA;
     border: 3px solid #9E9E9E;
     display: block;
-    max-width: 71%;
+    width:200px;
+    height: 200px;
     margin: -75px auto 20px auto;
 }
 
