@@ -104,7 +104,7 @@ $(document).ready(function() {
         })
     })
 
-
+    //==========Get Golf Score and Graph===============
 
     $('#getGolfChartData').on('click', function(e) {
         e.preventDefault();
@@ -113,9 +113,23 @@ $(document).ready(function() {
         console.log("this is the URL: " + url)
         $.get(url, function(response) {
             var data = response;
-            console.log("data: " + data);
-            console.log(data[0])
+            console.log(data[0]);
+            console.log(data[1]);
+            console.log(data[2]);
+        // plot graph *********************
+        var ctx = $("#chartArea");
+        var bars_config = {
+            type: 'line',
+            data: {
+                labels: data[0],
+                datasets: [{
+                  label: data[1],
+                  data: data[2]
+                }]
+            },
+        } // end bars config
 
+        var myChart = new Chart(ctx, bars_config);
 
             //-----
         })
