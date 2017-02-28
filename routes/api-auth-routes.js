@@ -1,6 +1,6 @@
 var db = require('../models');
 var pictures = require('./pictures.js');
-var geocoder = require('geocoder');
+
 
 
 module.exports = function (app) {
@@ -81,50 +81,7 @@ module.exports = function (app) {
         });
     });
 
-    //----routing for all skills chosen---
-    app.post('/api/choices/:skill/:user', function (req, res) {
-        //collect skill variable and user_name
-        var skill = req.params.skill;
-        var username = req.params.user;
-        var data = req.body;
-        var city = '';
-        //first get location data from user
-        db.User.findOne({ where: { user_name: username } })
-            .then(function (response) {
-                console.log("userData response");
-                console.log(response.datavalues.address)
-                address = response.datavalues.address;
-                //function uses geocoder to convert user's address into a city
-                city = findCity(address);
-                //------storing data depending on which skill is being submitted----
-                if (skill === "golf") {
-                    db.Golf.create({
-                        user_name: username,
-                        year_experience: data.years,
-                        experience_rating: data.experienceRating,
-                        city: city //from data query
-                    });
-                }
-            })
-
-    })
+    
     // app.post('/pictures/upload', pictures);
 
-}
-
-function findCity(loc) {
-    geocoder.geocode(loc, function (err, data) {
-        console.log("=====geocode city========");
-        var locData = data.results[0].address_components;
-        var city = getCityName(locData);;
-        console.log(city);
-
-    })
-}
-function getCityName(data) {
-    for (var i = 0; i < data.length; i++) {
-        if (data[i].types[0] === "locality") {
-            return data[i].long_name;
-        }
-    }
 }

@@ -26,10 +26,11 @@ module.exports = function (app) {
                 where: { user_name: username }
             })
                 .then(function (response) {
-                    console.log("updated image for user " + username + "image name: " + username+extension )
+                    console.log("updated image for user " + username + "image name: " + username + extension)
+                    res.redirect('/api/home/'+username);
                 })
             console.log('Moved' + req.file.filename + ' to ' + username+extension);
-            res.end();
+            
         })
     });
 };

@@ -106,10 +106,7 @@ $(document).ready(function() {
             console.log(data);
         })
     })
-    $('#updateProfileModal').on('click', function (e) {
-        e.preventDefault();
+    $('#updateProfileModal').on('click', function () {
         $('#updateProfile').modal('open');
-        
     })
-    
 })
