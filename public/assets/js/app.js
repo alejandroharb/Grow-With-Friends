@@ -74,66 +74,120 @@ $(document).ready(function() {
             }
         })
     });
-    //=====SCORE MODAL======
-    $('#golfScoreBtn').on('click', function(e) {
-        e.preventDefault();
-        $('#golfModal').modal('open');
-    })
-    $('#guitarScoreBtn').on('click', function(e) {
-        e.preventDefault();
-        $('#golfModal').modal('open');
-    })
-    $('#langScoreBtn').on('click', function(e) {
-        e.preventDefault();
-        $('#golfModal').modal('open');
-    })
-    //==========Submit Golf Score===============
-    $('#submitGolfScore').on('click', function(e) {
-        e.preventDefault();
-        //collect variables with data
-        var score = $('#golfScore').val();
-        var userName = $('#userName').val().trim();
-        var data = {
-            score: score,
-            username: userName
-        }
-        console.log(data)
-        var url = '/score/golf'
-        $.post(url, data, function(response) {
-            console.log(response);
-        })
-    })
+    // //=====SCORE MODAL======
+    // var activityModal = "";
+    //
+    // // they are all opening same modal on-click, did not change original id="golfModal" yet
+    // $('#golfScoreBtn').on('click', function(e) {
+    //     e.preventDefault();
+    //     activityModal = "";
+    //     activityModal = "golf";
+    //     $('#golfModal').modal('open');
+    // });
+    // $('#guitarScoreBtn').on('click', function(e) {
+    //     e.preventDefault();
+    //     activityModal = "";
+    //     activityModal = "guitar";
+    //     $('#golfModal').modal('open');
+    // });
+    // $('#langScoreBtn').on('click', function(e) {
+    //     e.preventDefault();
+    //     activityModal = "";
+    //     activityModal = "lang";
+    //     $('#golfModal').modal('open');
+    // });
+    //
+    // //==========Submit Golf Score===============
+    // $('#submitGolfScore').on('click', function(e) {
+    //     e.preventDefault();
+    //
+    //     //collect variables with data
+    //     var score = $('#golfScore').val();
+    //     var userName = $('#userName').val().trim();
+    //     var data = {
+    //         score: score,
+    //         username: userName
+    //     }
+    //     console.log(data)
+    //     console.log("activityModal: " + activityModal);
+    //
+    //     // filter data by activity type
+    //     if (activityModal == "golf") {
+    //         var url = '/score/golf';
+    //     } else if (activityModal == "guitar") {
+    //         var url = '/score/guitar';
+    //     } else {
+    //         var url = '/score/lang';
+    //     }
+    //
+    //     $.post(url, data, function(response) {
+    //         console.log(response);
+    //     })
+    // })
+    //
+    // //==========Get Golf Score and Graph===============
+    // // filtering thorugh class getChartData
+    // $('.getChartData').on('click', function(e) {
+    //     e.preventDefault();
+    //     var username = $('#user-name').attr('value');
+    //     activityModal = "";
+    //     activityModal = $(this).data("activity");
+    //     // console.log("graph activityModal: " + activityModal);
+    //
+    //     var url = '/get-data/' + activityModal + '/' + username;
+    //     console.log("this is the URL: " + url)
+    //     $.get(url, function(response) {
+    //         var data = response;
+    //         console.log(data[0]);
+    //         console.log(data[1]);
+    //         console.log(data[2]);
+    //     // plot graph *********************
+    //     $("#chartDiv").empty();
+    //     $('#chartDiv').append('<canvas id="chartArea" height="400" width="400"></canvas>');
+    //     var ctx = $("#chartArea");
+    //     var bars_config = {
+    //         type: 'line',
+    //         data: {
+    //             labels: data[0],
+    //             datasets: [{
+    //               label: data[1],
+    //               data: data[2]
+    //             }]
+    //         },
+    //         options: {
+    //           responsive: true,
+    //           maintainAspectRatio: false,
+    //           scales: {
+    //             yAxes: [{
+    //               scaleLabel: {
+    //                 display: true,
+    //                 labelString: 'score'
+    //               }
+    //             }],
+    //             xAxes: [{
+    //               scaleLabel: {
+    //                 display: true,
+    //                 labelString: 'date'
+    //               }
+    //             }]
+    //           }
+    //         }
+    //     } // end bars config
+    //     // empty chartarea before replotting
+    //
+    //     var myChart = new Chart(ctx, bars_config);
+    //     });
+    // });
 
-    //==========Get Golf Score and Graph===============
-    $('#getGolfChartData').on('click', function(e) {
-        e.preventDefault();
-        var username = $('#user-name').attr('value');
-        var url = '/get-golf-data/'+username;
-        console.log("this is the URL: " + url)
-        $.get(url, function(response) {
-            var data = response;
-            console.log(data[0]);
-            console.log(data[1]);
-            console.log(data[2]);
-        // plot graph *********************
-        var ctx = $("#chartArea");
-        var bars_config = {
-            type: 'line',
-            data: {
-                labels: data[0],
-                datasets: [{
-                  label: data[1],
-                  data: data[2]
-                }]
-            },
-        } // end bars config
+    //================UPDATE PROFILE==================
 
-        var myChart = new Chart(ctx, bars_config);
+    //     var myChart = new Chart(ctx, bars_config);
 
-            //-----
-        })
-    })
+    //         //-----
+    //     })
+    // })
     //================UPDATE PROFILE SETTINGS==================
+
     $('#updateProfileModal').on('click', function () {
         $('#updateProfile').modal('open');
     })
@@ -177,4 +231,3 @@ $(document).ready(function() {
         })
     })
 })
-
