@@ -10,6 +10,7 @@ module.exports = function (app) {
             where: { city: "Humble" },
             include: [db.User]
         }).then(function (data) {
+            ////do matching work here!!!!
             res.json(data);
         })
     })
