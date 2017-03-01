@@ -50,14 +50,17 @@ module.exports = function (app) {
                         distance.get(
                                 {
                                     origin: origin,
-                                    destination: destination
+                                    destination: destination,
+                                    mode: "driving",
+                                    metric: "imperial"
                                 },
                                 function(err, data) {
                                     if(err) throw err;
-                                    // console.log(data.distanceValue)
-                                    dist = data.distanceValue;
+                                    
+                                    //converting distance from feet into miles
+                                    dist = data.distanceValue * 0.000189394;
                                     // console.log("dist", + dist)
-                                    userDistanceData.distance = dist;
+                                    userDistanceData.distance = dist.toFixed(2);
                                     distanceArray.push(userDistanceData);
                                     // console.log("username: " + user);
                                     // console.log("index: " + index);
