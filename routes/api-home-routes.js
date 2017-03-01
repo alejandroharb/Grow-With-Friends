@@ -1,6 +1,7 @@
 var db = require('../models');
 var moment = require('moment');
 var geocoder = require('geocoder');
+var Promise = require("bluebird");
 
 // ===========FIREBASE============
 var firebase = require('firebase');
@@ -61,14 +62,14 @@ module.exports = function (app) {
             // console.log(Object.keys(dataArray));
             // selecting MM/DD from each; pushing dates/moments(x-axis) for chart
             for (i in dataArray) {
-              console.log(i);
-              dateArray.push(i.slice(5,10));
+                console.log(i);
+                dateArray.push(i.slice(5, 10));
             }
             console.log(dateArray);
             // *********************
             // pushing scores(y-axis) for chart
-            snapshot.forEach(function(childSnapshot) {
-              scoreArray.push(parseInt(childSnapshot.val().score));
+            snapshot.forEach(function (childSnapshot) {
+                scoreArray.push(parseInt(childSnapshot.val().score));
             });
             console.log(scoreArray);
             // *********************
@@ -90,50 +91,68 @@ module.exports = function (app) {
         var skill = req.params.skill;
         var username = req.params.user;
         var data = req.body;
-        var city = '';
+
+        console.log("=====data from front end======")
+        console.log(data)
+        console.log(skill)
         //first get location data from user
         db.User.findOne({ where: { user_name: username } })
             .then(function (response) {
                 console.log("userData response");
-                console.log(response.datavalues.address)
-                address = response.datavalues.address;
+                console.log(response.dataValues)
+                address = response.dataValues.address;
+                userId = response.dataValues.id;
                 //function uses geocoder to convert user's address into a city
-                city = findCity(address);
-                //------storing data depending on which skill is being submitted----
-                switch (skill) {
-                    case "golf":
-                        addSkillData(Golf);
-                        break;
-                    case "guitar":
-                        addSkillData(Guitar);
-                        break;
-                }
+                //custom callback function used
+                findCity(address, function () {
+                    //------storing data depending on which skill is being submitted----
+                    switch (skill) {
+                        case "golf":
+                            db.Golf.create({
+                                UserId: userId,
+                                user_name: username,
+                                year_experience: data.year_experience,
+                                experience_rating: data.experience_rating,
+                                city: city
+                            }).then(function (data) {
+                                res.json(data);
+                            });
+                            break;
+                        case "guitar":
+                            db.Guitar.create({
+                                UserId: userId,
+                                user_name: username,
+                                year_experience: data.year_experience,
+                                experience_rating: data.experience_rating,
+                                city: city
+                            }).then(function (data) {
+                                res.json(data);
+                            });
+                            break;
+                    }
+                })
             })
 
     });
 }
-function addSkillData(model) {
-    db.model.create({
-        user_name: username,
-        year_experience: data.years,
-        experience_rating: data.experienceRating,
-        city: city
-    }).then(function () {
-        res.sendStatus(200);
-     });
-}
-function findCity(loc) {
+// function addSkillData(model) {}
+function findCity(loc, cb) {
     geocoder.geocode(loc, function (err, data) {
-        console.log("=====geocode city========");
+        console.log("=====geocode function running========");
         var locData = data.results[0].address_components;
-        var city = getCityName(locData);;
-        console.log(city);
+        for (var i = 0; i < locData.length; i++) {
+            if (locData[i].types[0] === "locality") {
+                city = locData[i].long_name;
+                console.log("=====city variable======")
+                console.log(city)
+                cb()
+                break;
+            }
+        }
+
     })
 }
-function getCityName(data) {
-    for (var i = 0; i < data.length; i++) {
-        if (data[i].types[0] === "locality") {
-            return data[i].long_name;
-        }
-    }
-}
+
+// function getCityName(data) {
+
+// }

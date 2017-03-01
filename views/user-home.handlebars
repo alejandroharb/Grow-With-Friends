@@ -1,79 +1,156 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12 m4">
-				<div class="user-wrapper">
-					<img src="/uploads/images/{{info.basicInfo.image}}" class="responsive-img circle userImg">
-					<h2 class="center-align"> {{info.basicInfo.first_name}}</h2>
-					<a class="btn waves-effect waves-light matchBtn cyan darken-3">Get Matched</a>
-					<div  class="fixed-action-btn horizontal click-to-toggle">
-					    <a class="btn-floating btn-large cyan darken-3">
-					      <i class="material-icons">library_add</i>
-					    </a>
-					    <ul>
-					      <li><a id="golfScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/golf.svg"></a></li>
-					      <li><a id="guitarScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/guitar.svg"></a></li>
-					      <li><a id="langScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a></li>
-					    </ul>
-					 </div>
+			<div class="user-wrapper">
+				<img src="/uploads/images/{{info.basicInfo.image}}" class="responsive-img circle userImg">
+				<h2 class="center-align"> {{info.basicInfo.first_name}}</h2>
+				<a id="getMatchedBtn" class="btn waves-effect waves-light matchBtn cyan darken-3">Get Matched</a>
+				<a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn orange">Set Skills!</a>
+				<div class="fixed-action-btn horizontal click-to-toggle">
+					<a class="btn-floating btn-large cyan darken-3">
+						<i class="material-icons">library_add</i>
+					</a>
+					<ul>
+						<li>
+							<a id="golfScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/golf.svg"></a>
+						</li>
+						<li>
+							<a id="guitarScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/guitar.svg"></a>
+						</li>
+						<li>
+							<a id="langScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a>
+						</li>
+					</ul>
 				</div>
+			</div>
 			{{!--Chart Wrapper--}}
 		</div>
 		<div class="col s12 m8">
-				<div class="chart-wrapper">
-						<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
-						<div chartButtons>
-								{{!--filtering thorugh class getChartData--}}
-								<button id="getGolfChartData" data-activity="golf" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData" value="golf">Chart Golf!</button>
-								<button id="getGuitarChartData" data-activity="guitar" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData" value="guitar">Chart Guitar!</button>
-								<button id="getLangChartData" data-activity="lang" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData" value="lang">Chart Language!</button>
-						</div>
-
-						{{!--My Chart--}}
-						<div class="chart-canvas">
-							<div id="chartDiv" >
-									<canvas id="chartArea" height="300" width="580"></canvas>
-							</div>
-						</div>
-
+			<div class="chart-wrapper">
+				<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
+				<div chartButtons>
+					{{!--filtering thorugh class getChartData--}}
+					<button id="getGolfChartData" data-activity="golf" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData"
+						value="golf">Chart Golf!</button>
+						<button id="getGuitarChartData" data-activity="guitar" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData"
+							value="guitar">Chart Guitar!</button>
+							<button id="getLangChartData" data-activity="lang" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData"
+								value="lang">Chart Language!</button>
 				</div>
+
+				{{!--My Chart--}}
+				<div class="chart-canvas">
+					<div id="chartDiv">
+						<canvas id="chartArea" height="300" width="580"></canvas>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
 </div>
 {{!--================Modals================!--}}
 <div id="golfModal" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h4>Enter Score</h4>
-        <form>
-            <input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
-            <p class="range-field">
-                <span><i class="material-icons">thumb_up</i></span>
-                <input type="range" id="golfScore" min="-80" max="80" />
-                <span><i class="material-icons">thumb_down</i></span>
-            </p>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a type="submit" id="submitGolfScore" class="modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
-    </div>
+	<div class="modal-content">
+		<h4>Enter Score</h4>
+		<form>
+			<input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
+			<p class="range-field">
+				<span><i class="material-icons">thumb_up</i></span>
+				<input type="range" id="golfScore" min="-80" max="80" />
+				<span><i class="material-icons">thumb_down</i></span>
+			</p>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a type="submit" id="submitGolfScore" class="modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
+	</div>
 </div>
 
 {{!--==========update profile MODAL===========--}}
 <div id="updateProfile" class="modal bottom-sheet">
-    <div class="modal-content">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <h4>Edit your Info</h4>
-                    <hr>
-                    <h5>upload image</h5>
-                    <form action="/image-upload" method="POST" enctype="multipart/form-data">
-                        Select an image to upload:
-                        <input type="file" name="image">
-                        <input name="username" type="hidden" value="{{info.basicInfo.user_name}}">
-                        <input id="imageUploadSubmit" type="submit">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="modal-content">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<h4>Edit your Info</h4>
+					<hr>
+					<h5>upload image</h5>
+					<form action="/image-upload" method="POST" enctype="multipart/form-data">
+						Select an image to upload:
+						<input type="file" name="image">
+						<input name="username" type="hidden" value="{{info.basicInfo.user_name}}">
+						<input id="imageUploadSubmit" type="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+{{!--===============MODALS FOR SETTING SKILLS=========================--}} 
+<div id="setSkillsModal" class="modal">
+	<div class="modal-content">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<h4>What Skills do you Want to Build?</h4>
+					<hr>
+					<button class="btn waves-effect" id="addGolfSkillBtn">Golf</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+	</div>
+	</div>
+	{{!--===============ADDING GOLF SKILL MODAL=================--}}
+	<div id="addGolfSkillsDataModal" class="modal bottom-sheet">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col s12">
+						<h4 class="center-align">Golf Data</h4>
+						<hr>
+						<form>
+							<h5>Years of Experience</h5>
+							<input type="hidden" id="user" value="{{info.basicInfo.user_name}}">
+							<p class="range-field">
+								<input type="range" id="golfYearsExperience" min="0" max="10" />
+							</p>
+							<h5>How would you rate yourself?</h5>
+							<p class="range-field">
+								<input type="range" id="golfRating" min="0" max="3" />
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" id="submitGolfSkillData" class="modal-action modal-close btn btn-large waves-effect waves-light orange">Submit</button>
+		</div>
+	</div>
+	{{!--===============MODAL GETTING MATCHED: DISPLAYING OPTIONS=========================--}}
+	<div id="getMatchedModal" class="modal">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col s12">
+						<h4>Get Matched!</h4>
+						<hr>
+						<form>
+							<input type="hidden" id="matchUserName" value="{{info.basicInfo.user_name}}">
+						</form>
+						<button class="btn waves-effect" id="matchGolf">Golf</button>
+						<button class="btn waves-effect disabled" id="">Guitar</button>
+						<button class="btn waves-effect disabled" id="">Spanish</button>
+						<button class="btn waves-effect disabled" id="">Portuguese</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+		</div>
+	</div>
