@@ -62,6 +62,9 @@ input[type=range]{
 .fixed-action-btn li img {
     padding:6px;
 }
+.progress{
+    margin:0rem 0 1rem 0;
+}
 @media only screen and (min-width: 601px) {
     .container {
         width:90%;

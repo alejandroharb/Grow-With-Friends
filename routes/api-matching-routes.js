@@ -59,7 +59,8 @@ module.exports = function (app) {
                                     
                                     //converting distance from feet into miles
                                     dist = data.distanceValue * 0.000189394;
-                                    // console.log("dist", + dist)
+                                    //adding distance as key in object to be send
+                                    //maintaining distance to 2 decimal places
                                     userDistanceData.distance = dist.toFixed(2);
                                     distanceArray.push(userDistanceData);
                                     // console.log("username: " + user);

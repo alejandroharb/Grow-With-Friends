@@ -224,11 +224,17 @@ $(document).ready(function() {
     })
     //---sending data for matching---
     $('#matchGolf').on('click', function () {
+        $('#preloaderInsert').addClass('progress');
         var username = $('#matchUserName').val();
         var url = "/match/golf/" + username;
         $.get(url, function (response) {
+            $('#preloaderInsert').removeClass('progress');
+            $('#getMatchedModal').modal('close');
             console.log("======match data======")
             console.log(response);
+            //======process data insertion here======
+            // $('#matchContentInsert')
+            $('#matchesModal').modal('open');
         })
     })
 })
