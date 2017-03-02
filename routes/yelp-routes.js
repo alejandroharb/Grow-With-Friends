@@ -1,6 +1,9 @@
-var yelp = require("node-yelp");
- 
-var client = yelp.createClient({
+var Yelp = require("yelp");
+// var NodeGeocoder = require('node-geocoder');
+// var geocoder = NodeGeocoder(options);
+// var geoJSON = require('geojson');
+
+var yelp = new Yelp({
   consumer_key: 'r4398R0p_QsYtAAGGKbtCQ',
   consumer_secret: '42LcpXrFyul5tsnDATsX4d3hKV0',
   token: 'OFSdJ8SDrc1wqoruhiXnKiFDH-iLKOh6',
@@ -10,17 +13,22 @@ var client = yelp.createClient({
  
 // See http://www.yelp.com/developers/documentation/v2/search_api 
  
-
+//formats coordinates data for Google
 
 module.exports = function(app) {
   app.post('/api/yelp', function(req, res) {
       var loc = req.body.address;
       console.log(loc);
-      client.search({
-        terms: "golf course",
+      yelp.search({
+        term: "golf course",
         location: loc
-      }).then(function(data) {
-        console.log(data)
+      }).then(function(yelpResponse) {
+        var data = yelpResponse.businesses;
+
+
+        res.json(data);
+      }).catch(function(err) {
+        console.log(err)
       })
   })
 }
