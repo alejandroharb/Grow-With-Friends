@@ -20,22 +20,27 @@ module.exports = function (app) {
                 }).then(function (dbGolf) {
                     
                     var distanceArray = [];
+                    var userAddress = {userHome: address}
+                    distanceArray.push(userAddress)
+                    // console.log("distanceArray");
+                    // console.log(distanceArray)
                     var i = 0;
                     gatherDistData(i);
                     function completeMatch(array){
                         var userRating;
-                        for(var i = 0; i < array.length; i++) {
+                        for(var i = 1; i < array.length; i++) {
                             if(array[i].username === username) {
                                 userRating = array[i].rating;
                                 break;
                             }
                         }
-                        var filteredArr = array.filter(function(obj) {
+                        var filteredArr = array.filter(function(obj, index) {
+                            if(index === 0){return true;}
                             if(obj.username === username || obj.rating !== userRating) {
                                 return false;
                             } else {return true};
                         })
-                        console.log(filteredArr)
+                        // console.log(filteredArr)
                         res.json(filteredArr)
                     }
                     function gatherDistData(index){
@@ -47,12 +52,13 @@ module.exports = function (app) {
                         var origin = address;
                         var yearsExperience = dbGolf[index].dataValues.year_experience;
                         var userImgPath = dbGolf[index].dataValues.User.image;
+
                         var userDistanceData = {
                             username: username,
                             user: name,
                             years: yearsExperience, 
                             rating: rating,
-                            userImg: userImgPath
+                            userImg: userImgPath,
                         }
                         //google npm
                         //gets distance between two locations

@@ -228,22 +228,34 @@ $(document).ready(function() {
         $('#preloaderInsert').addClass('progress');
         var username = $('#matchUserName').val();
         var url = "/match/golf/" + username;
+        var yelpAddress;
+        //========GET GOLF MATCHES=========
         $.get(url, function (response) {
             $('#preloaderInsert').removeClass('progress');
             $('#getMatchedModal').modal('close');
-            console.log("======match data======")
-            console.log(response);
+            
+            //get user's location for yelp API
+            yelpAddress = response[0].userHome;
+            var data = response
             //======process data insertion here======
-            for(var i = 0; i < response.length; i++) {
-                var image = response[i].userImg;
-                var name = response[i].user;
-                var years = response[i].years;
-                var dist = response[i].distance;
+            for(var i = 1; i < data.length; i++) {
+                var image = data[i].userImg;
+                var name = data[i].user;
+                var years = data[i].years;
+                var dist = data[i].distance;
                 console.log(name)
                 createCollectionItem(image, name, years, dist)
             };
+            // //=====YELP API=====
+            var yelpURL = '/api/yelp';
+            var yelpData = {address: yelpAddress}
+            $.post(yelpURL, yelpData, function(yelpResponse) {
+                console.log(yelpResponse);
+            })
             $('#matchesModal').modal('open');
-        })
+        });
+        
+        
     })
 })
 function createCollectionItem(userImg, name, years, distance) {

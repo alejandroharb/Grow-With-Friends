@@ -9,7 +9,7 @@ module.exports = function (app) {
         var data = req.body;
         var address = data.address;
         var city = geocoder.geocode(address, function (err, data) {
-            console.log("=====geocode city========");
+            // console.log("=====geocode city========");
             var locData = data.results[0].address_components;
             for (var i = 0; i < locData.length; i++) {
                 if (locData[i].types[0] === "locality") {
@@ -19,7 +19,7 @@ module.exports = function (app) {
             
 
         })
-        console.log(city);
+        // console.log(city);
         db.User.findOrCreate({
             where: {
                 $or: [
@@ -39,12 +39,12 @@ module.exports = function (app) {
         }).spread(function (user, created) {
             //check to see if it exists already
             //redirect user to main page
-            console.log("created: " + created);
+            // console.log("created: " + created);
             if (created) {
-                console.log("routing to home page");
+                // console.log("routing to home page");
                 res.send(created)
             } else {
-                console.log("username exists, try again");
+                // console.log("username exists, try again");
                 res.send(created);
             }
         })
