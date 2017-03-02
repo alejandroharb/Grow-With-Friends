@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "mysql82011",
+    "password": "tyson2626337",
     "database": "growWithFriends",
     "host": "127.0.0.1",
     "dialect": "mysql"
