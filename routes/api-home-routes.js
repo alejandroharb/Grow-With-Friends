@@ -38,7 +38,7 @@ module.exports = function (app) {
         console.log("===firebase golf data being sent====")
         console.log(data)
         //get current date stamp
-        var date = moment().format('YYYY-MM-DD, h:mm:ss a');
+        var date = moment().format();
         //creating score object
         var score = { score: data.score }
         //ref variable holds FIREBASE node structure
@@ -102,6 +102,7 @@ module.exports = function (app) {
                 console.log(response.dataValues)
                 address = response.dataValues.address;
                 userId = response.dataValues.id;
+                userImgPath = response.dataValues.image;
                 //function uses geocoder to convert user's address into a city
                 //custom callback function used
                 findCity(address, function () {

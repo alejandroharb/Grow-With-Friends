@@ -18,7 +18,7 @@ module.exports = function (app) {
                 where: { city: city },
                 include: [db.User]
                 }).then(function (dbGolf) {
-               
+                    
                     var distanceArray = [];
                     var i = 0;
                     gatherDistData(i);
@@ -41,10 +41,19 @@ module.exports = function (app) {
                     function gatherDistData(index){
                         // console.log("startPoint: " + startPoint)
                         var destination = dbGolf[index].dataValues.User.address;
-                        var user = dbGolf[index].dataValues.user_name;
+                        var username = dbGolf[index].dataValues.user_name;
+                        var name = dbGolf[index].dataValues.User.first_name + " " + dbGolf[index].dataValues.User.last_name;
                         var rating = dbGolf[index].dataValues.experience_rating;
                         var origin = address;
-                        var userDistanceData = {username: user, rating: rating}
+                        var yearsExperience = dbGolf[index].dataValues.year_experience;
+                        var userImgPath = dbGolf[index].dataValues.User.image;
+                        var userDistanceData = {
+                            username: username,
+                            user: name,
+                            years: yearsExperience, 
+                            rating: rating,
+                            userImg: userImgPath
+                        }
                         //google npm
                         //gets distance between two locations
                         distance.get(
@@ -63,14 +72,7 @@ module.exports = function (app) {
                                     //maintaining distance to 2 decimal places
                                     userDistanceData.distance = dist.toFixed(2);
                                     distanceArray.push(userDistanceData);
-                                    // console.log("username: " + user);
-                                    // console.log("index: " + index);
-                                    // console.log("distance: " + dist);
-                                    // console.log("====array====")
-                                    // console.log(distanceArray)
-                                    // console.log("distance: " + distance)
-                                    // userDistanceData.dist = getDistance(origin, destination)
-                                    // distanceArray.push(userDistanceData);
+                      
                                     index++;
                                     if(index < dbGolf.length) {
                                         gatherDistData(index)
