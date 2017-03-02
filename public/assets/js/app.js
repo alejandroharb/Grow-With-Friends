@@ -274,7 +274,7 @@ function createYelpCollection(url, title, imgURL, rating, distance) {
     var colDiv = $('<div>').attr('class',"col s12");
     var titleLink = $('<a>').attr({href: url, "target": "_blank"}).html(title);
     var newH2 = $('<h2>').attr('class','header').html(titleLink);
-    var cardDiv = $('<div>').attr('class', 'card horizontal');
+    var cardDiv = $('<div>').attr('class', 'card horizontal hoverable');
     var cardImgDiv = $('<div>').attr('class', 'card-image');
     var img = $('<img>').attr('src', imgURL);
     var cardStackedDiv = $('<div>').attr('class','card-stacked');

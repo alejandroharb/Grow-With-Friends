@@ -3,10 +3,28 @@
 		<div class="col s12 m4">
 			<div class="user-wrapper">
 				<img src="/uploads/images/{{info.basicInfo.image}}" class="responsive-img circle userImg">
-				<h2 class="center-align"> {{info.basicInfo.first_name}}</h2>
-				<a id="getMatchedBtn" class="btn waves-effect waves-light matchBtn cyan darken-3">Get Matched</a>
-				<a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn orange">Set Skills!</a>
-				<div class="fixed-action-btn horizontal click-to-toggle">
+				<h2 class="center-align userTitle"> {{info.basicInfo.first_name}} {{info.basicInfo.last_name}}</h2>
+				<div class="row">
+					<div class="col s6">
+						<a id="getMatchedBtn" class="btn waves-effect waves-light matchBtn cyan darken-3 hoverable"><i class="material-icons">supervisor_account</i> Match</a>
+					</div>
+					<div class="col s6">
+						<a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn orange hoverable"><i class="material-icons">playlist_add</i> Skills!</a>
+					</div>
+				</div>
+				<!-- ====NEW SCORE BUTTON DESIGN==== -->
+				<div class="fixed-action-btn toolbar">
+				    <a class="btn-floating btn-large cyan darken-3">
+				      <i class="material-icons">library_add</i>
+				    </a>
+				    <ul>
+				      <li id="golfScoreBtn" class="waves-effect waves-light"><a href="#!"><img class="responsive-img" src="/assets/img/golf.svg"></a></li>
+				      <li id="guitarScoreBtn" class="waves-effect waves-light"><a href="#!"><img class="responsive-img" src="/assets/img/guitar.svg"></a></li>
+				      <li id="langScoreBtn" class="waves-effect waves-light"><a href="#!"><img class="responsive-img" src="/assets/img/language.svg"></a></li>
+				    </ul>
+				  </div>
+				<!-- ====end NEW BUTTON DESIGN==== -->
+				<!-- <div class="fixed-action-btn horizontal click-to-toggle">
 					<a class="btn-floating btn-large cyan darken-3">
 						<i class="material-icons">library_add</i>
 					</a>
@@ -21,7 +39,7 @@
 							<a id="langScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 			{{!--Chart Wrapper--}}
 		</div>
@@ -95,7 +113,56 @@
 				<div class="col s12">
 					<h4>What Skills do you Want to Build?</h4>
 					<hr>
-					<button class="btn waves-effect" id="addGolfSkillBtn">Golf</button>
+					<div class="row">
+						<div class="col s4">
+							<div id="addGolfSkillBtn" class="card hoverable card-btn">
+					            <div class="card-image">
+					              <img src="/assets/img/golf.jpeg">
+					              <span class="card-title">Golf</span>
+					            </div>
+					        </div>
+						</div>
+						<div class="col s4">
+							<div id="addGuitarSkillBtn" class="card hoverable  card-btn">
+					            <div class="card-image">
+					              <img src="/assets/img/guitar.jpeg">
+					              <span class="card-title">Guitar</span>
+					            </div>
+					        </div>
+						</div>
+						<div class="col s4">
+							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
+					            <div class="card-image">
+					              <img src="/assets/img/language.jpg">
+					              <span class="card-title">Spanish</span>
+					            </div>
+					        </div>
+						</div>
+						<div class="col s4">
+							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
+					            <div class="card-image">
+					              <img src="/assets/img/chess.jpeg">
+					              <span class="card-title">Chess</span>
+					            </div>
+					        </div>
+						</div>
+						<div class="col s4">
+							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
+					            <div class="card-image">
+					              <img src="/assets/img/photography.jpg">
+					              <span class="card-title">Photography</span>
+					            </div>
+					        </div>
+						</div>
+						<div class="col s4">
+							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
+					            <div class="card-image">
+					              <img src="/assets/img/tennis.jpeg">
+					              <span class="card-title">Tennis</span>
+					            </div>
+					        </div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
