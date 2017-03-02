@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING(100),
             allowNull:false,
             validate: {
-                len: [6,100],
+                len: [1,100],
                 isAlphanumeric: true
             }
         },
@@ -46,7 +46,8 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [1,100]
             }
-        }
+        },
+        image: DataTypes.STRING
     },
     {
         classMethods: {

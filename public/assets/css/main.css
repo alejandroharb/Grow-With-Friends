@@ -12,9 +12,11 @@ body{
 }
 
 img.userImg{
+    background-color:#FAFAFA;
     border: 3px solid #9E9E9E;
     display: block;
-    max-width: 71%;
+    width:200px;
+    height: 200px;
     margin: -75px auto 20px auto;
 }
 
@@ -59,6 +61,9 @@ input[type=range]{
 
 .fixed-action-btn li img {
     padding:6px;
+}
+.progress{
+    margin:0rem 0 1rem 0;
 }
 @media only screen and (min-width: 601px) {
     .container {

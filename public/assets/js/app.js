@@ -1,4 +1,4 @@
- $(document).ready(function() {
+$(document).ready(function() {
     //initialize modal
     $('.modal').modal();
     //================Loggin in==================
@@ -27,40 +27,6 @@
             }
         })
     })
-
-// ////////////////////////////// Addition by Raul - START ////////////////////////
-
-
-   //============Selection of Interests and Input of Years of Experience and Level of Experience ==============
-    $('#newInterestSubmit').on('click', function(e) {
-        //prevent page reload upon form submit
-        e.preventDefault();
-
-        //data selected by user is collected
-        var yearsExperience = $('#yearsExperience').val().trim();
-        var skillLevel = $('#skillLevel').val().trim();
-
-        // organize data into object
-        var dataes = {
-            experience: yearsExperience,
-            skill: skillLevel
-        };
-
-        //ajax POST for sending data to server
-        $.post('/user-home', dataes, function(response) {
-            //if response == true, yrs experience and skill level are added, redirect user to home
-            console.log(response)
-            if(response) {
-                //===========ROUTE USER TO HIS HOME PAGE (user-home)===============
-                var keyHome = userName;
-                window.location.href = 'user/home/' + keyHome;
-            } 
-        })
-    });
-
-
-
-// ////////////////////////////// Addition by Raul - END ////////////////////////
 
     //============Creating new User==============
     $('#newUserSubmit').on('click', function(e) {
@@ -108,36 +74,167 @@
             }
         })
     });
-    //=====SCORE MODAL======
-    $('#golfScoreBtn').on('click', function(e) {
-        e.preventDefault();
-        $('#golfModal').modal('open');
+    // //=====SCORE MODAL======
+    // var activityModal = "";
+    //
+    // // they are all opening same modal on-click, did not change original id="golfModal" yet
+    // $('#golfScoreBtn').on('click', function(e) {
+    //     e.preventDefault();
+    //     activityModal = "";
+    //     activityModal = "golf";
+    //     $('#golfModal').modal('open');
+    // });
+    // $('#guitarScoreBtn').on('click', function(e) {
+    //     e.preventDefault();
+    //     activityModal = "";
+    //     activityModal = "guitar";
+    //     $('#golfModal').modal('open');
+    // });
+    // $('#langScoreBtn').on('click', function(e) {
+    //     e.preventDefault();
+    //     activityModal = "";
+    //     activityModal = "lang";
+    //     $('#golfModal').modal('open');
+    // });
+    //
+    // //==========Submit Golf Score===============
+    // $('#submitGolfScore').on('click', function(e) {
+    //     e.preventDefault();
+    //
+    //     //collect variables with data
+    //     var score = $('#golfScore').val();
+    //     var userName = $('#userName').val().trim();
+    //     var data = {
+    //         score: score,
+    //         username: userName
+    //     }
+    //     console.log(data)
+    //     console.log("activityModal: " + activityModal);
+    //
+    //     // filter data by activity type
+    //     if (activityModal == "golf") {
+    //         var url = '/score/golf';
+    //     } else if (activityModal == "guitar") {
+    //         var url = '/score/guitar';
+    //     } else {
+    //         var url = '/score/lang';
+    //     }
+    //
+    //     $.post(url, data, function(response) {
+    //         console.log(response);
+    //     })
+    // })
+    //
+    // //==========Get Golf Score and Graph===============
+    // // filtering thorugh class getChartData
+    // $('.getChartData').on('click', function(e) {
+    //     e.preventDefault();
+    //     var username = $('#user-name').attr('value');
+    //     activityModal = "";
+    //     activityModal = $(this).data("activity");
+    //     // console.log("graph activityModal: " + activityModal);
+    //
+    //     var url = '/get-data/' + activityModal + '/' + username;
+    //     console.log("this is the URL: " + url)
+    //     $.get(url, function(response) {
+    //         var data = response;
+    //         console.log(data[0]);
+    //         console.log(data[1]);
+    //         console.log(data[2]);
+    //     // plot graph *********************
+    //     $("#chartDiv").empty();
+    //     $('#chartDiv').append('<canvas id="chartArea" height="400" width="400"></canvas>');
+    //     var ctx = $("#chartArea");
+    //     var bars_config = {
+    //         type: 'line',
+    //         data: {
+    //             labels: data[0],
+    //             datasets: [{
+    //               label: data[1],
+    //               data: data[2]
+    //             }]
+    //         },
+    //         options: {
+    //           responsive: true,
+    //           maintainAspectRatio: false,
+    //           scales: {
+    //             yAxes: [{
+    //               scaleLabel: {
+    //                 display: true,
+    //                 labelString: 'score'
+    //               }
+    //             }],
+    //             xAxes: [{
+    //               scaleLabel: {
+    //                 display: true,
+    //                 labelString: 'date'
+    //               }
+    //             }]
+    //           }
+    //         }
+    //     } // end bars config
+    //     // empty chartarea before replotting
+    //
+    //     var myChart = new Chart(ctx, bars_config);
+    //     });
+    // });
+
+    //================UPDATE PROFILE==================
+
+    //     var myChart = new Chart(ctx, bars_config);
+
+    //         //-----
+    //     })
+    // })
+    //================UPDATE PROFILE SETTINGS==================
+
+    $('#updateProfileModal').on('click', function () {
+        $('#updateProfile').modal('open');
     })
-    //==========Submit Golf Score===============
-    $('#submitGolfScore').on('click', function(e) {
+    // =============== USER Setting Skills===================
+    $('#setSkillsBtn').on('click', function() {
+        $('#setSkillsModal').modal('open');
+    })
+    $('#addGolfSkillBtn').on('click', function () {
+        $('#addGolfSkillsDataModal').modal('open');
+    })
+    //==============SENDING GOLF SKILL DATA=====================
+    $("#submitGolfSkillData").on('click', function (e) {
         e.preventDefault();
-        //collect variables with data
-        var score = $('#golfScore').val();
-        var userName = $('#userName').val().trim();
+        //collect data
+        var username = $('#user').val()
+        var years = $('#golfYearsExperience').val();
+        var rating = $('#golfRating').val();
         var data = {
-            score: score,
-            username: userName
+            year_experience: years,
+            experience_rating: rating
         }
-        console.log(data)
-        var url = '/score/golf'
-        $.post(url, data, function(response) {
+        var url = '/api/choices/golf/' + username;
+        console.log(url)
+        //AJAX POST
+        $.post(url, data, function (response) {
             console.log(response);
         })
+    });
+    //=================GETTING MATCHED===================
+    //---MODAL---
+    $('#getMatchedBtn').on('click', function () {
+        $('#getMatchedModal').modal('open');
     })
-    $('#getGolfChartData').on('click', function(e) {
-        e.preventDefault();
-        var username = $('#user-name').attr('value');
-        var url = '/get-golf-data/'+ username;
-        console.log("this is the URL: " + url)
-        $.get(url, function(response) {
-            var data = response;
-            console.log(data);
+    //---sending data for matching---
+    $('#matchGolf').on('click', function () {
+        $('#preloaderInsert').addClass('progress');
+        var username = $('#matchUserName').val();
+        var url = "/match/golf/" + username;
+        $.get(url, function (response) {
+            $('#preloaderInsert').removeClass('progress');
+            $('#getMatchedModal').modal('close');
+            console.log("======match data======")
+            console.log(response);
+            //======process data insertion here======
+            // $('#matchContentInsert')
+            $('#matchesModal').modal('open');
         })
     })
-    
+})
 })
