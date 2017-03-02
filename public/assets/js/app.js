@@ -48,7 +48,7 @@
 
         //ajax POST for sending data to server
         $.post('/user-home', dataes, function(response) {
-            //if response == true, username was added, redirect user to home
+            //if response == true, yrs experience and skill level are added, redirect user to home
             console.log(response)
             if(response) {
                 //===========ROUTE USER TO HIS HOME PAGE (user-home)===============
