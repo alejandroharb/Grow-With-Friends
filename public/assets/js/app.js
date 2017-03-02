@@ -1,4 +1,5 @@
 
+
 $(document).ready(function() {
     //initialize modal
     $('.modal').modal();
@@ -285,3 +286,4 @@ function createCollectionItem(userImg, name, years, distance) {
     $('#matchContentInsert').append(newLi);
     console.log("end of jquery function")
 }
+
