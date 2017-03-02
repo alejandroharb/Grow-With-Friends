@@ -233,8 +233,55 @@ $(document).ready(function() {
             console.log("======match data======")
             console.log(response);
             //======process data insertion here======
-            // $('#matchContentInsert')
+            for(var i = 0; i < response.length; i++) {
+                var image = response[i].userImg;
+                var name = response[i].user;
+                var years = response[i].years;
+                var dist = response[i].distance;
+                console.log(name)
+                createCollectionItem(image, name, years, dist)
+            };
             $('#matchesModal').modal('open');
         })
     })
 })
+function createCollectionItem(userImg, name, years, distance) {
+    console.log('inside function')
+    console.log("image: " + userImg + " and name: " + name);
+    //<li> parent
+    var newLi = $('<li>');
+    newLi.attr('class', "collection-item avatar");
+    //Image
+    var newImg = $('<img>')
+    newImg.attr('src', '/uploads/images/' + userImg)
+    newImg.attr('class', 'circle');
+    //TITLE
+    var span = $('<span>');
+    span.attr('class', 'title');
+    span.html(name);
+    //icon link
+    var link = $('<a>')
+    link.attr({
+        href: "#",
+        id: "chosenUser",
+        class: "secondary-content" 
+    });
+    //link
+    var icon = $('<i>')
+    icon.attr('class', 'material-icons')
+    icon.html("forum");
+    //<p>
+    var newP1 = $('<p>');
+    newP1.html("Years Experience: " + years);
+    //distance
+    var newP2 = $('<p>').html("Distance Apart: " + distance)
+
+    link.append(icon);
+    newLi.append(newImg);
+    newLi.append(span);
+    newLi.append(newP1);
+    newLi.append(newP2);
+    newLi.append(link);
+    $('#matchContentInsert').append(newLi);
+    console.log("end of jquery function")
+}
