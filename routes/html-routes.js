@@ -3,7 +3,7 @@ var path = require('path')
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
-        res.render("index");
+        res.render("index",{title:"front page", layout:"front-page"});
     })
     app.get('/create-user', function(req, res) {
         res.render("sign-up");
