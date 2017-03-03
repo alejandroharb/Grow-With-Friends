@@ -151,10 +151,14 @@ h2.header a{
 
 
 canvas {
-  padding: 10px 20px 10px 20px;
+  padding: 10px 15px 10px 15px;
   background-color:#FAFAFA;
   max-height: 380px;
   border-radius: 6px;
+}
+
+.golfChartDiv canvas {
+  padding-top: 25px;
 }
 
 .collapsible-header, .collapsible-body, ul, li {
@@ -243,7 +247,9 @@ canvas {
     width:100%;
     height:200px;
 }
+
 .modal {
     max-height: 80%;
     width:65%;
 }
+
