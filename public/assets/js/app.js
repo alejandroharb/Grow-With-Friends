@@ -3,6 +3,7 @@
 $(document).ready(function() {
     //initialize modal
     $('.modal').modal();
+
     //================Loggin in==================
     $('#logInBtn').on('click', function(e) {
         e.preventDefault();
