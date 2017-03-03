@@ -35,25 +35,25 @@ $('#langScoreBtn').on('click', function(e) {
 $('#submitGolfScore').on('click', function(e) {
     e.preventDefault();
 
-    var score;
-    var url;
+    var  score = $('#golfScore').val();
+    var url = '/score/golf';
     var userName = $('#userName').val().trim();
     
     // console.log(data)
     // console.log("activityModal: " + activityModal);
 
-    // filter data by activity type
-    if (activityModal == "golf") {
-      //collect variables with data
-        score = $('#golfScore').val();
-        url = '/score/golf';
-    } else if (activityModal == "guitar") {
-        score = $('#guitarHours').val();
-        url = '/score/guitar';
-    } else {
-        score = $('#spanishHours').val();
-        url = '/score/lang';
-    }
+    // // filter data by activity type
+    // if (activityModal == "golf") {
+    //   //collect variables with data
+    //     score = $('#golfScore').val();
+    //     url = '/score/golf';
+    // } else if (activityModal == "guitar") {
+    //     score = $('#guitarHours').val();
+    //     url = '/score/guitar';
+    // } else {
+    //     score = $('#spanishHours').val();
+    //     url = '/score/lang';
+    // }
     var data = {
         score: score,
         username: userName
