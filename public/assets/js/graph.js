@@ -14,19 +14,19 @@ plotIt();
 // they are all opening same modal on-click, did not change original id="golfModal" yet
 $('#golfScoreBtn').on('click', function(e) {
     e.preventDefault();
-    activityModal = "";
+
     activityModal = "golf";
     $('#golfModal').modal('open');
 });
-$('#guitarHoursBtn').on('click', function(e) {
+$('#guitarScoreBtn').on('click', function(e) {
     e.preventDefault();
-    activityModal = "";
+
     activityModal = "guitar";
     $('#guitarModal').modal('open');
 });
-$('#langHoursBtn').on('click', function(e) {
+$('#langScoreBtn').on('click', function(e) {
     e.preventDefault();
-    activityModal = "";
+
     activityModal = "lang";
     $('#spanishModal').modal('open');
 });
@@ -35,79 +35,70 @@ $('#langHoursBtn').on('click', function(e) {
 $('#submitGolfScore').on('click', function(e) {
     e.preventDefault();
 
-    //collect variables with data
-    var score = $('#golfScore').val();
-    // var userName = $('#userName').val().trim();
-    var data = {
-        score: score,
-        username: userName
-    }
+    var score;
+    var url;
+    var userName = $('#userName').val().trim();
+    
     // console.log(data)
     // console.log("activityModal: " + activityModal);
 
     // filter data by activity type
-    // if (activityModal == "golf") {
-    //     var url = '/score/golf';
-    // } else if (activityModal == "guitar") {
-    //     var url = '/score/guitar';
-    // } else {
-    //     var url = '/score/lang';
-    // }
-    var url = '/score/golf';
-    plotIt();
-    $.post(url, data, function(response) {
-        console.log("posted" + response);
-    })
-})
-$('#submitGuitarHours').on('click', function(e) {
-    e.preventDefault();
-
-    //collect variables with data
-    var score = $('#guitarScore').val();
-    // var userName = $('#userName').val().trim();
+    if (activityModal == "golf") {
+      //collect variables with data
+        score = $('#golfScore').val();
+        url = '/score/golf';
+    } else if (activityModal == "guitar") {
+        score = $('#guitarHours').val();
+        url = '/score/guitar';
+    } else {
+        score = $('#spanishHours').val();
+        url = '/score/lang';
+    }
     var data = {
         score: score,
         username: userName
     }
-    // console.log(data)
-    // console.log("activityModal: " + activityModal);
-
-    // // filter data by activity type
-    // if (activityModal == "golf") {
-    //     var url = '/score/golf';
-    // } else if (activityModal == "guitar") {
-    //     var url = '/score/guitar';
-    // } else {
-    //     var url = '/score/lang';
-    // }
-    var url = '/score/guitar';
+    console.log(data)
+    console.log(url)
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
     })
 })
-$('#submitSpanishHours').on('click', function(e) {
+//==================Submit Activity Score==================
+$('#submitGuitarScore').on('click', function(e) {
     e.preventDefault();
 
-    //collect variables with data
+    var score = $('#golfScore').val();
+
+    var url= url = '/score/golf';
+    var userName = $('#userName').val().trim();
+    
+    var data = {
+        score: score,
+        username: userName
+    }
+    console.log(data)
+    console.log(url)
+    plotIt();
+    $.post(url, data, function(response) {
+        console.log("posted" + response);
+    })
+})
+//==================Submit Activity Score==================
+$('#submitSpanishScore').on('click', function(e) {
+    e.preventDefault();
+
     var score = $('#spanishHours').val();
-    // var userName = $('#userName').val().trim();
+    var url = '/score/lang';
+    var userName = $('#userName').val().trim();
+    
     var data = {
         score: score,
         username: userName
     }
-    // console.log(data)
-    // console.log("activityModal: " + activityModal);
-
-    // // filter data by activity type
-    // if (activityModal == "golf") {
-    //     var url = '/score/golf';
-    // } else if (activityModal == "guitar") {
-    //     var url = '/score/guitar';
-    // } else {
-    //     var url = '/score/lang';
-    // }
-    var url = '/score/spanish';
+    console.log(data)
+    console.log(url)
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
