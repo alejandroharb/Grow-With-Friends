@@ -200,18 +200,45 @@ $(document).ready(function() {
     $('#addGolfSkillBtn').on('click', function () {
         $('#addGolfSkillsDataModal').modal('open');
     })
+    $('#addGuitarSkillBtn').on('click', function () {
+        $('#addGuitarSkillsDataModal').modal('open');
+    })
     //==============SENDING GOLF SKILL DATA=====================
     $("#submitGolfSkillData").on('click', function (e) {
         e.preventDefault();
         //collect data
         var username = $('#user').val()
         var years = $('#golfYearsExperience').val();
-        var rating = $('#golfRating').val();
+        years = parseInt(years);
+        var rating = $('input[name="golf-rating"]:checked').val();
+        rating = parseInt(rating);
+        console.log("rating value from radio button: " + rating)
         var data = {
             year_experience: years,
             experience_rating: rating
         }
         var url = '/api/choices/golf/' + username;
+        // console.log(url)
+        //AJAX POST
+        $.post(url, data, function (response) {
+            // console.log(response);
+        })
+    });
+    //==============SENDING Guitar SKILL DATA=====================
+    $("#submitGuitarSkillData").on('click', function (e) {
+        e.preventDefault();
+        //collect data
+        var username = $('#user').val()
+        var years = $('#guitarYearsExperience').val();
+        years = parseInt(years);
+        var rating = $('input[name="guitar-rating"]:checked').val();
+        rating = parseInt(rating);
+        console.log("rating value from radio button: " + rating)
+        var data = {
+            year_experience: years,
+            experience_rating: rating
+        }
+        var url = '/api/choices/guitar/' + username;
         // console.log(url)
         //AJAX POST
         $.post(url, data, function (response) {

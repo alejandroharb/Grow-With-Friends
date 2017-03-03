@@ -177,18 +177,31 @@
 		<div class="container">
 			<div class="row">
 				<div class="col s12">
-					<h4 class="center-align">Golf Data</h4>
+					<h4 class="center-align">Golf</h4>
 					<hr>
-					<form>
-						<h5>Years of Experience</h5>
-						<input type="hidden" id="user" value="{{info.basicInfo.user_name}}">
-						<p class="range-field">
-							<input type="range" id="golfYearsExperience" min="0" max="10" />
-						</p>
-						<h5>How would you rate yourself?</h5>
-						<p class="range-field">
-							<input type="range" id="golfRating" min="0" max="3" />
-						</p>
+					<form class="row">
+						<div class="col s6">
+							<h5>Years of Experience</h5>
+							<input type="hidden" id="user" value="{{info.basicInfo.user_name}}">
+							<p class="range-field">
+								<input type="range" id="golfYearsExperience" min="0" max="30" />
+							</p>
+						</div>
+						<div class="col s6">
+							<h5>How would you rate yourself?</h5>
+							<p>
+						      <input class="with-gap" name="golf-rating" type="radio" id="rating1" value="1" />
+						      <label for="rating1">Beginner</label>
+						    </p>
+						    <p>
+						      <input class="with-gap" name="golf-rating" type="radio" id="rating2" value="2" />
+						      <label for="rating2">Experienced</label>
+						    </p>
+						    <p>
+						      <input class="with-gap" name="golf-rating" type="radio" id="rating3" value="3" />
+						      <label for="rating3">Expert</label>
+						    </p>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -196,6 +209,46 @@
 	</div>
 	<div class="modal-footer">
 		<button type="submit" id="submitGolfSkillData" class="modal-action modal-close btn btn-large waves-effect waves-light orange">Submit</button>
+	</div>
+</div>
+{{!--===============ADDING Guitar SKILL MODAL=================--}}
+<div id="addGuitarSkillsDataModal" class="modal bottom-sheet">
+	<div class="modal-content">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<h4 class="center-align">Guitar</h4>
+					<hr>
+					<form class="row">
+						<div class="col s6">
+							<h5>Years of Experience</h5>
+							<input type="hidden" id="user" value="{{info.basicInfo.user_name}}">
+							<p class="range-field">
+								<input type="range" id="guitarYearsExperience" min="0" max="30" />
+							</p>
+						</div>
+						<div class="col s6">
+							<h5>How would you rate yourself?</h5>
+							<p>
+						      <input class="with-gap" name="guitar-rating" type="radio" id="guitar-beginner" value="1" />
+						      <label for="guitar-beginner">Beginner</label>
+						    </p>
+						    <p>
+						      <input class="with-gap" name="guitar-rating" type="radio" id="guitar-exp" value="2" />
+						      <label for="guitar-exp">Experienced</label>
+						    </p>
+						    <p>
+						      <input class="with-gap" name="guitar-rating" type="radio" id="guitar-exp" value="3" />
+						      <label for="guitar-exp">Expert</label>
+						    </p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" id="submitGuitarSkillData" class="modal-action modal-close btn btn-large waves-effect waves-light orange">Submit</button>
 	</div>
 </div>
 {{!--===============MODAL GETTING MATCHED: DISPLAYING OPTIONS=========================--}}

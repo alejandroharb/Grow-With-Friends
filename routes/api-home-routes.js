@@ -91,10 +91,6 @@ module.exports = function (app) {
         var skill = req.params.skill;
         var username = req.params.user;
         var data = req.body;
-
-        console.log("=====data from front end======")
-        console.log(data)
-        console.log(skill)
         //first get location data from user
         db.User.findOne({ where: { user_name: username } })
             .then(function (response) {
@@ -130,6 +126,28 @@ module.exports = function (app) {
                                 res.json(data);
                             });
                             break;
+                        // case "Spanish":
+                        //     db.Guitar.create({
+                        //         UserId: userId,
+                        //         user_name: username,
+                        //         year_experience: data.year_experience,
+                        //         experience_rating: data.experience_rating,
+                        //         city: city
+                        //     }).then(function (data) {
+                        //         res.json(data);
+                        //     });
+                        //     break;
+                        // case "Chess":
+                        //     db.Guitar.create({
+                        //         UserId: userId,
+                        //         user_name: username,
+                        //         year_experience: data.year_experience,
+                        //         experience_rating: data.experience_rating,
+                        //         city: city
+                        //     }).then(function (data) {
+                        //         res.json(data);
+                        //     });
+                        //     break;
                     }
                 })
             })
