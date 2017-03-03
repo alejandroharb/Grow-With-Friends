@@ -43,7 +43,7 @@
 			</div>
 			{{!--Chart Wrapper--}}
 		</div>
-		<div class="col s12 m8">
+		<div class="col s12 m8 chartContainer">
 			<div class="chart-wrapper">
 				<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
 			<!-- =============COLLAPSIBLE POPOUT===holds individual collapsibles============= -->
@@ -52,7 +52,7 @@
 				 	<div class="collapsible-header getChartData active" data-activity="golf" value="golf"><i class="material-icons">golf_course</i>Golf
 				 	</div>
 				 	<!-- =======BODY for BUTTONS======= -->
-					<div class="collapsible-body">
+					<!-- <div class="collapsible-body">
 						<div class="row tight-top-spacing">
 							<div class="col s6">
 								<a class="btn cummulative waves-effect waves-light" data-activity="golf"><i class="material-icons">trending_up</i><Cummulative</span></a>
@@ -61,7 +61,7 @@
 								<a class="btn dayCreated waves-effect waves-light" data-activity="golf"><i class="material-icons">timeline</i></a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- =======BODY for CHART======= -->
 				 	<div class="collapsible-body chartDiv golfChartDiv">
 				 		<canvas class="chartArea" height="300" width="580"></canvas>
@@ -79,7 +79,7 @@
 							<div class="col s6">
 								<a class=" btn dayCreated waves-effect waves-light" data-activity="guitar"><i class="material-icons">timeline</i>Bar Graph</a>
 							</div>
-						</div> 
+						</div>
 					 </div>
 					 <!-- =======BODY for CHART======= -->
 					 <div class="collapsible-body chartDiv guitarChartDiv">
@@ -87,7 +87,7 @@
 					 </div>
 				 </li>
 				 <li>
-					 <div class="collapsible-header getChartData" data-activity="lang" value="lang">Language
+					 <div class="collapsible-header getChartData" data-activity="lang" value="lang"><i class="material-icons">translate</i>Language
 					 </div>
 					 <!-- =======BODY for BUTTONS======= -->
 					 <div class="collapsible-body">
@@ -96,7 +96,7 @@
 								<a class="btn cummulative waves-effect waves-light" data-activity="lang"><i class="material-icons">trending_up</i>Cummulative</a>
 							</div>
 							<div class="col s6">
-								<a class=" btn dayCreated waves-effect waves-light" data-activity="lang"><i class="material-icons">timeline</i>Bar Graph</a>
+								<a class="btn dayCreated waves-effect waves-light" data-activity="lang"><i class="large material-icons">assessment</i>Bar Graph</a>
 							</div>
 						</div>
 						 <!-- <a class="col s4 btn disabled"><i class="material-icons"></i></a> -->
@@ -407,4 +407,3 @@
 		</div>
 	</div>
 </div>
-
