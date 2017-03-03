@@ -17,10 +17,10 @@
 				    <a class="btn-floating btn-large cyan darken-3">
 				      <i class="material-icons">library_add</i>
 				    </a>
-				    <ul>
-				      <li id="golfScoreBtn" class="waves-effect waves-light"><a href="#!"><img class="responsive-img" src="/assets/img/golf.svg"></a></li>
-				      <li id="guitarScoreBtn" class="waves-effect waves-light"><a href="#!"><img class="responsive-img" src="/assets/img/guitar.svg"></a></li>
-				      <li id="langScoreBtn" class="waves-effect waves-light"><a href="#!"><img class="responsive-img" src="/assets/img/language.svg"></a></li>
+				    <ul class="row">
+				      <li id="golfScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">golf_course</i></a></li>
+				      <li id="guitarHoursBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">music_note</i></a></li>
+				      <li id="langHoursBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">translate</i></a></li>
 				    </ul>
 				  </div>
 				<!-- ====end NEW BUTTON DESIGN==== -->
@@ -111,21 +111,64 @@
 		</div>
 	</div>
 </div>
-{{!--================Modals================!--}}
+{{!--================golf SCORE Modals================!--}}
 <div id="golfModal" class="modal bottom-sheet">
 	<div class="modal-content">
-		<h4>Enter Score</h4>
-		<form>
-			<input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
-			<p class="range-field">
-				<span><i class="material-icons">thumb_up</i></span>
-				<input type="range" id="golfScore" min="50" max="120" />
-				<span><i class="material-icons">thumb_down</i></span>
-			</p>
-		</form>
+		<h4 class="center-align">Golf Score</h4>
+		<div class="row">
+			<div class="col s8 offset-s2">
+				<form>
+					<input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
+					<p class="range-field">
+						<span><i class="material-icons">thumb_up</i></span>
+						<input type="range" id="golfScore" min="50" max="120" />
+						<span><i class="material-icons">thumb_down</i></span>
+					</p>
+				</form>
+			</div>
+		</div>
 	</div>
 	<div class="modal-footer">
 		<a type="submit" id="submitGolfScore" class="modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
+	</div>
+</div>
+
+{{!--================guitar hours Modals================!--}}
+<div id="guitarModal" class="modal bottom-sheet">
+	<div class="modal-content">
+		<h4 class="center-align">Guitar Hours</h4>
+		<div class="row">
+			<div class="col s8 offset-s2">
+				<form>
+					<input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
+					<p class="range-field">
+						<input type="range" id="guitarScore" min="1" max="8" />
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a type="submit" id="submitGuitarHours" class="modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
+	</div>
+</div>
+{{!--================SPANISH hours Modals================!--}}
+<div id="spanishModal" class="modal bottom-sheet">
+	<div class="modal-content">
+		<h4 class="center-align">Spanish Practice Hours</h4>
+		<div class="row">
+			<div class="col s8 offset-s2">
+				<form>
+					<input id="userName" type="hidden" value="{{info.basicInfo.user_name}}">
+					<p class="range-field">
+						<input type="range" id="spanishHours" min="1" max="8" />
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a type="submit" id="submitSpanishHours" class="modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
 	</div>
 </div>
 

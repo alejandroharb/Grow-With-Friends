@@ -18,17 +18,17 @@ $('#golfScoreBtn').on('click', function(e) {
     activityModal = "golf";
     $('#golfModal').modal('open');
 });
-$('#guitarScoreBtn').on('click', function(e) {
+$('#guitarHoursBtn').on('click', function(e) {
     e.preventDefault();
     activityModal = "";
     activityModal = "guitar";
-    $('#golfModal').modal('open');
+    $('#guitarModal').modal('open');
 });
-$('#langScoreBtn').on('click', function(e) {
+$('#langHoursBtn').on('click', function(e) {
     e.preventDefault();
     activityModal = "";
     activityModal = "lang";
-    $('#golfModal').modal('open');
+    $('#spanishModal').modal('open');
 });
 
 //==================Submit Activity Score==================
@@ -46,14 +46,68 @@ $('#submitGolfScore').on('click', function(e) {
     // console.log("activityModal: " + activityModal);
 
     // filter data by activity type
-    if (activityModal == "golf") {
-        var url = '/score/golf';
-    } else if (activityModal == "guitar") {
-        var url = '/score/guitar';
-    } else {
-        var url = '/score/lang';
-    }
+    // if (activityModal == "golf") {
+    //     var url = '/score/golf';
+    // } else if (activityModal == "guitar") {
+    //     var url = '/score/guitar';
+    // } else {
+    //     var url = '/score/lang';
+    // }
+    var url = '/score/golf';
+    plotIt();
+    $.post(url, data, function(response) {
+        console.log("posted" + response);
+    })
+})
+$('#submitGuitarHours').on('click', function(e) {
+    e.preventDefault();
 
+    //collect variables with data
+    var score = $('#guitarScore').val();
+    // var userName = $('#userName').val().trim();
+    var data = {
+        score: score,
+        username: userName
+    }
+    // console.log(data)
+    // console.log("activityModal: " + activityModal);
+
+    // // filter data by activity type
+    // if (activityModal == "golf") {
+    //     var url = '/score/golf';
+    // } else if (activityModal == "guitar") {
+    //     var url = '/score/guitar';
+    // } else {
+    //     var url = '/score/lang';
+    // }
+    var url = '/score/guitar';
+    plotIt();
+    $.post(url, data, function(response) {
+        console.log("posted" + response);
+    })
+})
+$('#submitSpanishHours').on('click', function(e) {
+    e.preventDefault();
+
+    //collect variables with data
+    var score = $('#spanishHours').val();
+    // var userName = $('#userName').val().trim();
+    var data = {
+        score: score,
+        username: userName
+    }
+    // console.log(data)
+    // console.log("activityModal: " + activityModal);
+
+    // // filter data by activity type
+    // if (activityModal == "golf") {
+    //     var url = '/score/golf';
+    // } else if (activityModal == "guitar") {
+    //     var url = '/score/guitar';
+    // } else {
+    //     var url = '/score/lang';
+    // }
+    var url = '/score/spanish';
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
