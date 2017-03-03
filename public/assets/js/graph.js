@@ -98,7 +98,7 @@ $('#submitGolfScore').on('click', function(e) {
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
-        
+
     })
 
 })
@@ -120,7 +120,7 @@ $('#submitGuitarScore').on('click', function(e) {
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
-        
+
     })
 
 })
@@ -141,7 +141,7 @@ $('#submitSpanishScore').on('click', function(e) {
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
-        
+
     })
 
 })
@@ -221,8 +221,15 @@ $('.getChartData').on('click', function(e) {
         countIndex += cycleIndex;
         // console.log("countIndex: " + countIndex);
         if (Math.abs(countIndex) >= 5) { cycleIndex *= -1}
-
     }
+
+    // display total score
+    $("." + activityModal + "TotalScore").empty();
+    if (activityModal == "golf") {
+    $("." + activityModal + "TotalScore").text("Total Score: " + data[3][dataPoints-1]);
+  } else {
+    $("." + activityModal + "TotalScore").text("Practice Hours: " + data[3][dataPoints-1]);
+  }
 
     // axis labels selection according to activity
     if (activityModal == "golf") {

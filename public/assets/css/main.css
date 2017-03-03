@@ -17,6 +17,7 @@ body{
     display: block;
     padding: 15px;
     background-color: #FAFAFA;
+
 }
 
 .user-activity-wrapper {
@@ -187,4 +188,8 @@ canvas {
 }
 .tight-top-spacing{
     margin-bottom: 0;
+}
+
+.golfTotalScore, .guitarTotalScore, .langTotalScore {
+  float: right;
 }
