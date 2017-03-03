@@ -35,6 +35,7 @@ module.exports = function (app) {
     app.post('/score/:skill', function (req, res) {
         var skill = req.params.skill;
         var data = req.body;
+        var username = data.username;
         console.log("===firebase golf data being sent====")
         console.log(data)
         //get current date stamp
@@ -48,9 +49,44 @@ module.exports = function (app) {
         var ref = database.ref("Users/" + data.username + "/" + skill + "/" + date);
         //writing into database at specific reference
         ref.set(score);
-        var activityRef = database.ref("userActivity");
+        //writing database general activity of all users
+        db.User.findOne({ where: { user_name: username } })
+            .then(function(response) {
+
+                var name = response.first_name;
+                var image = response.image;
+                
+                if(skill === "golf") {
+                    userActivity = name + " just added a golf score of " + data.score + "!";
+                } else if (skill === "guitar"){
+                    userActivity = name + " just logged " + data.score + " hours for guitar!"
+                } else {
+                    userActivity = name + " just logged " + data.score + " hours for Spanish!"
+                }
+                var activityData = {
+                    name: name,
+                    image: image,
+                    userActivity: userActivity
+                };
+                var activityRef = database.ref("userActivity");
+                activityRef.push(activityData);
+            })
         
+        
+
     });
+    // //==============querying for user activity data================
+    // app.get('/users-activity', function(req,res) {
+    //     var activityArray = [];
+    //     var ref = database.ref("userActivity/");
+    //     ref.once('value', function(snapshot) {
+    //         snapshot.forEach(function(childSnapshot) {
+    //             var childData = childSnapshot.val();
+    //             activityArray.push(childData);
+    //         })
+    //         res.json(activityArray)
+    //     })
+    // })
     //============Querying Data FROM Firebase to Chart====================
     app.get('/get-data/:activityModal/:user', function (req, res) {
         var username = req.params.user;

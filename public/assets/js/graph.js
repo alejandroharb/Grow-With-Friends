@@ -1,5 +1,14 @@
 $(document).ready(function() {
 $('.collapsible').collapsible();
+  var config = {
+    apiKey: "AIzaSyBAWx3ZLy8j86QkkL3kq3R92T7S1XE8mgg",
+    authDomain: "<grow-with-friends.firebaseapp.com",
+    databaseURL: "https://grow-with-friends.firebaseio.com",
+    storageBucket: "<grow-with-friends.appspot.com",
+  };
+
+  firebase.initializeApp(config);
+  var database = firebase.database();
 
 // on window load, userName from window path, golf is initial activity
 var userName = window.location.pathname.slice(10);
@@ -89,13 +98,16 @@ $('#submitGolfScore').on('click', function(e) {
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
+        
     })
+
 })
 //==================Submit Activity Score==================
 $('#submitGuitarScore').on('click', function(e) {
     e.preventDefault();
 
     var score = $('#guitarHours').val();
+
     var url= url = '/score/guitar';
     var userName = $('#userName').val().trim();
 
@@ -108,7 +120,9 @@ $('#submitGuitarScore').on('click', function(e) {
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
+        
     })
+
 })
 //==================Submit Activity Score==================
 $('#submitSpanishScore').on('click', function(e) {
@@ -127,7 +141,9 @@ $('#submitSpanishScore').on('click', function(e) {
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);
+        
     })
+
 })
 
 //==================Get Activity at Graph Activity Request==================
@@ -156,8 +172,34 @@ $('.getChartData').on('click', function(e) {
         plotIt();
         });
 
+  //get UserActivity Data
+  var usersActivityRef = database.ref('userActivity/');
+  usersActivityRef.on('child_added', function(response) {
+        var newActivity = response.val().userActivity;
+        console.log(newActivity)
+        var image = response.val().image;
+        var newLi = $('<li>');
+        newLi.attr('class', "collection-item avatar");
+        //Image
+        var newImg = $('<img>')
+        newImg.attr('src', '/uploads/images/' + image)
+        newImg.attr('class', 'circle responsive-img');
+        var newP = $('<p>');
+        newP.html(newActivity);
+        newLi.append(newImg);
+        newLi.append(newP);
+        $('#userActivityInsert').prepend(newLi);
 
+  })
+  // function getUsersActivity() {
+  //   $.get('/users-activity', function(response) {
+  //     var data = response;
+  //     console.log("-------firebase users activities===========")
+  //     console.log(data)
+  //   })
+  // }
   //==================Generate Graph==================
+
     function plotIt() {
     // clear canvas
     $(".chartDiv").empty();
