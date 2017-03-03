@@ -226,9 +226,9 @@ $('.getChartData').on('click', function(e) {
     // display total score
     $("." + activityModal + "TotalScore").empty();
     if (activityModal == "golf") {
-    $("." + activityModal + "TotalScore").text("Total Score: " + data[3][dataPoints-1]);
+    $("." + activityModal + "TotalScore").text(data[3][dataPoints-1]);
   } else {
-    $("." + activityModal + "TotalScore").text("Practice Hours: " + data[3][dataPoints-1]);
+    $("." + activityModal + "TotalScore").text("Hours Growth: " + data[3][dataPoints-1]);
   }
 
     // axis labels selection according to activity
@@ -236,8 +236,10 @@ $('.getChartData').on('click', function(e) {
       labelString = "Score";
       chartType = "line";
       dataIndex = 3;
+      lineColor = "rgba(75,192,192,1)";
     } else {
       labelString = "Practice Hours";
+      lineColor = "rgba(75,192,192,0.3)";
     }
 
     dataDisplay = data[dataIndex];
@@ -252,10 +254,11 @@ $('.getChartData').on('click', function(e) {
                 label: data[1],
                 data: dataDisplay,
                 lineTension: 0.4,
-                fill: false,
-                // backgroundColor: "rgba(75,192,192,0.4)",
+                fill: true,
+                fillColor: "rgba(151,187,205,0.2)",
+                backgroundColor: "rgba(75,192,192,0.4)",
                 backgroundColor: colorArray,
-                borderColor: "rgba(75,192,192,1)",                // line color
+                borderColor: lineColor,                // line color
                 pointBorderColor: "rgba(200,192,225,1)",
                 pointBackgroundColor: "#fff",
                 pointBorderWidth: 1,
@@ -268,8 +271,9 @@ $('.getChartData').on('click', function(e) {
           responsive: true,
           maintainAspectRatio: false,
           title: {
-            display: false,
-            text: chartTitle
+            display: true,
+            text: chartTitle,
+            fontSize: 16,
           },
           scales: {
             yAxes: [{
@@ -295,9 +299,10 @@ $('.getChartData').on('click', function(e) {
     } // end bars config
 
 // Chart.defaults.global.defaultFontFamily = ;
+Chart.defaults.global.defaultFontFamily = "Comic Sans MS";
 Chart.defaults.global.legend.display = false;
 Chart.defaults.global.responsiveAnimationDuration = 1000;
-Chart.defaults.global.defaultFontColor = "blue";
+Chart.defaults.global.defaultFontColor = "rgba(54,167,255,0.7";
 Chart.defaults.global.defaultFontSize = 14;
 var myChart = new Chart(ctx, bars_config);
 $( ".chartarea" ).fadeIn( 3000 );

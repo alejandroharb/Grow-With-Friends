@@ -58,10 +58,17 @@
 			<!-- =============COLLAPSIBLE POPOUT===holds individual collapsibles============= -->
 			 <ul class="collapsible popout" data-collapsible="accordion">
 				 <li>
-				 	<div id="golfCollapsible" class="collapsible-header getChartData active" data-activity="golf" value="golf"><i class="material-icons">golf_course</i>Golf
-						<span class="golfTotalScore"></span>
+				 	<div id="golfCollapsible" class="collapsible-header getChartData active" data-activity="golf" value="golf"><i class="material-icons">golf_course</i><span class="fontCollapsible">Golf</span>
+						<span class="fontGrowth">Score Growth: &nbsp;<span class="golfTotalScore"></span></span>
 				 	</div>
 				 	<!-- =======BODY for BUTTONS======= -->
+					<div class="collapsible-body">
+						<div class="row tight-top-spacing">
+							<div class="col s12">
+								<a class="btn disabled"></a>
+							</div>
+						</div>
+					</div>
 					<!-- <div class="collapsible-body">
 						<div class="row tight-top-spacing">
 							<div class="col s6">
@@ -78,8 +85,8 @@
 				 	</div>
 				 </li>
 				 <li>
-					 <div id="guitarCollapsible" class="collapsible-header getChartData" data-activity="guitar" value="guitar"><i class="material-icons">music_note</i>Guitar
-						 <span class="guitarTotalScore"></span>
+					 <div id="guitarCollapsible" class="collapsible-header getChartData" data-activity="guitar" value="guitar"><i class="material-icons">music_note</i><span class="fontCollapsible">Guitar</span>
+						 <span class="guitarTotalScore fontCollapsible"></span>
 					 </div>
 					 <!-- =======BODY for BUTTONS======= -->
 					 <div class="collapsible-body">
@@ -98,8 +105,8 @@
 					 </div>
 				 </li>
 				 <li>
-					 <div id="langCollapsible" class="collapsible-header getChartData" data-activity="lang" value="lang"><i class="material-icons">translate</i>Spanish
-						 <span class="langTotalScore"></span>
+					 <div id="langCollapsible" class="collapsible-header getChartData" data-activity="lang" value="lang"><i class="material-icons">translate</i><span class="fontCollapsible">Español</span>
+						<span class="langTotalScore fontCollapsible"></span>
 					 </div>
 					 <!-- =======BODY for BUTTONS======= -->
 					 <div class="collapsible-body">

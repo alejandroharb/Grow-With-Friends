@@ -1,5 +1,8 @@
 body{
     background-color:#f5f5f5;
+    background-image: url("../img/gradient1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
 }
 
 .user-wrapper {
@@ -185,4 +188,25 @@ canvas {
 
 .golfTotalScore, .guitarTotalScore, .langTotalScore {
   float: right;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #E87F00!important;
+  /*color: #4A008D!important;*/
+  font-family: "Herculanum";
+}
+
+.fontCollapsible {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #E87F00!important;
+  /*color: #4A008D!important;*/
+  font-family: "Herculanum";
+}
+
+.fontGrowth {
+  color: black;
+  float: right;
+  font-family: "Herculanum";
+  font-weight: bold;
+  font-size: 1.1em;
 }
