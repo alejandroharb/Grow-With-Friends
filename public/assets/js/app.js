@@ -3,7 +3,8 @@
 $(document).ready(function() {
     //initialize modal
     $('.modal').modal();
-
+     // Initialize collapse button
+  $(".button-collapse").sideNav();
     //================Loggin in==================
     $('#logInBtn').on('click', function(e) {
         e.preventDefault();
