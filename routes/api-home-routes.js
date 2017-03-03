@@ -55,10 +55,8 @@ module.exports = function (app) {
     app.get('/get-data/:activityModal/:user', function (req, res) {
         var username = req.params.user;
         var activityModal = req.params.activityModal;
-        // console.log("activityModal: " + activityModal);
-        // console.log("userName: " + username);
+        // query database
         var ref = database.ref("Users/" + username + "/" + activityModal);
-        // var ref = database.ref("Users/" + username + "/" + activityModal).orderByChild("createdAt");
         var scoreArray = [];
         var dateArray = [];
         var sumScore = [];
@@ -66,9 +64,7 @@ module.exports = function (app) {
         var emptyLabels = [];
         ref.once('value').then(function (snapshot) {
             var dataArray = snapshot.val();
-            console.log("======data======")
-            // console.log(dataArray)
-            // console.log(Object.keys(dataArray));
+            console.log("======data======");
             // selecting MM/DD from each; pushing dates/moments(x-axis) for chart
             for (i in dataArray) {
                 console.log(i);
@@ -80,6 +76,7 @@ module.exports = function (app) {
             snapshot.forEach(function (childSnapshot) {
                 scoreArray.push(parseInt(childSnapshot.val().score));
                 emptyLabels.push("");
+                // cummulative score array
                 partial += parseInt(childSnapshot.val().score);
                 sumScore.push(partial);
             });
@@ -88,7 +85,7 @@ module.exports = function (app) {
             // *********************
             // displays activity
             var activity = snapshot.key;
-            console.log(activity);
+
             // user activity for graph
             var dataActivity = [dateArray, activity, scoreArray, sumScore, emptyLabels]
 

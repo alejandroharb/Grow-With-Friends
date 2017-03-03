@@ -6,8 +6,20 @@ var userName = window.location.pathname.slice(10);
 console.log("window path username: " + userName);
 var activityModal = "golf";
 var data = [];
-var dataIndex = 2;
+var dataIndex = 3;    // default dataIndex shows score
 var chartTitle = "Score Timeline";
+var chartType = "line";
+var labelString = ""
+var colorArray = [];
+var sixShades = [
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(232, 143, 71, 0.2)',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(153, 102, 255, 0.2)'
+                  ]
+
 plotIt();
 
 //==================SCORE MODAL==================
@@ -35,6 +47,7 @@ $('#langScoreBtn').on('click', function(e) {
 $('#submitGolfScore').on('click', function(e) {
     e.preventDefault();
 
+
     var  score = $('#golfScore').val();
     var url = '/score/golf';
     var userName = $('#userName').val().trim();
@@ -54,10 +67,12 @@ $('#submitGolfScore').on('click', function(e) {
     //     score = $('#spanishHours').val();
     //     url = '/score/lang';
     // }
+
     var data = {
         score: score,
         username: userName
     }
+
     console.log(data)
     console.log(url)
     plotIt();
@@ -70,6 +85,7 @@ $('#submitGuitarScore').on('click', function(e) {
     e.preventDefault();
 
     var score = $('#golfScore').val();
+
 
     var url= url = '/score/golf';
     var userName = $('#userName').val().trim();
@@ -109,18 +125,15 @@ $('#submitSpanishScore').on('click', function(e) {
 // filtering thorugh class getChartData
 $('.getChartData').on('click', function(e) {
     e.preventDefault();
-    // userName = $('#user-name').attr('value');
     activityModal = $(this).data("activity");
-    // console.log("graph activityModal: " + activityModal);
     plotIt();
     });
 
-           // default dataIndex shows score
-    //
     $('.cummulative').on('click', function(e) {
         e.preventDefault();
         activityModal = $(this).data("activity");
         dataIndex = 3;
+        chartType = "line";
         chartTitle = "Cummulative Score";
         plotIt();
         });
@@ -129,71 +142,77 @@ $('.getChartData').on('click', function(e) {
         e.preventDefault();
         activityModal = $(this).data("activity");
         chartTitle = "Score Timeline";
+        chartType = "bar";
         dataIndex = 2;
         plotIt();
         });
-
-
 
 
   //==================Generate Graph==================
     function plotIt() {
     // clear canvas
     $(".chartDiv").empty();
-    $("." + activityModal + 'ChartDiv').append('<canvas class="chartArea" height="350" width="400"></canvas>');
+    $("." + activityModal + 'ChartDiv').append('<canvas class="chartArea" height="350" width="400"><img src="/assets/img/aharb.jpg"></canvas>');
     $('.collapsible').collapsible();
     var url = '/get-data/' + activityModal + '/' + userName;
-    console.log("this is the URL: " + url)
+    console.log("this is the URL: " + url);
 
-    // retrieve data abd generate graph
+    // retrieve data and generate graph
     $.get(url, function(response) {
         var data = response;
-        console.log(data[0]); // labels/values x-axis
-        console.log(data[1]); // activity
-        console.log(data[2]); // score
-        console.log(data[3]); // cummulative
-        console.log(data[4]); // empty labels for x-axis
+
+    // color cycling for bars
+    var dataPoints = data[0].length;
+    var cycleIndex = 1;
+    var countIndex = 0;
+    for (var i=0; i<dataPoints; i++) {
+        colorArray.push(sixShades[Math.abs(countIndex)]);
+        countIndex += cycleIndex;
+        console.log("countIndex: " + countIndex);
+        if (Math.abs(countIndex) >= 5) { cycleIndex *= -1}
+
+    }
+
+    // axis labels selection according to activity
+    if (activityModal == "golf") {
+      labelString = "Score";
+      chartType = "line";
+      dataIndex = 3; 
+    } else {
+      labelString = "Practice Hours";
+    }
 
     dataDisplay = data[dataIndex];
 
     var ctx = $(".chartArea");
     var bars_config = {
-        type: 'line',
+        type: chartType,
         data: {
             labels: data[4],
             datasets: [
               {
-                type: "line",
-              label: data[1],
-              data: dataDisplay,
-              fill: false,
-              // backgroundColor: "rgba(75,192,192,0.4)",
-              borderColor: "rgba(75,192,192,1)",                // line color
-              // borderCapStyle: 'butt',                  // end of line style: butt, round or square
-              // borderDash: [2, 2],                              // dashed line [line, gap] : [5,10]
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: "rgba(200,192,225,1)",
-              pointBackgroundColor: "#fff",
-              // pointBorderWidth: 1,
-              // pointHoverRadius: 5,
-              pointHoverBackgroundColor: "rgba(75,192,192,1)",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              // pointHoverBorderWidth: 2,
-              pointRadius: 2,
-              pointHitRadius: 10,
-              spanGaps: false,
-              borderWidth: 1
-            }
-          ],
+                label: data[1],
+                data: dataDisplay,
+                lineTension: 0.4,
+                fill: false,
+                // backgroundColor: "rgba(75,192,192,0.4)",
+                backgroundColor: colorArray,
+                borderColor: "rgba(75,192,192,1)",                // line color
+                pointBorderColor: "rgba(200,192,225,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointRadius: 2,
+                borderWidth: 1
+              }
+            ],
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           title: {
-            display: true,
+            display: false,
             text: chartTitle
-        },
+          },
           scales: {
             yAxes: [{
               ticks: {
@@ -201,7 +220,7 @@ $('.getChartData').on('click', function(e) {
                 },
               scaleLabel: {
                 display: true,
-                labelString: 'score'
+                labelString: labelString
               }
             }],
             xAxes: [{
@@ -217,10 +236,13 @@ $('.getChartData').on('click', function(e) {
         }
     } // end bars config
 
-// Chart.defaults.global.elements.rectangle.backgroundColor = 'rgba(0,0,0,1)';
-// Chart.defaults.global.animation.easing = 'easeInBounce';
-
-    var myChart = new Chart(ctx, bars_config);
+// Chart.defaults.global.defaultFontFamily = ;
+Chart.defaults.global.legend.display = false;
+Chart.defaults.global.responsiveAnimationDuration = 1000;
+Chart.defaults.global.defaultFontColor = "blue";
+Chart.defaults.global.defaultFontSize = 14;
+var myChart = new Chart(ctx, bars_config);
+$( ".chartarea" ).fadeIn( 3000 );
 });
 } // end plotIt
 
