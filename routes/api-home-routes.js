@@ -35,6 +35,7 @@ module.exports = function (app) {
     app.post('/score/:skill', function (req, res) {
         var skill = req.params.skill;
         var data = req.body;
+        var username = data.username;
         console.log("===firebase golf data being sent====")
         console.log(data)
         //get current date stamp
@@ -48,8 +49,22 @@ module.exports = function (app) {
         var ref = database.ref("Users/" + data.username + "/" + skill + "/" + date);
         //writing into database at specific reference
         ref.set(score);
-        var activityRef = database.ref("userActivity");
+        //writing database general activity of all users
+        db.User.findOne({ where: { user_name: username } })
+            .then(function(response) {
+                var userActivity;
+                var name = response.first_name;
+                if(skill === "golf") {
+                    userActivity = name + " just added a golf score of " + data.score "!";
+                } else {
+                    userActivity = name + " just logged " + data.score " hours for " + skill + "!"
+                }
+                var activityRef = database.ref("userActivity");
+                activityRef.push(userActivity);
+            })
         
+        
+
     });
     //============Querying Data FROM Firebase to Chart====================
     app.get('/get-data/:activityModal/:user', function (req, res) {
