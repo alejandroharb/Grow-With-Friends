@@ -36,17 +36,29 @@ plotIt();
 $('#golfScoreBtn').on('click', function(e) {
     e.preventDefault();
 
+    $("#guitarCollapsible").removeClass("active");
+    $("#langCollapsible").removeClass("active");
+    $("#golfCollapsible").addClass("active");
+
     activityModal = "golf";
     $('#golfModal').modal('open');
 });
 $('#guitarScoreBtn').on('click', function(e) {
     e.preventDefault();
 
+    $("#golfCollapsible").removeClass("active");
+    $("#langCollapsible").removeClass("active");
+    $("#guitarCollapsible").addClass("active");
+
     activityModal = "guitar";
     $('#guitarModal').modal('open');
 });
 $('#langScoreBtn').on('click', function(e) {
     e.preventDefault();
+
+    $("#golfCollapsible").removeClass("active");
+    $("#guitarCollapsible").removeClass("active");
+    $("#langCollapsible").addClass("active");
 
     activityModal = "lang";
     $('#spanishModal').modal('open');
@@ -56,11 +68,10 @@ $('#langScoreBtn').on('click', function(e) {
 $('#submitGolfScore').on('click', function(e) {
     e.preventDefault();
 
-
     var  score = $('#golfScore').val();
     var url = '/score/golf';
     var userName = $('#userName').val().trim();
-    
+
     // console.log(data)
     // console.log("activityModal: " + activityModal);
 
@@ -97,10 +108,9 @@ $('#submitGuitarScore').on('click', function(e) {
 
     var score = $('#guitarHours').val();
 
-
     var url= url = '/score/guitar';
     var userName = $('#userName').val().trim();
-    
+
     var data = {
         score: score,
         username: userName
@@ -121,7 +131,7 @@ $('#submitSpanishScore').on('click', function(e) {
     var score = $('#spanishHours').val();
     var url = '/score/lang';
     var userName = $('#userName').val().trim();
-    
+
     var data = {
         score: score,
         username: userName
@@ -218,7 +228,7 @@ $('.getChartData').on('click', function(e) {
     if (activityModal == "golf") {
       labelString = "Score";
       chartType = "line";
-      dataIndex = 3; 
+      dataIndex = 3;
     } else {
       labelString = "Practice Hours";
     }
