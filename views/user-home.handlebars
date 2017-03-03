@@ -4,6 +4,7 @@
 			<div class="user-wrapper wrappers">
 				<img src="/uploads/images/{{info.basicInfo.image}}" class="responsive-img circle userImg">
 				<h2 class="center-align userTitle"> {{info.basicInfo.first_name}} {{info.basicInfo.last_name}}</h2>
+				<p class="userDescription">{{info.basicInfo.description}}</p>
 				<div class="row">
 					<div class="col s6">
 						{{!--<a id="getMatchedBtn" class="btn waves-effect waves-light matchBtn  hoverable secondary-blue"><i class="material-icons">supervisor_account</i> Match</a>--}}
@@ -12,37 +13,10 @@
 						{{!--<a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn  hoverable secondary-blue"><i class="material-icons">playlist_add</i> Skills!</a>--}}
 					</div>
 
-					<a href="#" data-activates="slide-out" class="button-collapse btn-floating"><i class="material-icons">menu</i></a>
+					<a href="#" data-activates="slide-out" class="button-collapse btn menuBtn"><i class="material-icons medium">menu</i></a>
 				</div>
-				<!-- ====NEW SCORE BUTTON DESIGN==== -->
-				<div class="fixed-action-btn toolbar">
-					<a class="btn-floating btn-large secondary-teal">
-						<i class="material-icons">library_add</i>
-					</a>
-					<ul class="row">
-						<li id="golfScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">golf_course</i></a></li>
-						<li id="guitarScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">music_note</i></a></li>
-						<li id="langScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">translate</i></a></li>
-					</ul>
-				</div>
-				<!-- ====end NEW BUTTON DESIGN==== -->
-				<!-- <div class="fixed-action-btn horizontal click-to-toggle">
-					<a class="btn-floating btn-large cyan darken-3">
-						<i class="material-icons">library_add</i>
-					</a>
-					<ul>
-						<li>
-							<a id="golfScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/golf.svg"></a>
-						</li>
-						<li>
-							<a id="guitarScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/guitar.svg"></a>
-						</li>
-						<li>
-							<a id="langScoreBtn" class="btn-floating  cyan darken-4"><img class="responsive-img" src="/assets/img/language.svg"></a>
-						</li>
-					</ul>
-				</div> -->
 			</div>
+			
 			<div class="user-activity-wrapper wrappers">
 				<div class="row">
 					<div class="col s12">
@@ -149,6 +123,25 @@
 						<div class="collapsible-body">
 							<h5>Add Skills to Work On!</h5>
 							<a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn  hoverable secondary-blue"><i class="material-icons">playlist_add</i> Skills!</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="collapsible collapsible-accordion">
+					<li>
+						<a class="collapsible-header"><i class="material-icons">library_add</i> Score</a>
+						<div class="collapsible-body">
+							<h5>Add Skills to Work On!</h5>
+							<ul>
+								<li>
+									<a id="golfScoreBtn" href="#!"><i class="material-icons">golf_course</i> Music</a></li>
+								</li>
+								<li>
+									<a id="guitarScoreBtn" href="#!"><i class="material-icons">music_note</i> Guitar</a>
+								</li>
+								<li>
+									<a id="langScoreBtn" href="#!"><i class="material-icons">translate</i> Spanish</a>
+								</li>
+							</ul>
 						</div>
 					</li>
 				</ul>

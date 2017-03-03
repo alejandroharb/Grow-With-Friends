@@ -47,7 +47,14 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1,100]
             }
         },
-        image: DataTypes.STRING
+        image: DataTypes.STRING,
+        description: {
+            type: DataTypes.STRING(300),
+            allowNull: true,
+            validate: {
+                len: [0,300]
+            }
+        }
     },
     {
         classMethods: {
