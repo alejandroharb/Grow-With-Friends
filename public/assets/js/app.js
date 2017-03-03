@@ -3,6 +3,10 @@
 $(document).ready(function() {
     //initialize modal
     $('.modal').modal();
+    $('#setSkillsModal').modal({
+        opacity:0.75,
+        startingTop: '10%',
+    });
     //================Loggin in==================
     $('#logInBtn').on('click', function(e) {
         e.preventDefault();
