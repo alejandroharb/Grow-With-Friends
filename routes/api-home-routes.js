@@ -40,7 +40,10 @@ module.exports = function (app) {
         //get current date stamp
         var date = moment().format('YYYY-MM-DD, h:mm:ss a');
         //creating score object
-        var score = { score: data.score }
+        var score = {
+          score: data.score,
+          createdAt: firebase.database.ServerValue.TIMESTAMP
+        }
         //ref variable holds FIREBASE node structure
         var ref = database.ref("Users/" + data.username + "/" + skill + "/" + date);
         //writing into database at specific reference
@@ -53,8 +56,12 @@ module.exports = function (app) {
         // console.log("activityModal: " + activityModal);
         // console.log("userName: " + username);
         var ref = database.ref("Users/" + username + "/" + activityModal);
+        // var ref = database.ref("Users/" + username + "/" + activityModal).orderByChild("createdAt");
         var scoreArray = [];
         var dateArray = [];
+        var sumScore = [];
+        var partial = 0;
+        var emptyLabels = [];
         ref.once('value').then(function (snapshot) {
             var dataArray = snapshot.val();
             console.log("======data======")
@@ -65,19 +72,23 @@ module.exports = function (app) {
                 console.log(i);
                 dateArray.push(i.slice(5, 10));
             }
-            console.log(dateArray);
+            console.log("dateArray: " + dateArray);
             // *********************
             // pushing scores(y-axis) for chart
             snapshot.forEach(function (childSnapshot) {
                 scoreArray.push(parseInt(childSnapshot.val().score));
+                emptyLabels.push("");
+                partial += parseInt(childSnapshot.val().score);
+                sumScore.push(partial);
             });
-            console.log(scoreArray);
+            console.log("score: " + scoreArray);
+            console.log("sum: " + sumScore);
             // *********************
             // displays activity
             var activity = snapshot.key;
             console.log(activity);
             // user activity for graph
-            var dataActivity = [dateArray, activity, scoreArray]
+            var dataActivity = [dateArray, activity, scoreArray, sumScore, emptyLabels]
 
             res.send(dataActivity);
         });

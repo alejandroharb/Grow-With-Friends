@@ -50,14 +50,33 @@ input[type=range]{
     margin: 80px auto 30px auto;
     position:relative;
     width:100%;
-    height:350px;
-    background-color:#FAFAFA;
+    /*height:350px;*/
+    /*background-color:#FAFAFA;*/
 }
 
 .fixed-action-btn {
     position:absolute!important;
     bottom:-60px;
 }
+
+.chartButtons {
+  position:absolute!important;
+  top: -20px;
+  right: -20px;
+}
+
+.chartButtonsDay {
+  position:absolute!important;
+  top: -65px;
+  right: 90px;
+}
+
+/*.chartButtonsDay {
+  position:absolute!important;
+  bottom: 65px;
+  left: 130px;
+}*/
+
 
 .fixed-action-btn li img {
     padding:6px;
@@ -66,4 +85,10 @@ input[type=range]{
     .container {
         width:90%;
     }
+}
+
+canvas {
+  padding: 25px 20px 10px 20px;
+  background-color:#FAFAFA;
+  max-height: 400px;
 }

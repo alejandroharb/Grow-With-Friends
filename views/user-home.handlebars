@@ -28,22 +28,44 @@
 		<div class="col s12 m8">
 			<div class="chart-wrapper">
 				<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
-				<div chartButtons>
-					{{!--filtering thorugh class getChartData--}}
-					<button id="getGolfChartData" data-activity="golf" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData"
-						value="golf">Chart Golf!</button>
-						<button id="getGuitarChartData" data-activity="guitar" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData"
-							value="guitar">Chart Guitar!</button>
-							<button id="getLangChartData" data-activity="lang" class="btn waves-effect waves-light waves-green cyan darken-3 getChartData"
-								value="lang">Chart Language!</button>
-				</div>
 
-				{{!--My Chart--}}
-				<div class="chart-canvas">
-					<div id="chartDiv">
-						<canvas id="chartArea" height="300" width="580"></canvas>
-					</div>
+			 <ul class="collapsible popout" data-collapsible="accordion">
+
+			 <li>
+			 	<div class="collapsible-header getChartData active" data-activity="golf" value="golf"><i class="material-icons">golf_course</i>Golf
+			 	</div>
+				<div class="collapsible-body">
+					<a class="col s6 btn cummulative waves-effect waves-light" data-activity="golf"><i class="material-icons">trending_up</i><Cummulative</span></a>
+					<a class="col s6 btn dayCreated waves-effect waves-light" data-activity="golf"><i class="material-icons">timeline</i></a>
 				</div>
+			 	<div class="collapsible-body chartDiv golfChartDiv">
+			 		<canvas class="chartArea" height="300" width="580"></canvas>
+			 	</div>
+			 </li>
+		 <li>
+			 <div class="collapsible-header getChartData" data-activity="guitar" value="guitar"><i class="material-icons">music_note</i>Guitar
+			 </div>
+			 <div class="collapsible-body">
+				 <a class="col s6 btn cummulative waves-effect waves-light" data-activity="guitar"><i class="material-icons">trending_up</i>Cummulative</a>
+				 <a class="col s6 btn dayCreated waves-effect waves-light" data-activity="guitar"><i class="material-icons">timeline</i>Bar Graph</a>
+			 </div>
+			 <div class="collapsible-body chartDiv guitarChartDiv">
+				 <canvas class="chartArea" height="300" width="580"></canvas>
+			 </div>
+		 </li>
+	 <li>
+		 <div class="collapsible-header getChartData" data-activity="lang" value="lang">Language
+		 </div>
+		 <div class="collapsible-body">
+			 <a class="col s4 btn disabled"><i class="material-icons"></i></a>
+			 <a class="col s4 btn cummulative waves-effect waves-light" data-activity="lang"><i class="material-icons">trending_up</i>Cummulative</a>
+			 <a class="col s4 btn dayCreated waves-effect waves-light" data-activity="lang"><i class="material-icons">timeline</i>Bar Graph</a>
+		 </div>
+		 <div class="collapsible-body chartDiv langChartDiv">
+			 <canvas class="chartArea" height="300" width="580"></canvas>
+		 </div>
+	 </li>
+		   </ul>
 
 			</div>
 		</div>
@@ -87,7 +109,7 @@
 		</div>
 	</div>
 </div>
-{{!--===============MODALS FOR SETTING SKILLS=========================--}} 
+{{!--===============MODALS FOR SETTING SKILLS=========================--}}
 <div id="setSkillsModal" class="modal">
 	<div class="modal-content">
 		<div class="container">
