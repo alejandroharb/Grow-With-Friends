@@ -56,12 +56,12 @@ input[type=range]{
     position:relative;
     width:100%;
 
+
     /*height:350px;*/
     /*background-color:#FAFAFA;*/
-
-
     /*box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);*/
 
+    border-radius: 6px;
 }
 
 .fixed-action-btn {
@@ -74,19 +74,6 @@ input[type=range]{
   top: -20px;
   right: -20px;
 }
-
-.chartButtonsDay {
-  position:absolute!important;
-  top: -65px;
-  right: 90px;
-}
-
-/*.chartButtonsDay {
-  position:absolute!important;
-  bottom: 65px;
-  left: 130px;
-}*/
-
 
 .fixed-action-btn li img {
     padding: 34px;
@@ -126,9 +113,15 @@ h2.header a{
 
 
 canvas {
-  padding: 25px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
   background-color:#FAFAFA;
-  max-height: 400px;
+  max-height: 380px;
+  border-radius: 6px;
+}
+
+.collapsible-header, .collapsible-body, ul, li {
+  border-radius: 6px!important;
+
 }
 
 /*.googleMap {
