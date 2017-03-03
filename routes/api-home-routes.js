@@ -52,22 +52,41 @@ module.exports = function (app) {
         //writing database general activity of all users
         db.User.findOne({ where: { user_name: username } })
             .then(function(response) {
-                var userActivity;
+
                 var name = response.first_name;
+                var image = response.image;
+                
                 if(skill === "golf") {
                     userActivity = name + " just added a golf score of " + data.score + "!";
                 } else if (skill === "guitar"){
                     userActivity = name + " just logged " + data.score + " hours for guitar!"
                 } else {
-                    userActivity = name + " just logged " + data.score + " hours for Spanish!!"
+                    userActivity = name + " just logged " + data.score + " hours for Spanish!"
                 }
+                var activityData = {
+                    name: name,
+                    image: image,
+                    userActivity: userActivity
+                };
                 var activityRef = database.ref("userActivity");
-                activityRef.push(userActivity);
+                activityRef.push(activityData);
             })
         
         
 
     });
+    // //==============querying for user activity data================
+    // app.get('/users-activity', function(req,res) {
+    //     var activityArray = [];
+    //     var ref = database.ref("userActivity/");
+    //     ref.once('value', function(snapshot) {
+    //         snapshot.forEach(function(childSnapshot) {
+    //             var childData = childSnapshot.val();
+    //             activityArray.push(childData);
+    //         })
+    //         res.json(activityArray)
+    //     })
+    // })
     //============Querying Data FROM Firebase to Chart====================
     app.get('/get-data/:activityModal/:user', function (req, res) {
         var username = req.params.user;
