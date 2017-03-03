@@ -64,7 +64,6 @@ module.exports = function (app) {
                     userActivity = name + " just logged " + data.score + " hours for Spanish!"
                 }
                 var activityData = {
-                    name: name,
                     image: image,
                     userActivity: userActivity
                 };
