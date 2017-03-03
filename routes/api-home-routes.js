@@ -55,9 +55,11 @@ module.exports = function (app) {
                 var userActivity;
                 var name = response.first_name;
                 if(skill === "golf") {
-                    userActivity = name + " just added a golf score of " + data.score "!";
+                    userActivity = name + " just added a golf score of " + data.score + "!";
+                } else if (skill === "guitar"){
+                    userActivity = name + " just logged " + data.score + " hours for guitar!"
                 } else {
-                    userActivity = name + " just logged " + data.score " hours for " + skill + "!"
+                    userActivity = name + " just logged " + data.score + " hours for Spanish!!"
                 }
                 var activityRef = database.ref("userActivity");
                 activityRef.push(userActivity);

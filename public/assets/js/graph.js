@@ -84,10 +84,10 @@ $('#submitGolfScore').on('click', function(e) {
 $('#submitGuitarScore').on('click', function(e) {
     e.preventDefault();
 
-    var score = $('#golfScore').val();
+    var score = $('#guitarHours').val();
 
 
-    var url= url = '/score/golf';
+    var url= url = '/score/guitar';
     var userName = $('#userName').val().trim();
     
     var data = {
