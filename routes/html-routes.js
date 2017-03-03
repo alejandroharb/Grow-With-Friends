@@ -6,7 +6,7 @@ module.exports = function(app) {
         res.render("index",{title:"front page", layout:"front-page"});
     })
     app.get('/create-user', function(req, res) {
-        res.render("sign-up");
+        res.render("sign-up", {title:"sign up page", layout: "front-page"});
     })
     app.get('/home-redirect', function(req, res) {
         res.render('user-home')

@@ -34,7 +34,8 @@ module.exports = function (app) {
                 email: data.email,
                 address: data.address,
                 city: city,
-                image: "blank-person.png"
+                image: "blank-person.png",
+                description: data.description
             }
         }).spread(function (user, created) {
             //check to see if it exists already

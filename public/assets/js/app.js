@@ -53,7 +53,7 @@ $(document).ready(function() {
         var password = $('#password').val().trim();
         var email = $('#email').val().trim();
         var address = $('#address').val().trim();
-
+        var description = $('#description').val().trim();
         // organize data into object
         var data = {
             first: firstName,
@@ -61,7 +61,8 @@ $(document).ready(function() {
             username: userName,
             password: password,
             email: email,
-            address: address
+            address: address,
+            description:description
         };
         //ajax POST for sending data to server
         $.post('/sign-up', data, function(response) {
