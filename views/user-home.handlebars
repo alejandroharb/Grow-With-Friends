@@ -58,14 +58,23 @@
 		<div class="col s12 m8 chartContainer">
 			<div class="chart-wrapper">
 				<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
-				<!-- =============COLLAPSIBLE POPOUT===holds individual collapsibles============= -->
-				<ul class="collapsible popout" data-collapsible="accordion">
-					<li>
-						<div id="golfCollapsible" class="collapsible-header getChartData active tertiaryC" data-activity="golf" value="golf"><i class="material-icons">golf_course</i>Golf
-							<span class="golfTotalScore"></span>
+
+			<!-- =============COLLAPSIBLE POPOUT===holds individual collapsibles============= -->
+			 <ul class="collapsible popout" data-collapsible="accordion">
+				 <li>
+				 	<div id="golfCollapsible" class="collapsible-header getChartData active" data-activity="golf" value="golf"><i class="material-icons">golf_course</i><span class="fontCollapsible">Golf</span>
+						<span class="fontGrowth">Score Growth: &nbsp;<span class="golfTotalScore"></span></span>
+				 	</div>
+				 	<!-- =======BODY for BUTTONS======= -->
+					<div class="collapsible-body">
+						<div class="row tight-top-spacing">
+							<div class="col s12">
+								<a class="btn disabled"></a>
+							</div>
 						</div>
-						<!-- =======BODY for BUTTONS======= -->
-						<!-- <div class="collapsible-body">
+					</div>
+					<!-- <div class="collapsible-body">
+
 						<div class="row tight-top-spacing">
 							<div class="col s6">
 								<a class="btn cummulative waves-effect waves-light" data-activity="golf"><i class="material-icons">trending_up</i><Cummulative</span></a>
@@ -75,24 +84,41 @@
 							</div>
 						</div>
 					</div> -->
-						<!-- =======BODY for CHART======= -->
-						<div class="collapsible-body chartDiv golfChartDiv">
-							<canvas class="chartArea" height="300" width="580"></canvas>
+
+					<!-- =======BODY for CHART======= -->
+				 	<div class="collapsible-body chartDiv golfChartDiv">
+				 		<canvas class="chartArea" height="300" width="580"></canvas>
+				 	</div>
+				 </li>
+				 <li>
+					 <div id="guitarCollapsible" class="collapsible-header getChartData" data-activity="guitar" value="guitar"><i class="material-icons">music_note</i><span class="fontCollapsible">Guitar</span>
+						 <span class="guitarTotalScore fontCollapsible"></span>
+					 </div>
+					 <!-- =======BODY for BUTTONS======= -->
+					 <div class="collapsible-body">
+						<div class="row tight-top-spacing">
+							<div class="col s6">
+								<a class=" btn cummulative waves-effect waves-light" data-activity="guitar"><i class="material-icons">trending_up</i>Cummulative</a>
+							</div>
+							<div class="col s6">
+								<a class=" btn dayCreated waves-effect waves-light" data-activity="guitar"><i class="material-icons">timeline</i>Bar Graph</a>
+							</div>
 						</div>
-					</li>
-					<li>
-						<div id="guitarCollapsible" class="collapsible-header getChartData tertiaryC" data-activity="guitar" value="guitar"><i class="material-icons">music_note</i>Guitar
-							<span class="guitarTotalScore"></span>
-						</div>
-						<!-- =======BODY for BUTTONS======= -->
-						<div class="collapsible-body">
-							<div class="row tight-top-spacing">
-								<div class="col s6">
-									<a class=" btn cummulative waves-effect waves-light" data-activity="guitar"><i class="material-icons">trending_up</i>Cummulative</a>
-								</div>
-								<div class="col s6">
-									<a class=" btn dayCreated waves-effect waves-light" data-activity="guitar"><i class="material-icons">timeline</i>Bar Graph</a>
-								</div>
+					 </div>
+					 <!-- =======BODY for CHART======= -->
+					 <div class="collapsible-body chartDiv guitarChartDiv">
+						 <canvas class="chartArea" height="300" width="580"></canvas>
+					 </div>
+				 </li>
+				 <li>
+					 <div id="langCollapsible" class="collapsible-header getChartData" data-activity="lang" value="lang"><i class="material-icons">translate</i><span class="fontCollapsible">Español</span>
+						<span class="langTotalScore fontCollapsible"></span>
+					 </div>
+					 <!-- =======BODY for BUTTONS======= -->
+					 <div class="collapsible-body">
+					 	<div class="row tight-top-spacing">
+							<div class="col s6">
+								<a class="btn cummulative waves-effect waves-light" data-activity="lang"><i class="material-icons">trending_up</i>Cummulative</a>
 							</div>
 						</div>
 						<!-- =======BODY for CHART======= -->
