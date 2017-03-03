@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 isNumeric: true,
-                val: [0,100]
+                len: [0,100]
             }
         },
         experience_rating: {
@@ -21,15 +21,15 @@ module.exports = function(sequelize, DataTypes) {
             allowNull:false,
             validate: {
                 isNumeric:true,
-                val: [1,3]
+                len: [1,3]
             }
         },
-        distance_preference: {
-            type: DataTypes.INTEGER,
+        city: {
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isNumeric: true,
-                val: [1,300]
+                isAlpha: true,
+                len: [1,300]
             }
         }
     },

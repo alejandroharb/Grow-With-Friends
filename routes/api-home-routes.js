@@ -38,7 +38,7 @@ module.exports = function (app) {
         console.log("===firebase golf data being sent====")
         console.log(data)
         //get current date stamp
-        var date = moment().format('YYYY-MM-DD, h:mm:ss a');
+        var date = moment().format();
         //creating score object
         var score = {
           score: data.score,
@@ -102,10 +102,6 @@ module.exports = function (app) {
         var skill = req.params.skill;
         var username = req.params.user;
         var data = req.body;
-
-        console.log("=====data from front end======")
-        console.log(data)
-        console.log(skill)
         //first get location data from user
         db.User.findOne({ where: { user_name: username } })
             .then(function (response) {
@@ -113,6 +109,7 @@ module.exports = function (app) {
                 console.log(response.dataValues)
                 address = response.dataValues.address;
                 userId = response.dataValues.id;
+                userImgPath = response.dataValues.image;
                 //function uses geocoder to convert user's address into a city
                 //custom callback function used
                 findCity(address, function () {
@@ -140,6 +137,28 @@ module.exports = function (app) {
                                 res.json(data);
                             });
                             break;
+                        // case "Spanish":
+                        //     db.Guitar.create({
+                        //         UserId: userId,
+                        //         user_name: username,
+                        //         year_experience: data.year_experience,
+                        //         experience_rating: data.experience_rating,
+                        //         city: city
+                        //     }).then(function (data) {
+                        //         res.json(data);
+                        //     });
+                        //     break;
+                        // case "Chess":
+                        //     db.Guitar.create({
+                        //         UserId: userId,
+                        //         user_name: username,
+                        //         year_experience: data.year_experience,
+                        //         experience_rating: data.experience_rating,
+                        //         city: city
+                        //     }).then(function (data) {
+                        //         res.json(data);
+                        //     });
+                        //     break;
                     }
                 })
             })
