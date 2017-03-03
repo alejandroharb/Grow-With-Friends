@@ -297,6 +297,17 @@ $(document).ready(function() {
         
         
     })
+    $('#chosenUser').on('click', function() {
+        console.log('clicked to chat')
+        $('#matchesModal').modal('close');
+        $('#messagingModal').modal('open');
+        var name = $(this).data('name');
+        var img = $(this).data('img');
+        var imageElem = $('<img>').attr('src', "/uploads/images/"+img);
+        var newH4 = $('<h4>').html(name)
+        $('#messageUserImg').append(imageElem);
+        $('#messageUserName').append(newH4);
+    })
 })
 
 function createYelpCollection(url, title, imgURL, rating, distance) {
@@ -337,7 +348,9 @@ function createCollectionItem(userImg, name, years, distance) {
     link.attr({
         href: "#",
         id: "chosenUser",
-        class: "secondary-content" 
+        class: "secondary-content",
+        "data-name": name,
+        "data-img": userImg 
     });
     //link
     var icon = $('<i>')
@@ -345,9 +358,9 @@ function createCollectionItem(userImg, name, years, distance) {
     icon.html("forum");
     //<p>
     var newP1 = $('<p>');
-    newP1.html("Years Experience: " + years);
+    newP1.html("Years of Experience: " + years);
     //distance
-    var newP2 = $('<p>').html("Distance Apart: " + distance)
+    var newP2 = $('<p>').html('<i class="material-icons">directions_car</i>  ' + distance)
 
     link.append(icon);
     newLi.append(newImg);
