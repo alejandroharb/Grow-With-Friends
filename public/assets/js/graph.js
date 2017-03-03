@@ -17,7 +17,7 @@ var activityModal = "golf";
 var data = [];
 var dataIndex = 3;    // default dataIndex shows score
 var chartTitle = "Score Timeline";
-var chartType = "line";
+var chartType = "bar";
 var labelString = ""
 var colorArray = [];
 var sixShades = [
@@ -159,14 +159,14 @@ $('.getChartData').on('click', function(e) {
         activityModal = $(this).data("activity");
         dataIndex = 3;
         chartType = "line";
-        chartTitle = "Cummulative Score";
+        // chartTitle = "Cummulative Score";
         plotIt();
         });
     //
     $('.dayCreated').on('click', function(e) {
         e.preventDefault();
         activityModal = $(this).data("activity");
-        chartTitle = "Score Timeline";
+        // chartTitle = "Score Timeline";
         chartType = "bar";
         dataIndex = 2;
         plotIt();
@@ -228,14 +228,14 @@ $('.getChartData').on('click', function(e) {
     if (activityModal == "golf") {
     $("." + activityModal + "TotalScore").text(data[3][dataPoints-1]);
   } else {
-    $("." + activityModal + "TotalScore").text("Hours Growth: " + data[3][dataPoints-1]);
+    $("." + activityModal + "TotalScore").text(data[3][dataPoints-1]);
   }
 
     // axis labels selection according to activity
     if (activityModal == "golf") {
       labelString = "Score";
-      chartType = "line";
-      dataIndex = 3;
+      chartType = "bar";
+      dataIndex = 2;
       lineColor = "rgba(75,192,192,1)";
     } else {
       labelString = "Practice Hours";
@@ -270,11 +270,11 @@ $('.getChartData').on('click', function(e) {
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          title: {
-            display: true,
-            text: chartTitle,
-            fontSize: 16,
-          },
+          // title: {
+          //   display: true,
+          //   text: chartTitle,
+          //   fontSize: 16,
+          // },
           scales: {
             yAxes: [{
               ticks: {

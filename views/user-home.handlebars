@@ -61,38 +61,22 @@
 
 			<!-- =============COLLAPSIBLE POPOUT===holds individual collapsibles============= -->
 			 <ul class="collapsible popout" data-collapsible="accordion">
+				 <!-- =======GOLF======= -->
 				 <li>
 				 	<div id="golfCollapsible" class="collapsible-header getChartData active" data-activity="golf" value="golf"><i class="material-icons">golf_course</i><span class="fontCollapsible">Golf</span>
 						<span class="fontGrowth">Score Growth: &nbsp;<span class="golfTotalScore"></span></span>
 				 	</div>
 				 	<!-- =======BODY for BUTTONS======= -->
-					<div class="collapsible-body">
-						<div class="row tight-top-spacing">
-							<div class="col s12">
-								<a class="btn disabled"></a>
-							</div>
-						</div>
-					</div>
-					<!-- <div class="collapsible-body">
-
-						<div class="row tight-top-spacing">
-							<div class="col s6">
-								<a class="btn cummulative waves-effect waves-light" data-activity="golf"><i class="material-icons">trending_up</i><Cummulative</span></a>
-							</div>
-							<div class="col s6">
-								<a class="btn dayCreated waves-effect waves-light" data-activity="golf"><i class="material-icons">timeline</i></a>
-							</div>
-						</div>
-					</div> -->
-
 					<!-- =======BODY for CHART======= -->
 				 	<div class="collapsible-body chartDiv golfChartDiv">
-				 		<canvas class="chartArea" height="300" width="580"></canvas>
+				 		<canvas class="chartArea golfCanvas" height="300" width="580"></canvas>
 				 	</div>
 				 </li>
+
+				 <!-- =======GUITAR======= -->
 				 <li>
 					 <div id="guitarCollapsible" class="collapsible-header getChartData" data-activity="guitar" value="guitar"><i class="material-icons">music_note</i><span class="fontCollapsible">Guitar</span>
-						 <span class="guitarTotalScore fontCollapsible"></span>
+ 						<span class="fontGrowth">Hours Growth: &nbsp;<span class="guitarTotalScore"></span></span>
 					 </div>
 					 <!-- =======BODY for BUTTONS======= -->
 					 <div class="collapsible-body">
@@ -110,25 +94,11 @@
 						 <canvas class="chartArea" height="300" width="580"></canvas>
 					 </div>
 				 </li>
+
+				 <!-- =======LANG======= -->
 				 <li>
-					 <div id="langCollapsible" class="collapsible-header getChartData" data-activity="lang" value="lang"><i class="material-icons">translate</i><span class="fontCollapsible">Español</span>
-						<span class="langTotalScore fontCollapsible"></span>
-					 </div>
-					 <!-- =======BODY for BUTTONS======= -->
-					 <div class="collapsible-body">
-					 	<div class="row tight-top-spacing">
-							<div class="col s6">
-								<a class="btn cummulative waves-effect waves-light" data-activity="lang"><i class="material-icons">trending_up</i>Cummulative</a>
-							</div>
-						</div>
-						<!-- =======BODY for CHART======= -->
-						<div class="collapsible-body chartDiv guitarChartDiv">
-							<canvas class="chartArea" height="300" width="580"></canvas>
-						</div>
-					</li>
-					<li>
-						<div id="langCollapsible" class="collapsible-header getChartData tertiaryC" data-activity="lang" value="lang"><i class="material-icons">translate</i>Spanish
-							<span class="langTotalScore"></span>
+						<div id="langCollapsible" class="collapsible-header getChartData tertiaryC" data-activity="lang" value="lang"><i class="material-icons">translate</i><span class="fontCollapsible">Español</span>
+  						<span class="fontGrowth">Hours Growth: &nbsp;<span class="langTotalScore"></span></span>
 						</div>
 						<!-- =======BODY for BUTTONS======= -->
 						<div class="collapsible-body">
@@ -140,7 +110,6 @@
 									<a class="btn dayCreated waves-effect waves-light" data-activity="lang"><i class="large material-icons">assessment</i>Bar Graph</a>
 								</div>
 							</div>
-							<!-- <a class="col s4 btn disabled"><i class="material-icons"></i></a> -->
 						</div>
 						<!-- =======BODY for CHART======= -->
 						<div class="collapsible-body chartDiv langChartDiv">
@@ -462,7 +431,7 @@
 			<div class="row">
 				<div class="col s12">
 					<form class="messagingArea">
-					 <textarea ></textarea>	
+					 <textarea ></textarea>
 					</form>
 				</div>
 			</div>
