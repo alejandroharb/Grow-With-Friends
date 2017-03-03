@@ -1,0 +1,54 @@
+body{
+    background-image: url("../img/gradient1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+h4, h5 {
+  font-family: Garamond;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #FFE274;
+}
+
+
+#logo {
+  border: 1px dotted blue;
+  width: 160px;
+  height: 120px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+}
+
+img {
+  width: 400px;
+  max-height: 300px;
+}
+
+
+#front-page-form {
+  max-width: 450px!important;
+  background-color: #FFFFFF;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px #FFD913;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+.hr-1 {
+  width: 45%;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+hr {
+  width: 70%;
+}
+
+.accountDiv {
+  margin-top: 25px;
+}
