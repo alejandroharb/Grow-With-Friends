@@ -26,43 +26,95 @@ plotIt();
 // they are all opening same modal on-click, did not change original id="golfModal" yet
 $('#golfScoreBtn').on('click', function(e) {
     e.preventDefault();
-    activityModal = "";
+
     activityModal = "golf";
     $('#golfModal').modal('open');
 });
 $('#guitarScoreBtn').on('click', function(e) {
     e.preventDefault();
-    activityModal = "";
+
     activityModal = "guitar";
-    $('#golfModal').modal('open');
+    $('#guitarModal').modal('open');
 });
 $('#langScoreBtn').on('click', function(e) {
     e.preventDefault();
-    activityModal = "";
+
     activityModal = "lang";
-    $('#golfModal').modal('open');
+    $('#spanishModal').modal('open');
 });
 
 //==================Submit Activity Score==================
 $('#submitGolfScore').on('click', function(e) {
     e.preventDefault();
 
-    //collect variables with data
-    var score = $('#golfScore').val();
+
+    var  score = $('#golfScore').val();
+    var url = '/score/golf';
+    var userName = $('#userName').val().trim();
+    
+    // console.log(data)
+    // console.log("activityModal: " + activityModal);
+
+    // // filter data by activity type
+    // if (activityModal == "golf") {
+    //   //collect variables with data
+    //     score = $('#golfScore').val();
+    //     url = '/score/golf';
+    // } else if (activityModal == "guitar") {
+    //     score = $('#guitarHours').val();
+    //     url = '/score/guitar';
+    // } else {
+    //     score = $('#spanishHours').val();
+    //     url = '/score/lang';
+    // }
+
     var data = {
         score: score,
         username: userName
     }
 
-    // filter data by activity type
-    if (activityModal == "golf") {
-        var url = '/score/golf';
-    } else if (activityModal == "guitar") {
-        var url = '/score/guitar';
-    } else {
-        var url = '/score/lang';
-    }
+    console.log(data)
+    console.log(url)
+    plotIt();
+    $.post(url, data, function(response) {
+        console.log("posted" + response);
+    })
+})
+//==================Submit Activity Score==================
+$('#submitGuitarScore').on('click', function(e) {
+    e.preventDefault();
 
+    var score = $('#golfScore').val();
+
+
+    var url= url = '/score/golf';
+    var userName = $('#userName').val().trim();
+    
+    var data = {
+        score: score,
+        username: userName
+    }
+    console.log(data)
+    console.log(url)
+    plotIt();
+    $.post(url, data, function(response) {
+        console.log("posted" + response);
+    })
+})
+//==================Submit Activity Score==================
+$('#submitSpanishScore').on('click', function(e) {
+    e.preventDefault();
+
+    var score = $('#spanishHours').val();
+    var url = '/score/lang';
+    var userName = $('#userName').val().trim();
+    
+    var data = {
+        score: score,
+        username: userName
+    }
+    console.log(data)
+    console.log(url)
     plotIt();
     $.post(url, data, function(response) {
         console.log("posted" + response);

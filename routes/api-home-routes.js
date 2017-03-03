@@ -48,6 +48,8 @@ module.exports = function (app) {
         var ref = database.ref("Users/" + data.username + "/" + skill + "/" + date);
         //writing into database at specific reference
         ref.set(score);
+        var activityRef = database.ref("userActivity");
+        
     });
     //============Querying Data FROM Firebase to Chart====================
     app.get('/get-data/:activityModal/:user', function (req, res) {
