@@ -1,28 +1,28 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12 m4">
-			<div class="user-wrapper">
+			<div class="user-wrapper wrappers">
 				<img src="/uploads/images/{{info.basicInfo.image}}" class="responsive-img circle userImg">
 				<h2 class="center-align userTitle"> {{info.basicInfo.first_name}} {{info.basicInfo.last_name}}</h2>
 				<div class="row">
 					<div class="col s6">
-						<a id="getMatchedBtn" class="btn waves-effect waves-light matchBtn cyan darken-3 hoverable"><i class="material-icons">supervisor_account</i> Match</a>
+						<a id="getMatchedBtn" class="btn waves-effect waves-light matchBtn  hoverable secondary-blue"><i class="material-icons">supervisor_account</i> Match</a>
 					</div>
 					<div class="col s6">
-						<a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn orange hoverable"><i class="material-icons">playlist_add</i> Skills!</a>
+						<a id="setSkillsBtn" class="btn waves-effect waves-light matchBtn  hoverable secondary-blue"><i class="material-icons">playlist_add</i> Skills!</a>
 					</div>
 				</div>
 				<!-- ====NEW SCORE BUTTON DESIGN==== -->
 				<div class="fixed-action-btn toolbar">
-				    <a class="btn-floating btn-large cyan darken-3">
-				      <i class="material-icons">library_add</i>
-				    </a>
-				    <ul class="row">
-				      <li id="golfScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">golf_course</i></a></li>
-				      <li id="guitarScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">music_note</i></a></li>
-				      <li id="langScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">translate</i></a></li>
-				    </ul>
-				  </div>
+					<a class="btn-floating btn-large secondary-teal">
+						<i class="material-icons">library_add</i>
+					</a>
+					<ul class="row">
+						<li id="golfScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">golf_course</i></a></li>
+						<li id="guitarScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">music_note</i></a></li>
+						<li id="langScoreBtn" class="col s4 waves-effect waves-light"><a href="#!"><i class="material-icons">translate</i></a></li>
+					</ul>
+				</div>
 				<!-- ====end NEW BUTTON DESIGN==== -->
 				<!-- <div class="fixed-action-btn horizontal click-to-toggle">
 					<a class="btn-floating btn-large cyan darken-3">
@@ -41,11 +41,14 @@
 					</ul>
 				</div> -->
 			</div>
-			<div class="user-activity-wrapper">
+			<div class="user-activity-wrapper wrappers">
 				<div class="row">
 					<div class="col s12">
-						<h2 class="center-align">What Everyone's Up to!</h2>
+						<h2 class="center-align">Progress Feed</h2>
 						<hr>
+					</div>
+					<div class="col s12">
+
 						<ul class="collection" id="userActivityInsert"></ul>
 					</div>
 				</div>
@@ -55,6 +58,7 @@
 		<div class="col s12 m8 chartContainer">
 			<div class="chart-wrapper">
 				<div id="user-name" value="{{info.basicInfo.user_name}}"></div>
+
 			<!-- =============COLLAPSIBLE POPOUT===holds individual collapsibles============= -->
 			 <ul class="collapsible popout" data-collapsible="accordion">
 				 <li>
@@ -70,6 +74,7 @@
 						</div>
 					</div>
 					<!-- <div class="collapsible-body">
+
 						<div class="row tight-top-spacing">
 							<div class="col s6">
 								<a class="btn cummulative waves-effect waves-light" data-activity="golf"><i class="material-icons">trending_up</i><Cummulative</span></a>
@@ -79,6 +84,7 @@
 							</div>
 						</div>
 					</div> -->
+
 					<!-- =======BODY for CHART======= -->
 				 	<div class="collapsible-body chartDiv golfChartDiv">
 				 		<canvas class="chartArea" height="300" width="580"></canvas>
@@ -114,18 +120,34 @@
 							<div class="col s6">
 								<a class="btn cummulative waves-effect waves-light" data-activity="lang"><i class="material-icons">trending_up</i>Cummulative</a>
 							</div>
-							<div class="col s6">
-								<a class="btn dayCreated waves-effect waves-light" data-activity="lang"><i class="large material-icons">assessment</i>Bar Graph</a>
-							</div>
 						</div>
-						 <!-- <a class="col s4 btn disabled"><i class="material-icons"></i></a> -->
-					 </div>
-					 <!-- =======BODY for CHART======= -->
-					 <div class="collapsible-body chartDiv langChartDiv">
-						 <canvas class="chartArea" height="300" width="580"></canvas>
-					 </div>
-				 </li>
-		  	   </ul>
+						<!-- =======BODY for CHART======= -->
+						<div class="collapsible-body chartDiv guitarChartDiv">
+							<canvas class="chartArea" height="300" width="580"></canvas>
+						</div>
+					</li>
+					<li>
+						<div id="langCollapsible" class="collapsible-header getChartData tertiaryC" data-activity="lang" value="lang"><i class="material-icons">translate</i>Spanish
+							<span class="langTotalScore"></span>
+						</div>
+						<!-- =======BODY for BUTTONS======= -->
+						<div class="collapsible-body">
+							<div class="row tight-top-spacing">
+								<div class="col s6">
+									<a class="btn cummulative waves-effect waves-light" data-activity="lang"><i class="material-icons">trending_up</i>Cummulative</a>
+								</div>
+								<div class="col s6">
+									<a class="btn dayCreated waves-effect waves-light" data-activity="lang"><i class="large material-icons">assessment</i>Bar Graph</a>
+								</div>
+							</div>
+							<!-- <a class="col s4 btn disabled"><i class="material-icons"></i></a> -->
+						</div>
+						<!-- =======BODY for CHART======= -->
+						<div class="collapsible-body chartDiv langChartDiv">
+							<canvas class="chartArea" height="300" width="580"></canvas>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -229,51 +251,51 @@
 					<div class="row">
 						<div class="col s4">
 							<div id="addGolfSkillBtn" class="card hoverable card-btn">
-					            <div class="card-image">
-					              <img src="/assets/img/golf.jpeg">
-					              <span class="card-title">Golf</span>
-					            </div>
-					        </div>
+								<div class="card-image">
+									<img src="/assets/img/golf.jpeg">
+									<span class="card-title">Golf</span>
+								</div>
+							</div>
 						</div>
 						<div class="col s4">
 							<div id="addGuitarSkillBtn" class="card hoverable  card-btn">
-					            <div class="card-image">
-					              <img src="/assets/img/guitar.jpeg">
-					              <span class="card-title">Guitar</span>
-					            </div>
-					        </div>
+								<div class="card-image">
+									<img src="/assets/img/guitar.jpeg">
+									<span class="card-title">Guitar</span>
+								</div>
+							</div>
 						</div>
 						<div class="col s4">
 							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
-					            <div class="card-image">
-					              <img src="/assets/img/language.jpg">
-					              <span class="card-title">Spanish</span>
-					            </div>
-					        </div>
+								<div class="card-image">
+									<img src="/assets/img/language.jpg">
+									<span class="card-title">Spanish</span>
+								</div>
+							</div>
 						</div>
 						<div class="col s4">
 							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
-					            <div class="card-image">
-					              <img src="/assets/img/chess.jpeg">
-					              <span class="card-title">Chess</span>
-					            </div>
-					        </div>
+								<div class="card-image">
+									<img src="/assets/img/chess.jpeg">
+									<span class="card-title">Chess</span>
+								</div>
+							</div>
 						</div>
 						<div class="col s4">
 							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
-					            <div class="card-image">
-					              <img src="/assets/img/photography.jpg">
-					              <span class="card-title">Photography</span>
-					            </div>
-					        </div>
+								<div class="card-image">
+									<img src="/assets/img/photography.jpg">
+									<span class="card-title">Photography</span>
+								</div>
+							</div>
 						</div>
 						<div class="col s4">
 							<div id="addSpanishSkillBtn" class="card hoverable  card-btn">
-					            <div class="card-image">
-					              <img src="/assets/img/tennis.jpeg">
-					              <span class="card-title">Tennis</span>
-					            </div>
-					        </div>
+								<div class="card-image">
+									<img src="/assets/img/tennis.jpeg">
+									<span class="card-title">Tennis</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -303,17 +325,17 @@
 						<div class="col s6">
 							<h5>How would you rate yourself?</h5>
 							<p>
-						      <input class="with-gap" name="golf-rating" type="radio" id="rating1" value="1" />
-						      <label for="rating1">Beginner</label>
-						    </p>
-						    <p>
-						      <input class="with-gap" name="golf-rating" type="radio" id="rating2" value="2" />
-						      <label for="rating2">Experienced</label>
-						    </p>
-						    <p>
-						      <input class="with-gap" name="golf-rating" type="radio" id="rating3" value="3" />
-						      <label for="rating3">Expert</label>
-						    </p>
+								<input class="with-gap" name="golf-rating" type="radio" id="rating1" value="1" />
+								<label for="rating1">Beginner</label>
+							</p>
+							<p>
+								<input class="with-gap" name="golf-rating" type="radio" id="rating2" value="2" />
+								<label for="rating2">Experienced</label>
+							</p>
+							<p>
+								<input class="with-gap" name="golf-rating" type="radio" id="rating3" value="3" />
+								<label for="rating3">Expert</label>
+							</p>
 						</div>
 					</form>
 				</div>
@@ -343,17 +365,17 @@
 						<div class="col s6">
 							<h5>How would you rate yourself?</h5>
 							<p>
-						      <input class="with-gap" name="guitar-rating" type="radio" id="guitar-beginner" value="1" />
-						      <label for="guitar-beginner">Beginner</label>
-						    </p>
-						    <p>
-						      <input class="with-gap" name="guitar-rating" type="radio" id="guitar-exp" value="2" />
-						      <label for="guitar-exp">Experienced</label>
-						    </p>
-						    <p>
-						      <input class="with-gap" name="guitar-rating" type="radio" id="guitar-expert" value="3" />
-						      <label for="guitar-expert">Expert</label>
-						    </p>
+								<input class="with-gap" name="guitar-rating" type="radio" id="guitar-beginner" value="1" />
+								<label for="guitar-beginner">Beginner</label>
+							</p>
+							<p>
+								<input class="with-gap" name="guitar-rating" type="radio" id="guitar-exp" value="2" />
+								<label for="guitar-exp">Experienced</label>
+							</p>
+							<p>
+								<input class="with-gap" name="guitar-rating" type="radio" id="guitar-expert" value="3" />
+								<label for="guitar-expert">Expert</label>
+							</p>
 						</div>
 					</form>
 				</div>
@@ -424,5 +446,29 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+{{!--===============MESSAGING MODAL=========================--}}
+<div id="messagingModal" class="modal">
+	<div id="preloaderInsert">
+		<div class="indeterminate"></div>
+	</div>
+	<div class="modal-content">
+		<div class="container">
+			<div class="row">
+				<div class="col s2" id="messageUserImg"></div>
+				<div class="col s6" id="messageUserName"></div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<form class="messagingArea">
+					 <textarea ></textarea>	
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
 	</div>
 </div>

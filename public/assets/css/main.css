@@ -1,8 +1,10 @@
 body{
+
     background-color:#f5f5f5;
     background-image: url("../img/gradient1.jpg");
     background-repeat: no-repeat;
     background-size: 100% auto;
+
 }
 .sign-up-wrapper{
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
@@ -216,4 +218,28 @@ canvas {
   font-family: "Herculanum";
   font-weight: bold;
   font-size: 1.1em;
+}
+
+.primaryC {
+    /*background-color:#083c5d;*/
+}
+.dark-shade {
+    background-color:#083c5d;
+}
+
+.secondary-blue {
+    background-color:#328cc1;
+}
+
+.secondary-teal {
+    background-color:#d98310;
+
+}
+
+.wrappers {
+    background-color: #f6f6f6;
+}
+.messagingArea {
+    width:100%;
+    height:200px;
 }
