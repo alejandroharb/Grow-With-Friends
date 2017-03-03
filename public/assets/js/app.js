@@ -222,6 +222,7 @@ $(document).ready(function() {
         //AJAX POST
         $.post(url, data, function (response) {
             // console.log(response);
+            Materialize.toast("Saved", 3000);
         })
     });
     //==============SENDING Guitar SKILL DATA=====================
@@ -243,6 +244,7 @@ $(document).ready(function() {
         //AJAX POST
         $.post(url, data, function (response) {
             // console.log(response);
+            Materialize.toast("Saved", 3000);
         })
     });
     //=================GETTING MATCHED===================
@@ -283,7 +285,7 @@ $(document).ready(function() {
                     var url = yelpResponse[i].url;
                     var titleName = yelpResponse[i].name;
                     var imageLink = yelpResponse[i].image_url;
-                    var rating = yelpResponse[i].rating_img_url_large;
+                    var rating = yelpResponse[i].rating_img_url;
                     var businessDistance = yelpResponse[i].distance * .000621;
                     businessDistance = businessDistance.toFixed(1);
                     createYelpCollection(url,titleName,imageLink,rating, businessDistance)
@@ -307,7 +309,7 @@ function createYelpCollection(url, title, imgURL, rating, distance) {
     var cardStackedDiv = $('<div>').attr('class','card-stacked');
     var cardContentDiv = $('<div>').attr('class', 'card-content');
     var ratingImg = $('<img>').attr('src', rating);
-    var distanceP = $('<p>').attr('class','distance').html("Distance: " + distance + "mi")
+    var distanceP = $('<p>').attr('class','distance').html('<i class="material-icons tiny">location_on</i> ' + distance + "mi")
     //assembling
     cardImgDiv.append(img);
     cardContentDiv.append(newH2).append(ratingImg).append(distanceP);
