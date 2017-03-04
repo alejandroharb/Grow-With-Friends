@@ -6,19 +6,7 @@ body{
     background-size: 100% auto;
 
 }
-.sign-up-wrapper{
-    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-    position: relative;
-    border-radius: 6px;
-    margin: 80px auto 30px auto;
-    display: block;
-    padding: 0px 45px 45px 45px!important;
-    background-color: #FAFAFA;
-}
-.sign-up-wrapper h1{
-    font-family:garamon;
-    text-align: center;
-}
+
 .user-wrapper {
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
     position: relative;
