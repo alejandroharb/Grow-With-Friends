@@ -8,7 +8,7 @@
     display: block;
     width: 100%;
 
-    background-image: url("../img/people.jpeg");
+    background-image: url("../img/friends-wallpaper.jpg");
     background-repeat: no-repeat;
     background-size: 100% auto;
         background-repeat: no-repeat;
@@ -30,8 +30,11 @@ h4, h5 {
   font-weight: bold;
   text-shadow: 1px 1px 1px #FFE274;
 }
-
+.sing-up-container {
+    max-width: 450px;
+}
 .sign-up-wrapper{
+    opacity:0.75;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
     position: relative;
     border-radius: 6px;
@@ -41,6 +44,7 @@ h4, h5 {
     background-color: #FAFAFA;
 }
 .sign-up-wrapper h1{
+    font-size: 3.2rem!important;
     font-family:garamon;
     text-align: center;
 }
@@ -60,6 +64,7 @@ img {
 
 
 #front-page-form {
+  opacity:0.75;
   max-width: 450px!important;
   background-color: #FFFFFF;
   padding: 10px 20px 10px 20px;

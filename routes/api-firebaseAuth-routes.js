@@ -2,15 +2,9 @@ var db = require('../models');
 
 
 //====FIREBASE admin initialization=====
-var admin = require('firebase-admin');
-var firebase = require('firebase');
-// var firebaseui = require('firebaseui');
+// var admin = require('firebase-admin');
+// var firebase = require('firebase');
 
-var serviceAccount = require("../firebaseServiceAccoutKey.json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://Grow-with-Friends.firebaseio.com"
-});
 
 module.exports = function(app) {
 	//================FIREBASE Authentication=================

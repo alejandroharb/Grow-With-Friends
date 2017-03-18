@@ -1,54 +1,36 @@
 var db = require('../models');
 var pictures = require('./pictures.js');
 var geocoder = require('geocoder');
-
+var admin = require("firebase-admin");
+var firebase = require('./../config/firebaseConfig.js');
 
 module.exports = function (app) {
     //==========creating new user account==========
     app.post("/sign-up", function (req, res) {
         var data = req.body;
-        var address = data.address;
-        var city = geocoder.geocode(address, function (err, data) {
-            // console.log("=====geocode city========");
-            var locData = data.results[0].address_components;
-            for (var i = 0; i < locData.length; i++) {
-                if (locData[i].types[0] === "locality") {
-                    return locData[i].long_name;
+        var email = data.email;
+        var password = data.password;
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                console.log("user Account created")
+            })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // [START_EXCLUDE]
+                if (errorCode == 'auth/weak-password') {
+                    console.log('The password is too weak.');
+                } else {
+                    console.log(errorMessage);
                 }
-            }
-            
+                console.log(error);
+                // [END_EXCLUDE]
+            });
 
-        })
+
         // console.log(city);
-        db.User.findOrCreate({
-            where: {
-                $or: [
-                    { user_name: data.username },
-                    { email: data.email }
-                ]
-            }, defaults: {
-                first_name: data.first,
-                last_name: data.last,
-                user_name: data.username,
-                password: data.password,
-                email: data.email,
-                address: data.address,
-                city: city,
-                image: "blank-person.png",
-                description: data.description
-            }
-        }).spread(function (user, created) {
-            //check to see if it exists already
-            //redirect user to main page
-            // console.log("created: " + created);
-            if (created) {
-                // console.log("routing to home page");
-                res.send(created)
-            } else {
-                // console.log("username exists, try again");
-                res.send(created);
-            }
-        })
+
         // =======for FIREBASE Authingtication adding user=========
         // admin.auth().createUser({
         //     uid:data.username,
@@ -66,17 +48,71 @@ module.exports = function (app) {
         //         console.log("Error creating new user:", error);
         // });
     });
+    app.post('/new-profile', function (req, res) {
+        var data = req.body;
+        var address = data.address;
+        var city = geocoder.geocode(address, function (err, data) {
+            // console.log("=====geocode city========");
+            var locData = data.results[0].address_components;
+            for (var i = 0; i < locData.length; i++) {
+                if (locData[i].types[0] === "locality") {
+                    return locData[i].long_name;
+                }
+            }
+        })
+        db.User.findOrCreate({
+            where: { user_name: data.username },
+            defaults: {
+                first_name: data.first,
+                last_name: data.last,
+                user_name: data.username,
+                password: data.password,
+                address: data.address,
+                city: city,
+                image: "blank-person.png",
+                description: data.description
+            }
+        }).spread(function (user, created) {
+            //check to see if it exists already
+            //redirect user to main page
+            // console.log("created: " + created);
+            if (created) {
+                // console.log("routing to home page");
+                res.send(created)
+            } else {
+                // console.log("username exists, try again");
+                res.send(created);
+            }
+        })
+    })
     //====================login===================
     app.post("/log-in", function (req, res) {
         var data = req.body;
-        db.User.findOne({ where: { email: data.email, password: data.password } })
-            .then(function (response) {
-                if (response === null) {
-                    res.send(false);
-                } else {
-                    res.send(response);
-                }
+        var email = data.email;
+        var password = data.password;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {
+                console.log("user signed in!")
             })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                if (errorCode === 'auth/wrong-password') {
+                    alert('Wrong password.');
+                } else {
+                    alert(errorMessage);
+                }
+                console.log(error);
+            });
+        // db.User.findOne({ where: { email: data.email, password: data.password } })
+        //     .then(function (response) {
+        //         if (response === null) {
+        //             res.send(false);
+        //         } else {
+        //             res.send(response);
+        //         }
+        //     })
     });
     //================User Selects SKILLS====================
     app.get('/api/create-profile/:key', function (req, res) {

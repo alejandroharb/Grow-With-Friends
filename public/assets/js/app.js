@@ -47,31 +47,20 @@ $(document).ready(function() {
         // console.log(formData)
 
         //collect form variables
-        var firstName = $('#first_name').val().trim();
-        var lastName = $('#last_name').val().trim();
-        var userName = $('#userName').val().trim();
         var password = $('#password').val().trim();
         var email = $('#email').val().trim();
-        var address = $('#address').val().trim();
-        var description = $('#description').val().trim();
         // organize data into object
         var data = {
-            first: firstName,
-            last: lastName,
-            username: userName,
             password: password,
-            email: email,
-            address: address,
-            description:description
+            email: email
         };
         //ajax POST for sending data to server
         $.post('/sign-up', data, function(response) {
             //if response == true, username was added, redirect user to home
             console.log(response)
-            if(response) {
-                //===========ROUTE USER TO CREATE PROFILE PAGE===============
-                var key = userName;
-                window.location.href = 'api/home/' + key;
+            if (response) {
+                //------pop modal for creating profile-------
+                $('#createProfileModal').modal('open');
             } else {
                 //username already existed, so was not added to database
                 console.log("username already exists, try again.");
@@ -79,6 +68,31 @@ $(document).ready(function() {
             }
         })
     });
+    $('#newProfileSubmit').on('click', function (event) {
+        event.preventDefault();
+        var firstName = $('#first_name').val().trim();
+        var lastName = $('#last_name').val().trim();
+        var userName = $('#userName').val().trim();
+        var address = $('#address').val().trim();
+        var description = $('#description').val().trim();
+        var data = {
+            first: firstName,
+            last: lastName,
+            username: userName,
+            address: address,
+            description:description
+        };
+        $.post('/new-profile', data, function (response) {
+            if (response === "Error") {
+                alert("Error");
+            } else {
+                console.log(response)
+                //===========ROUTE USER TO CREATE PROFILE PAGE===============
+                var key = userName;
+                window.location.href = 'api/home/' + key
+            }
+        })
+    })
     // //=====SCORE MODAL======
     // var activityModal = "";
     //

@@ -4,16 +4,9 @@ var geocoder = require('geocoder');
 var Promise = require("bluebird");
 
 // ===========FIREBASE============
-var firebase = require('firebase');
-var config = {
-    apiKey: "AIzaSyBAWx3ZLy8j86QkkL3kq3R92T7S1XE8mgg",
-    authDomain: "<grow-with-friends.firebaseapp.com",
-    databaseURL: "https://grow-with-friends.firebaseio.com",
-    storageBucket: "<grow-with-friends.appspot.com",
-};
+var admin = require("firebase-admin");
+var firebase = require("./../config/firebaseConfig.js");
 
-firebase.initializeApp(config);
-//reference to database
 var database = firebase.database();
 
 module.exports = function (app) {
