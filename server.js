@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 var app = express();
 var router = express.Router();
 var multer = require('multer')
-
+var session = require('express-session')
 var multer = require('multer')
 var mv = require('mv');
 
@@ -41,6 +41,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
 app.use(express.static(__dirname + "/public"));
+//session middleware
+app.use(session({secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false }}));
 
 //==========importing routes=============
 require('./routes/api-auth-routes.js')(app);
