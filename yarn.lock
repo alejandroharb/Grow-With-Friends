@@ -348,9 +348,9 @@ firebase-admin@^4.1.1:
     faye-websocket "0.9.3"
     jsonwebtoken "7.1.9"
 
-firebase@^3.6.10:
-  version "3.6.10"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-3.6.10.tgz#1efc0b31ab510eacab353eb11a84869196372ae5"
+firebase@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-3.7.2.tgz#fab14f7e31de007dd373f9295a81f6fba04d3c98"
   dependencies:
     dom-storage "2.0.2"
     faye-websocket "0.9.3"

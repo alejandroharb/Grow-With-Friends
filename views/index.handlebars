@@ -1,34 +1,33 @@
 <div class="background-img"></div>
 <main>
-  <div id="logo" class="container center">
-    <img class="responsive-img" src="/assets/img/logo.png">
-  </div>
+    <div id="logo" class="container center">
+        <img class="responsive-img" src="/assets/img/logo.png">
+    </div>
 
     <div id="front-page-form" class="container">
         <div class="row">
             <h4 class="center-align logInDiv"> Log-in </h4>
 
-            <form class="col s12" >
+            <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
                     </div>
                     <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Password</label>
                     </div>
                 </div>
 
-                  <div class="center">
-                  <a type="submit" id="logInBtn" class="waves-effect waves-light btn">Submit</a>
+                <div class="center">
+                    <a type="submit" id="logInBtn" class="waves-effect waves-light btn">Submit</a>
                 </div>
-                <hr class="hr-1">
-              <div id="googleSignInBtn" class="center">
-                  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                  <a data-onsuccess="onSignIn" class="waves-effect waves-light btn">Sign in w google</a>
-                </div>
-
+                {{!--<hr class="hr-1">
+                <div class="authBtnContainers">
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                </div>--}}
+                
             </form>
         </div>
         <div class="row">
@@ -40,12 +39,12 @@
         </div>
     </div>
 </main>
-    <div id="failLogInModal" class="modal">
-        <div class="modal-content">
+<div id="failLogInModal" class="modal">
+    <div class="modal-content">
         <h4>Uh Oh!</h4>
         <p>The email or the password didn't exist!</p>
-        </div>
-        <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-        </div>
     </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>

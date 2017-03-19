@@ -93,11 +93,11 @@ $('#submitGolfScore').on('click', function(e) {
         username: userName
     }
 
-    console.log(data)
-    console.log(url)
+    // console.log(data)
+    // console.log(url)
     plotIt();
     $.post(url, data, function(response) {
-        console.log("posted" + response);
+        // console.log("posted" + response);
 
     })
 
@@ -115,11 +115,11 @@ $('#submitGuitarScore').on('click', function(e) {
         score: score,
         username: userName
     }
-    console.log(data)
-    console.log(url)
+    // console.log(data)
+    // console.log(url)
     plotIt();
     $.post(url, data, function(response) {
-        console.log("posted" + response);
+        // console.log("posted" + response);
 
     })
 
@@ -136,11 +136,11 @@ $('#submitSpanishScore').on('click', function(e) {
         score: score,
         username: userName
     }
-    console.log(data)
-    console.log(url)
+    // console.log(data)
+    // console.log(url)
     plotIt();
     $.post(url, data, function(response) {
-        console.log("posted" + response);
+        // console.log("posted" + response);
 
     })
 
@@ -176,7 +176,7 @@ $('.getChartData').on('click', function(e) {
   var usersActivityRef = database.ref('userActivity/');
   usersActivityRef.on('child_added', function(response) {
         var newActivity = response.val().userActivity;
-        console.log(newActivity)
+        // console.log(newActivity)
         var image = response.val().image;
         var newLi = $('<li>');
         newLi.attr('class', "collection-item avatar");
@@ -206,7 +206,7 @@ $('.getChartData').on('click', function(e) {
     $("." + activityModal + 'ChartDiv').append('<canvas class="chartArea" height="350" width="400"><img src="/assets/img/aharb.jpg"></canvas>');
     $('.collapsible').collapsible();
     var url = '/get-data/' + activityModal + '/' + userName;
-    console.log("this is the URL: " + url);
+    // console.log("this is the URL: " + url);
 
     // retrieve data and generate graph
     $.get(url, function(response) {

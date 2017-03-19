@@ -11,7 +11,7 @@ var database = firebase.database();
 
 module.exports = function (app) {
     //=================Unique User HOME PAGE================
-    app.get('/api/home/:key', function (req, res) {
+    app.get('/home/:key', function (req, res) {
         var key = req.params.key
 
         //---adding image source for displaying----

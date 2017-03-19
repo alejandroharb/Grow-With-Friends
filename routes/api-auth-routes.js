@@ -10,43 +10,21 @@ module.exports = function (app) {
         var data = req.body;
         var email = data.email;
         var password = data.password;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => {
-                console.log("user Account created")
+        admin.auth().createUser({
+            uid:data.username,
+            email: email,
+            emailVerified: false,
+            password: password,
+            disabled: false
+        })
+            .then((userRecord) => {
+                console.log(userRecord)
+                res.sendStatus(200);
             })
-            .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // [START_EXCLUDE]
-                if (errorCode == 'auth/weak-password') {
-                    console.log('The password is too weak.');
-                } else {
-                    console.log(errorMessage);
-                }
-                console.log(error);
-                // [END_EXCLUDE]
-            });
-
-
-        // console.log(city);
-
-        // =======for FIREBASE Authingtication adding user=========
-        // admin.auth().createUser({
-        //     uid:data.username,
-        //     email: data.email,
-        //     emailVerified: false,
-        //     password: data.password,
-        //     displayName: data.first + data.last,
-        //     disabled: false
-        //     })
-        //     .then(function(userRecord) {
-        //         // See the UserRecord reference doc for the contents of userRecord.
-        //         console.log("Successfully created new user:", userRecord.uid);
-        //     })
-        //     .catch(function(error) {
-        //         console.log("Error creating new user:", error);
-        // });
+            .catch((error) => {
+                console.log("Error creating new user:", error);
+                res.send(error)
+            })
     });
     app.post('/new-profile', function (req, res) {
         var data = req.body;
@@ -66,7 +44,6 @@ module.exports = function (app) {
                 first_name: data.first,
                 last_name: data.last,
                 user_name: data.username,
-                password: data.password,
                 address: data.address,
                 city: city,
                 image: "blank-person.png",
@@ -77,11 +54,13 @@ module.exports = function (app) {
             //redirect user to main page
             // console.log("created: " + created);
             if (created) {
-                // console.log("routing to home page");
-                res.send(created)
+                console.log("user data created!")
+                console.log(created)
+                //send success status, and user's entered info
+                res.status(200).send(created);
             } else {
-                // console.log("username exists, try again");
-                res.send(created);
+                console.log("Error in user data entering!");
+                res.status(400).send("Oops! Well this is embarassing. We've encountered an error in data process. Come back soon, as we're liking working on fixing this.");
             }
         })
     })
@@ -90,20 +69,15 @@ module.exports = function (app) {
         var data = req.body;
         var email = data.email;
         var password = data.password;
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => {
-                console.log("user signed in!")
+        
+        var uid = email;
+
+        admin.auth().createCustomToken(uid)
+            .then(function (customToken) {
+                // Send token back to client
             })
             .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                } else {
-                    alert(errorMessage);
-                }
-                console.log(error);
+                console.log("Error creating custom token:", error);
             });
         // db.User.findOne({ where: { email: data.email, password: data.password } })
         //     .then(function (response) {

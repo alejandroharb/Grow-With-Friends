@@ -48,6 +48,11 @@ h4, h5 {
     font-family:garamon;
     text-align: center;
 }
+.create-profile-form h1{
+  font-size: 3.2rem!important;
+    font-family:garamon;
+    text-align: center;
+}
 #logo {
   /*border: 1px dotted blue;*/
   width: 1100px;
@@ -89,4 +94,13 @@ hr {
 
 .accountDiv {
   margin-top: 25px;
+}
+
+.authBtnContainers {
+  display:block;
+  margin:10px auto;
+}
+.googleSignInBtn{
+  background-color: #FFD913;
+  color:#FAFAFA;
 }
