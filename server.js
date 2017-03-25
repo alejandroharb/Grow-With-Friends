@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var app = express();
 var router = express.Router();
 var multer = require('multer')
+<<<<<<< HEAD
 //requiring environment variables
 require('dotenv').load();
 //authentication session middleware
@@ -16,6 +17,9 @@ app.use(session({
     cookie: { secure: false }
 }));
 //file upload middleware
+=======
+var session = require('express-session')
+>>>>>>> 8465be65168c0e9ccf3ec1497e293c483b12c650
 var multer = require('multer')
 var mv = require('mv');
 
@@ -51,6 +55,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
 app.use(express.static(__dirname + "/public"));
+//session middleware
+app.use(session({secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false }}));
 
 //==========importing routes=============
 require('./routes/api-auth-routes.js')(app);

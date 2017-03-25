@@ -89,6 +89,7 @@ $(document).ready(function () {
             }
         });
     });
+
     $('#googleSignIn').on('click', function () {
         googleSignIn();
     })
@@ -124,3 +125,4 @@ function googleSignIn() {
         };
     });
 };
+
