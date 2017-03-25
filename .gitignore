@@ -41,3 +41,4 @@ config/config.json
 config/firebase.js
 config/Grow-with-Friends-firebaseServiceAccountKey.json
 config/firebaseServiceAccoutKey.json
+.env

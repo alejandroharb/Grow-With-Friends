@@ -10,20 +10,6 @@ var firebase = require("./../config/firebaseConfig.js");
 var database = firebase.database();
 
 module.exports = function (app) {
-    //=================Unique User HOME PAGE================
-    app.get('/home/:key', function (req, res) {
-        var key = req.params.key
-
-        //---adding image source for displaying----
-        var userData = {};
-        //----query data for this specific profile-----
-        db.User.findOne({ where: { user_name: key } })
-            .then(function (response) {
-                userData.basicInfo = response.dataValues;
-                res.render('user-home', { info: userData })
-            })
-
-    });
     //==============Writing data to FIREBASE==============
     app.post('/score/:skill', function (req, res) {
         var skill = req.params.skill;

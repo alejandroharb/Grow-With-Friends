@@ -11,7 +11,7 @@ module.exports = function (app) {
         var email = data.email;
         var password = data.password;
         admin.auth().createUser({
-            uid:data.username,
+            uid: data.username,
             email: email,
             emailVerified: false,
             password: password,
@@ -69,7 +69,7 @@ module.exports = function (app) {
         var data = req.body;
         var email = data.email;
         var password = data.password;
-        
+
         var uid = email;
 
         admin.auth().createCustomToken(uid)
@@ -104,8 +104,25 @@ module.exports = function (app) {
             res.json(response);
         });
     });
-
-
-    // app.post('/pictures/upload', pictures);
-
+    app.post('/user/authenticate', function (req, res) {
+        req.session.uid = req.body.uid;
+        console.log("Setting session uid ", req.session.uid);
+        res.end();
+    });
+    app.get('/home/:id', function (req, res) {
+        console.log("I should get the session id here ", req.session.uid);
+        if (req.session.uid === req.params.id) {
+            console.log("user has been authenticated");
+            //---adding image source for displaying----
+            var userData = {};
+            //----query data for this specific profile-----
+            db.User.findOne({ where: { user_name: req.params.id } })
+                .then(function (response) {
+                    userData.basicInfo = response.dataValues;
+                    res.render('user-home', { info: userData });
+                })
+        } else {
+            res.render("unauthorized", {title:"Unauthorized Access Page", layout: "front-page"});
+        }
+    })
 }

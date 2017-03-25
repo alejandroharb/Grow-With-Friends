@@ -5,7 +5,17 @@ var bodyParser = require("body-parser");
 var app = express();
 var router = express.Router();
 var multer = require('multer')
-
+//requiring environment variables
+require('dotenv').load();
+//authentication session middleware
+var session = require('express-session');
+app.use(session({
+    secret: "boiling kettle",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
+//file upload middleware
 var multer = require('multer')
 var mv = require('mv');
 
@@ -45,7 +55,6 @@ app.use(express.static(__dirname + "/public"));
 //==========importing routes=============
 require('./routes/api-auth-routes.js')(app);
 require('./routes/html-routes.js')(app);
-require('./routes/api-firebaseAuth-routes.js')(app);
 require('./routes/api-home-routes.js')(app);
 require('./routes/pictures.js')(app);
 require('./routes/api-matching-routes.js')(app);
