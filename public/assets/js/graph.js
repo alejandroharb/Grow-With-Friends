@@ -71,34 +71,14 @@ $('#submitGolfScore').on('click', function(e) {
     var  score = $('#golfScore').val();
     var url = '/score/golf';
     var userName = $('#userName').val().trim();
-
-    // console.log(data)
-    // console.log("activityModal: " + activityModal);
-
-    // // filter data by activity type
-    // if (activityModal == "golf") {
-    //   //collect variables with data
-    //     score = $('#golfScore').val();
-    //     url = '/score/golf';
-    // } else if (activityModal == "guitar") {
-    //     score = $('#guitarHours').val();
-    //     url = '/score/guitar';
-    // } else {
-    //     score = $('#spanishHours').val();
-    //     url = '/score/lang';
-    // }
-
     var data = {
         score: score,
         username: userName
     }
-
-    // console.log(data)
-    // console.log(url)
     plotIt();
     $.post(url, data, function(response) {
         // console.log("posted" + response);
-
+        plotIt();
     })
 
 })

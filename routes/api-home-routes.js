@@ -15,6 +15,8 @@ module.exports = function (app) {
         var skill = req.params.skill;
         var data = req.body;
         var username = data.username;
+        var date = new Date();
+
         console.log("===firebase golf data being sent====")
         console.log(data)
         //get current date stamp
@@ -22,7 +24,7 @@ module.exports = function (app) {
         //creating score object
         var score = {
           score: data.score,
-          createdAt: firebase.database.ServerValue.TIMESTAMP
+          time: date
         }
         //ref variable holds FIREBASE node structure
         var ref = database.ref("Users/" + data.username + "/" + skill + "/" + date);
