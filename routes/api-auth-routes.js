@@ -92,8 +92,7 @@ module.exports = function (app) {
     app.get('/api/create-profile/:key', function (req, res) {
         //key variable stores username of user
         var key = req.params.key;
-        //========RAUL WORK HERE==========
-        //---create sequelize function that sends data into mysql database into ****CORRECT TABLE****-----
+
         var data = req.body;
 
         db.Golf.create({
@@ -104,11 +103,20 @@ module.exports = function (app) {
             res.json(response);
         });
     });
+    //============set USER session===========
     app.post('/user/authenticate', function (req, res) {
         req.session.uid = req.body.uid;
         console.log("Setting session uid ", req.session.uid);
         res.end();
     });
+    app.get('/user/authenticate/signout', function (req, res) {
+        console.log("destroying session for signing out")
+        req.session.destroy(function (err) {
+            console.log(err)
+            res.end();
+        })
+    })
+    //=============Route User Home + Authenticate credentials with Session==============
     app.get('/home/:id', function (req, res) {
         console.log("I should get the session id here ", req.session.uid);
         if (req.session.uid === req.params.id) {

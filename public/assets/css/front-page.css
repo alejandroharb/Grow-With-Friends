@@ -132,3 +132,9 @@ hr {
     background-color: #cf412f;
     color: #FAFAFA;
 }
+#unauthorized-wrapper a{
+  text-align: center;
+  font-size:18px;
+  display: block;
+  margin: 15px auto;
+}

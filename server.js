@@ -5,36 +5,18 @@ var bodyParser = require("body-parser");
 var app = express();
 var router = express.Router();
 var multer = require('multer')
-<<<<<<< HEAD
 //requiring environment variables
 require('dotenv').load();
 //authentication session middleware
 var session = require('express-session');
 app.use(session({
     secret: "boiling kettle",
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
 }));
 //file upload middleware
-=======
-var session = require('express-session')
->>>>>>> 8465be65168c0e9ccf3ec1497e293c483b12c650
-var multer = require('multer')
 var mv = require('mv');
-
-//===============Image File Uploading Middleware===============
-//allows us to easily create temporary files and directories.
-
-//file upload middleware
-
-// //====FIREBASE admin initialization=====
-// var admin = require('firebase-admin');
-// var serviceAccount = require("./firebaseServiceAccoutKey.json");
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://Grow-with-Friends.firebaseio.com"
-// });
 
 //======database connection, models=========
 var db = require('./models');
@@ -54,7 +36,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("./public"));
 //session middleware
 app.use(session({secret: 'keyboard cat',
   resave: true,

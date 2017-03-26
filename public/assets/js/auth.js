@@ -89,9 +89,17 @@ $(document).ready(function () {
             }
         });
     });
-
+    $('#unauthLoginRedirect').on('click', function () {
+        window.location.href = '/';
+    })
+    $('#unauthSignUpRedirect').on('click', function () {
+        window.location.href = '/create-user';
+    })
     $('#googleSignIn').on('click', function () {
         googleSignIn();
+    })
+    $('#userSignOut').on('click', function () {
+        userSignOut();
     })
 });
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -125,4 +133,42 @@ function googleSignIn() {
         };
     });
 };
-
+// function checkAuthStatus() {
+//     firebase.auth().onAuthStateChanged(function (user) {
+//         if (user) {
+//             // User is signed in.
+//             var url = '/user/authenticate';
+//             $.ajax({
+//                 method: 'POST',
+//                 url: url,
+//                 data: { uid: user.uid }
+//             }).then(function (response) {
+//                 window.location.href = '/home/' + user.uid;
+//             });
+//         };
+//     });
+// }
+function userSignOut() {
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        console.log("user signed out!")
+    }).catch(function (error) {
+        // An error happened.
+        console.log(error);
+        });
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (!user) {
+            // User is signed in.
+            var url = '/user/authenticate/signout';
+            $.ajax({
+                method: 'GET',
+                url: url,
+            }).then(function (response) {
+                window.location.href = '/';
+            });
+        } else {
+            console.log("user still signed in")
+            console.log(user)
+        }
+    });
+}
