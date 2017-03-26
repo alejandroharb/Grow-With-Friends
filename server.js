@@ -50,6 +50,7 @@ require('./routes/api-home-routes.js')(app);
 require('./routes/pictures.js')(app);
 require('./routes/api-matching-routes.js')(app);
 require('./routes/yelp-routes.js')(app);
+require('./routes/scores-routes.js')(app);
 
 
 db.sequelize.sync().then(function () {

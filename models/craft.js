@@ -1,11 +1,19 @@
 module.exports = function(sequelize, DataTypes) {
-    var Golf = sequelize.define("Golf", {
+    var Craft = sequelize.define("Craft", {
         user_name: {
             type: DataTypes.STRING(100),
             allowNull: false,
             validate: {
                 len: [1,100],
                 isAlpha: true
+            }
+        },
+        craft: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isAlpha: true,
+                len: [1,100]
             }
         },
         year_experience: {
@@ -36,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
     {
         classMethods: {
             associate: function(models) {
-                Golf.belongsTo(models.User, {
+                Craft.belongsTo(models.User, {
                     foreignKey: {
                         allowNull: false
                     }
@@ -44,5 +52,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Golf;
+    return Craft;
 }

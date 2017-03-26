@@ -5,8 +5,8 @@ distance.apiKey = 'AIzaSyAi_tpNW81fkYbZNdVNWPzUhF68d4se-0Y';
 
 module.exports = function (app) {
     //==========USER MATCHING==========
-    app.get('/match/:skill/:user', function (req, res) {
-        var skill = req.params.skill;
+    app.get('/match/:craft/:user', function (req, res) {
+        var craft = req.params.craft;
         var username = req.params.user;
         
         db.User.findOne({where:{user_name: username}})
@@ -14,16 +14,16 @@ module.exports = function (app) {
             var address = data.dataValues.address
             //use geocode function with callback to find city synchronously
             findCity(address, function() {
-                db.Golf.findAll({
-                where: { city: city },
+                db.Craft.findAll({
+                where: [{ city: city },{craft:craft}],
                 include: [db.User]
-                }).then(function (dbGolf) {
-                    
+                }).then(function (dbCraft) {
+                    console.log("==================data result==================")
+                    console.log(dbCraft.dataValues)
                     var distanceArray = [];
                     var userAddress = {userHome: address}
                     distanceArray.push(userAddress)
-                    // console.log("distanceArray");
-                    // console.log(distanceArray)
+
                     var i = 0;
                     gatherDistData(i);
                     function completeMatch(array){
@@ -40,18 +40,17 @@ module.exports = function (app) {
                                 return false;
                             } else {return true};
                         })
-                        // console.log(filteredArr)
                         res.json(filteredArr)
                     }
                     function gatherDistData(index){
                         // console.log("startPoint: " + startPoint)
-                        var destination = dbGolf[index].dataValues.User.address;
-                        var username = dbGolf[index].dataValues.user_name;
-                        var name = dbGolf[index].dataValues.User.first_name + " " + dbGolf[index].dataValues.User.last_name;
-                        var rating = dbGolf[index].dataValues.experience_rating;
+                        var destination = dbCraft[index].dataValues.User.address;
+                        var username = dbCraft[index].dataValues.user_name;
+                        var name = dbCraft[index].dataValues.User.first_name + " " + dbCraft[index].dataValues.User.last_name;
+                        var rating = dbCraft[index].dataValues.experience_rating;
                         var origin = address;
-                        var yearsExperience = dbGolf[index].dataValues.year_experience;
-                        var userImgPath = dbGolf[index].dataValues.User.image;
+                        var yearsExperience = dbCraft[index].dataValues.year_experience;
+                        var userImgPath = dbCraft[index].dataValues.User.image;
 
                         var userDistanceData = {
                             username: username,
@@ -60,8 +59,7 @@ module.exports = function (app) {
                             rating: rating,
                             userImg: userImgPath,
                         }
-                        //google npm
-                        //gets distance between two locations
+                        //------------google npm : gets distance between two locations------------
                         distance.get(
                                 {
                                     origin: origin,
@@ -80,7 +78,7 @@ module.exports = function (app) {
                                     distanceArray.push(userDistanceData);
                       
                                     index++;
-                                    if(index < dbGolf.length) {
+                                    if(index < dbCraft.length) {
                                         gatherDistData(index)
                                     } else {
                                         // console.log(distanceArray);
@@ -100,12 +98,7 @@ module.exports = function (app) {
         
     })
 }
-// function getDistance(startLoc, endLoc, cb) {
-//     // console.log("startLoc: " + startLoc)
-//     // console.log("endLoc: " + endLoc)
-//     var dist = 
-//     return dist;
-// }
+
 
 
 function findCity(loc, cb) {
