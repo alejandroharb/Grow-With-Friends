@@ -4,6 +4,20 @@ var geocoder = require('geocoder');
 var Promise = require("bluebird");
 
 module.exports = function (app) {
+    app.get('/crafts/options/:user', (req, res) => {
+        var username = req.params.user;
+        console.log("username: " + username )
+        db.User.findOne({
+            where: { user_name: username },
+            include: [db.Craft]
+        })
+            .then(function (dbUser) {
+                res.render("partials/craftMatchPartial", {
+                    crafts: dbUser.Crafts,
+                    layout: false
+                });
+            })
+    })
     //============USER SELECTS THEIR SKILLS==============
     app.post('/api/choices/:craft/:user', function (req, res) {
         //collect skill variable and user_name

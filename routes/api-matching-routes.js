@@ -4,6 +4,20 @@ var distance = require('google-distance');
 distance.apiKey = 'AIzaSyAi_tpNW81fkYbZNdVNWPzUhF68d4se-0Y';
 
 module.exports = function (app) {
+    app.get('/crafts/match/options/:user', function (req, res) {
+        var username = req.params.user;
+        console.log("username: " + username )
+        db.User.findOne({
+            where: { user_name: username },
+            include: [db.Craft]
+        })
+            .then(function (dbUser) {
+                res.render("partials/craftMatchPartial", {
+                    crafts: dbUser.Crafts,
+                    layout: false
+                });
+            })
+    })
     //==========USER MATCHING==========
     app.get('/match/:craft/:user', function (req, res) {
         var craft = req.params.craft;
@@ -99,8 +113,6 @@ module.exports = function (app) {
     })
 }
 
-
-
 function findCity(loc, cb) {
     geocoder.geocode(loc, function (err, data) {
         // console.log(data);
@@ -117,5 +129,3 @@ function findCity(loc, cb) {
 
     })
 }
-
-findCity('3918 atascocita rd', function(){})

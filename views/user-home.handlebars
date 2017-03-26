@@ -4,6 +4,7 @@
 			<div class="user-wrapper wrappers">
 				<img src="/uploads/images/{{info.basicInfo.image}}" class="responsive-img circle userImg">
 				<h2 class="center-align userTitle"> {{info.basicInfo.first_name}} {{info.basicInfo.last_name}}</h2>
+				<div id="user_name" value={{info.basicInfo.user_name}}></div>
 				<p class="userDescription center-align">{{info.basicInfo.description}}</p>
 				<div class="row">
 					<a href="#" data-activates="slide-out" class="button-collapse btn menuBtn"><i class="material-icons medium">menu</i></a>
@@ -232,8 +233,8 @@
 {{!--===============MODALS FOR SETTING SKILLS=========================--}}
 <div id="setSkillsModal" class="modal">
 	<div class="modal-content">
-		{{!---------------handlebars partial here----------------}}
-		{{> partials/craftOptionsPartial}}
+		{{!---------------handlebars: display all craft options----------------}}
+		{{> craftOptionsPartial}}
 	</div>
 	<div class="modal-footer">
 		<a class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
@@ -319,48 +320,8 @@
 		<button type="submit" id="submitGuitarSkillData" class="modal-action modal-close btn btn-large waves-effect waves-light orange">Submit</button>
 	</div>
 </div>
-{{!--===============MODAL GETTING MATCHED: DISPLAYING OPTIONS=========================--}}
-<div id="getMatchedModal" class="modal">
-	<div id="preloaderInsert">
-		<div class="indeterminate"></div>
-	</div>
-	<div class="modal-content">
-		<div class="container">
-			<div class="row">
-				<form>
-					<input type="hidden" id="matchUserName" value="{{info.basicInfo.user_name}}">
-					<div class="col s4">
-						<div id="matchGolf" class="card hoverable card-btn">
-							<div class="card-image">
-								<img class="circle" src="/assets/img/golf-match.jpg">
-								<span class="card-title">Golf</span>
-							</div>
-						</div>
-					</div>
-					<div class="col s4">
-						<div id="matchGuitar" class="card hoverable card-btn">
-							<div class="card-image">
-								<img class="circle" src="/assets/img/guitar-match.jpg">
-								<span class="card-title">Guitar</span>
-							</div>
-						</div>
-					</div>
-					<div class="col s4">
-						<div id="matchSpanish" class="card hoverable card-btn">
-							<div class="card-image">
-								<img class="circle" src="/assets/img/spanish-match.jpg">
-								<span class="card-title">Spanish</span>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<a class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
-	</div>
-</div>
+{{!--Div holds dynamically created Craft Options Modal--}}
+<div id="craftOptionsModal"></div>
 {{!--================BOTTOM MODAL FOR DISPLAYING MATCHES===================--}}
 <div id="matchesModal" class="modal bottom-sheet">
 	<div class="modal-content">
@@ -374,21 +335,8 @@
 							<ul class="collection" id="matchContentInsert"></ul>
 						</div>
 						<div class="col s12 m6">
-							<!-- <img src="/assets/img/yelp-logo.jpeg" class="yelp-logo"> -->
 							<div id="yelpContent">
-								<!-- <div class="col s12">
-								    <h2 class="header">Horizontal Card</h2>
-								    <div class="card horizontal">
-								      <div class="card-image">
-								        <img src="http://lorempixel.com/100/190/nature/6">
-								      </div>
-								      <div class="card-stacked">
-								        <div class="card-content">
-								          <p>I am a very simple card. I am good at containing small bits of information.</p>
-								        </div>
-								      </div>
-								    </div>
-								  </div> -->
+
 							</div>
 						</div>
 					</div>

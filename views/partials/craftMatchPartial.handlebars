@@ -1,0 +1,27 @@
+{{!--===============MODAL GETTING MATCHED: DISPLAYING OPTIONS=========================--}}
+<div id="getMatchedModal" class="modal">
+    <div id="preloaderInsert">
+        <div class="indeterminate"></div>
+    </div>
+    <div class="modal-content">
+        <div class="container">
+            <div class="row">
+                {{#each crafts}}
+                <div class="col s4">
+                    <div onClick="handleMatching('{{this.craft}}')" class="card hoverable card-btn">
+                        <div class="card-image">
+                            <img class="circle" src="/assets/img/{{this.craft}}.jpg">
+                            <span class="card-title">{{this.craft}}</span>
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <h3>You haven't selected any crafts!</h3>
+                {{/each}}                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+    </div>
+</div>

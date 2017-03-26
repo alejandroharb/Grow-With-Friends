@@ -1,54 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //=================GETTING MATCHED===================
-    //---MODAL---
     $('#getMatchedBtn').on('click', function () {
-        $('#getMatchedModal').modal('open');
+        var username = $('#user_name').attr('value');
+        $.ajax({
+            url: '/crafts/match/options/' + username,
+            method: 'GET'
+        }).then(function (response) {
+            $('#craftOptionsModal').empty();
+            $('#craftOptionsModal').append(response);
+            $('.modal').modal();
+        }).then(function () {
+            $('#getMatchedModal').modal('open');
+        })
     })
-    //---sending data for matching---
-    $('#matchGolf').on('click', function () {
-        $('#preloaderInsert').addClass('progress');
-        var username = $('#matchUserName').val();
-        var url = "/match/golf/" + username;
-        var yelpAddress;
-        //========GET GOLF MATCHES=========
-        $.get(url, function (response) {
-            $('#preloaderInsert').removeClass('progress');
-            $('#getMatchedModal').modal('close');
-
-            //get user's location for yelp API
-            yelpAddress = response[0].userHome;
-            var data = response
-            //======process data insertion here======
-            for (var i = 1; i < data.length; i++) {
-                var image = data[i].userImg;
-                var name = data[i].user;
-                var years = data[i].years;
-                var dist = data[i].distance;
-                // console.log(name)
-                createCollectionItem(image, name, years, dist)
-            };
-            // //=====YELP API=====
-            var yelpURL = '/api/yelp';
-            var yelpData = { address: yelpAddress }
-            $.post(yelpURL, yelpData, function (yelpResponse) {
-                console.log(yelpResponse);
-                // getGoogleMap(yelpAddress, yelpResponse)
-                for (var i = 0; i < yelpResponse.length; i++) {
-                    var url = yelpResponse[i].url;
-                    var titleName = yelpResponse[i].name;
-                    var imageLink = yelpResponse[i].image_url;
-                    var rating = yelpResponse[i].rating_img_url;
-                    var businessDistance = yelpResponse[i].distance * .000621;
-                    businessDistance = businessDistance.toFixed(1);
-                    createYelpCollection(url, titleName, imageLink, rating, businessDistance)
-                }
-
-            })
-            $('#matchesModal').modal('open');
-        });
-
-
-    })
+    //-------matched user chosen for CHATTING---------
     $('#chosenUser').on('click', function () {
         console.log('clicked to chat')
         $('#matchesModal').modal('close');
@@ -82,9 +47,6 @@ function createYelpCollection(url, title, imgURL, rating, distance) {
     $('#yelpContent').append(colDiv);
 }
 function createCollectionItem(userImg, name, years, distance) {
-    // console.log('inside function')
-    // console.log("image: " + userImg + " and name: " + name);
-    //<li> parent
     var newLi = $('<li>');
     newLi.attr('class', "collection-item avatar");
     //Image
@@ -121,4 +83,43 @@ function createCollectionItem(userImg, name, years, distance) {
     newLi.append(newP2);
     newLi.append(link);
     $('#matchContentInsert').append(newLi);
+}
+
+function handleMatching(craft) {
+    $('#preloaderInsert').addClass('progress');
+    var username = $('#user_name').attr('value');
+    var url = "/match/" + craft + "/" + username;
+    var yelpAddress;
+    //========GET GOLF MATCHES=========
+    $.get(url, function (response) {
+        $('#preloaderInsert').removeClass('progress');
+        $('#getMatchedModal').modal('close');
+        //get user's location for yelp API
+        yelpAddress = response[0].userHome;
+        var data = response
+        //======process data insertion here======
+        for (var i = 1; i < data.length; i++) {
+            var image = data[i].userImg;
+            var name = data[i].user;
+            var years = data[i].years;
+            var dist = data[i].distance;
+            createCollectionItem(image, name, years, dist)
+        };
+        // //=====YELP API=====
+        var yelpURL = '/api/yelp';
+        var yelpData = { address: yelpAddress }
+        $.post(yelpURL, yelpData, function (yelpResponse) {
+            //collect yelp data
+            for (var i = 0; i < yelpResponse.length; i++) {
+                var url = yelpResponse[i].url;
+                var titleName = yelpResponse[i].name;
+                var imageLink = yelpResponse[i].image_url;
+                var rating = yelpResponse[i].rating_img_url;
+                var businessDistance = yelpResponse[i].distance * .000621;
+                businessDistance = businessDistance.toFixed(1);
+                createYelpCollection(url, titleName, imageLink, rating, businessDistance)
+            }
+        })
+        $('#matchesModal').modal('open');
+    });
 }

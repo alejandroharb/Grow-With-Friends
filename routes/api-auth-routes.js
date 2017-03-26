@@ -92,10 +92,9 @@ module.exports = function (app) {
     app.get('/api/create-profile/:key', function (req, res) {
         //key variable stores username of user
         var key = req.params.key;
-
         var data = req.body;
 
-        db.Golf.create({
+        db.Craft.create({
             user_name: data.user_name,
             year_experience: data.year_experience,
             experience_rating: data.experience_rating
