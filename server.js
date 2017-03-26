@@ -6,7 +6,7 @@ var app = express();
 var router = express.Router();
 var multer = require('multer')
 //requiring environment variables
-require('dotenv').load();
+// require('dotenv').load(); !!!currently not being used
 //authentication session middleware
 var session = require('express-session');
 app.use(session({
