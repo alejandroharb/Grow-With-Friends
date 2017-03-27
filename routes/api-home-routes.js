@@ -10,13 +10,25 @@ var firebase = require("./../config/firebaseConfig.js");
 var database = firebase.database();
 
 module.exports = function (app) {
+    //=================Unique User HOME PAGE================
+    app.get('/api/home/:key', function (req, res) {
+        var key = req.params.key
+
+        //---adding image source for displaying----
+        var userData = {};
+        //----query data for this specific profile-----
+        db.User.findOne({ where: { user_name: key } })
+            .then(function (response) {
+                userData.basicInfo = response.dataValues;
+                res.render('user-home', { info: userData })
+            })
+
+    });
     //==============Writing data to FIREBASE==============
     app.post('/score/:skill', function (req, res) {
         var skill = req.params.skill;
         var data = req.body;
         var username = data.username;
-        var date = new Date();
-
         console.log("===firebase golf data being sent====")
         console.log(data)
         //get current date stamp
@@ -24,7 +36,7 @@ module.exports = function (app) {
         //creating score object
         var score = {
           score: data.score,
-          time: date
+          createdAt: firebase.database.ServerValue.TIMESTAMP
         }
         //ref variable holds FIREBASE node structure
         var ref = database.ref("Users/" + data.username + "/" + skill + "/" + date);

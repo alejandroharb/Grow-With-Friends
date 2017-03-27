@@ -10,21 +10,43 @@ module.exports = function (app) {
         var data = req.body;
         var email = data.email;
         var password = data.password;
-        admin.auth().createUser({
-            uid: data.username,
-            email: email,
-            emailVerified: false,
-            password: password,
-            disabled: false
-        })
-            .then((userRecord) => {
-                console.log(userRecord)
-                res.sendStatus(200);
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                console.log("user Account created")
             })
-            .catch((error) => {
-                console.log("Error creating new user:", error);
-                res.send(error)
-            })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // [START_EXCLUDE]
+                if (errorCode == 'auth/weak-password') {
+                    console.log('The password is too weak.');
+                } else {
+                    console.log(errorMessage);
+                }
+                console.log(error);
+                // [END_EXCLUDE]
+            });
+
+
+        // console.log(city);
+
+        // =======for FIREBASE Authingtication adding user=========
+        // admin.auth().createUser({
+        //     uid:data.username,
+        //     email: data.email,
+        //     emailVerified: false,
+        //     password: data.password,
+        //     displayName: data.first + data.last,
+        //     disabled: false
+        //     })
+        //     .then(function(userRecord) {
+        //         // See the UserRecord reference doc for the contents of userRecord.
+        //         console.log("Successfully created new user:", userRecord.uid);
+        //     })
+        //     .catch(function(error) {
+        //         console.log("Error creating new user:", error);
+        // });
     });
     app.post('/new-profile', function (req, res) {
         var data = req.body;
@@ -44,6 +66,7 @@ module.exports = function (app) {
                 first_name: data.first,
                 last_name: data.last,
                 user_name: data.username,
+                password: data.password,
                 address: data.address,
                 city: city,
                 image: "blank-person.png",
@@ -54,45 +77,32 @@ module.exports = function (app) {
             //redirect user to main page
             // console.log("created: " + created);
             if (created) {
-                console.log("user data created!")
-                console.log(created)
-                //send success status, and user's entered info
-                res.status(200).send(created);
+                // console.log("routing to home page");
+                res.send(created)
             } else {
-                console.log("Error in user data entering!");
-                res.status(400).send("Oops! Well this is embarassing. We've encountered an error in data process. Come back soon, as we're liking working on fixing this.");
+                // console.log("username exists, try again");
+                res.send(created);
             }
         })
     })
     //====================login===================
-    app.post("/log-in", function (req, res) {
-        var data = req.body;
-        var email = data.email;
-        var password = data.password;
-
-        var uid = email;
-
-        admin.auth().createCustomToken(uid)
-            .then(function (customToken) {
-                // Send token back to client
-            })
-            .catch(function (error) {
-                console.log("Error creating custom token:", error);
+    app.post("/log-in", function(req, res) {
+            var data = req.body;
+            db.User.findOne({ where: { email: data.email, password: data.password}})
+                .then(function(response) {
+                    if(response === null) {
+                        res.send(false);
+                    } else {
+                        res.send(response);
+                    }
             });
-        // db.User.findOne({ where: { email: data.email, password: data.password } })
-        //     .then(function (response) {
-        //         if (response === null) {
-        //             res.send(false);
-        //         } else {
-        //             res.send(response);
-        //         }
-        //     })
     });
     //================User Selects SKILLS====================
     app.get('/api/create-profile/:key', function (req, res) {
         //key variable stores username of user
         var key = req.params.key;
-
+        //========RAUL WORK HERE==========
+        //---create sequelize function that sends data into mysql database into ****CORRECT TABLE****-----
         var data = req.body;
 
         db.Golf.create({
@@ -103,34 +113,8 @@ module.exports = function (app) {
             res.json(response);
         });
     });
-    //============set USER session===========
-    app.post('/user/authenticate', function (req, res) {
-        req.session.uid = req.body.uid;
-        console.log("Setting session uid ", req.session.uid);
-        res.end();
-    });
-    app.get('/user/authenticate/signout', function (req, res) {
-        console.log("destroying session for signing out")
-        req.session.destroy(function (err) {
-            console.log(err)
-            res.end();
-        })
-    })
-    //=============Route User Home + Authenticate credentials with Session==============
-    app.get('/home/:id', function (req, res) {
-        console.log("I should get the session id here ", req.session.uid);
-        if (req.session.uid === req.params.id) {
-            console.log("user has been authenticated");
-            //---adding image source for displaying----
-            var userData = {};
-            //----query data for this specific profile-----
-            db.User.findOne({ where: { user_name: req.params.id } })
-                .then(function (response) {
-                    userData.basicInfo = response.dataValues;
-                    res.render('user-home', { info: userData });
-                })
-        } else {
-            res.render("unauthorized", {title:"Unauthorized Access Page", layout: "front-page"});
-        }
-    })
+
+
+    // app.post('/pictures/upload', pictures);
+
 }

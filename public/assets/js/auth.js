@@ -1,36 +1,36 @@
 $(document).ready(function () {
-    //================Loggin in==================
-    $('#logInBtn').on('click', function (e) {
-        e.preventDefault();
-        console.log("tried to log in!!!")
-        //collect variables
-        var email = $('#email').val().trim();
-        var password = $('#password').val().trim();
-        //assemble data into object
-        // var data = {
-        //     email: email,
-        //     password: password
-        // }
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(function (response) {
-                console.log(response);
-                console.log("user signed in!")
-                var key = response.uid;
-                console.log("key is here: " + key)
-                window.location.href = '/home/' + key;
-            })
-            .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                } else {
-                    alert(errorMessage);
-                }
-                console.log(error);
-            });
-    });
+    // //================Loggin in==================
+    // $('#logInBtn').on('click', function (e) {
+    //     e.preventDefault();
+    //     console.log("tried to log in!!!")
+    //     //collect variables
+    //     var email = $('#email').val().trim();
+    //     var password = $('#password').val().trim();
+    //     //assemble data into object
+    //     // var data = {
+    //     //     email: email,
+    //     //     password: password
+    //     // }
+    //     firebase.auth().signInWithEmailAndPassword(email, password)
+    //         .then(function (response) {
+    //             console.log(response);
+    //             console.log("user signed in!")
+    //             var key = response.uid;
+    //             console.log("key is here: " + key)
+    //             window.location.href = '/home/' + key;
+    //         })
+    //         .catch(function (error) {
+    //             // Handle Errors here.
+    //             var errorCode = error.code;
+    //             var errorMessage = error.message;
+    //             if (errorCode === 'auth/wrong-password') {
+    //                 alert('Wrong password.');
+    //             } else {
+    //                 alert(errorMessage);
+    //             }
+    //             console.log(error);
+    //         });
+    // });
     //============Creating new User==============
     $('#newUserSubmit').on('click', function (e) {
         //prevent page reload upon form submit
